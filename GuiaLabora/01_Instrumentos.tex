@@ -1,0 +1,327 @@
+\chapter{Mediciones en el laboratorio}
+
+\section{Introducción}
+
+En este capítulo, se abordarán los conceptos fundamentales relacionados con las mediciones en el contexto del laboratorio de física. Se explorarán las unidades de medida, los instrumentos comunes utilizados para medir diferentes magnitudes y las técnicas básicas para llevar a cabo mediciones precisas.
+
+En el entorno del laboratorio de física, los objetivos se centran en la realización precisa y eficiente de experimentos, así como en el desarrollo de habilidades clave para la investigación científica. Estos objetivos incluyen:
+
+\begin{itemize}
+\item  Obtención de Mediciones Precisas: El primer objetivo es llevar a cabo experimentos físicos con el fin de obtener valores precisos de las cantidades físicas medidas.
+
+\item Elaboración y Análisis de Gráficos: Un segundo objetivo es adquirir la habilidad de crear gráficos adecuados y analizar la información científica que estos gráficos contienen. Esto es esencial para visualizar y comprender los resultados de manera efectiva.
+
+\item Redacción de Informes de Laboratorio: La correcta redacción de informes de laboratorio es fundamental en la comunicación de resultados científicos. Por lo tanto, otro objetivo importante es aprender a redactar informes de laboratorio de manera precisa y coherente.
+
+\item Exploración de Nuevos Tópicos de la Física: El laboratorio también cumple la función de introducir a los estudiantes en nuevos conceptos y tópicos de la física que pueden no haber sido tratados en las clases teóricas.
+\end{itemize}
+
+Además, es importante destacar que, mientras las clases teóricas suelen presentar experimentos de manera cualitativa, el laboratorio se enfoca en la realización cuantitativa de los mismos. En este contexto, surgen preguntas inevitables, como: ¿cuál es la precisión y exactitud alcanzada en una medición?, ¿cuál es la precisión y exactitud que se podría lograr?, y ¿qué conceptos físicos se aplican y qué condiciones deben cumplirse?
+
+En los capítulos siguientes, se abordarán estas preguntas y se presentarán conceptos clave relacionados con la teoría de errores, el tratamiento de datos y el análisis gráfico.
+
+\section{Mediciones}
+
+El trabajo en el laboratorio implica medir magnitudes físicas mediante la utilización de instrumentos de medida.
+
+Medir es la comparación de la magnitud que se está estudiando con un patrón de medida. Si cada persona tuviera su propio patrón de medida, solo él comprendería el valor de su resultado y no podría establecer comparaciones, a menos que supiera la equivalencia entre su patrón y el de su vecino. Por esta razón se ha acordado el establecimiento de un patrón. Si bien hasta hace poco, algunos países utilizaban como sistema de unidades el Sistema Británico, y otros países el Sistema Métrico Decimal, la tendencia es usar el Sistema Internacional (SI) \footnote{\url{https://es.wikipedia.org/wiki/Sistema_Internacional_de_Unidades}}.
+
+El Sistema Internacional de Unidades (SI) se apoya en las siguientes magnitudes básicas:
+$$
+\begin{array}{ccc}
+\text { Símbolo } & \text { Nombre } & \text { Magnitud } \\ \hline \hline 
+\text { s } & \text { segundo } & \text { tiempo } \\
+\text { m } & \text { metro } & \text { longitud } \\
+\text { kg } & \text { kilogramo } & \text { masa } \\
+\text { A } & \text { amperio } & \text { corriente eléctrica } \\
+\text { K } & \text { kelvin } & \text { temperatura termodinámica } \\
+\text { mol } & \text { mol } & \text { cantidad de sustancia } \\
+\text { cd } & \text { candela } & \text { intensidad luminosa }
+\end{array}
+$$
+
+Se puede decir que el resultado de una medida es lo que se conoce como el valor de la magnitud. Este valor debe ir siempre acompañado de su respectiva unidad de medida. Decir que la masa de una varilla es de $80,4$ no significa nada, se preguntará: ¿$80,4$ gramos?, ¿$80,4$ libras?, ¿$80,4$ kilogramos?, ¿qué diría Ud. si en un almacén de telas le venden un pie de tela y le cobran un metro? ¡Ah! entonces es importante que las cantidades que se midan vayan acompañadas de sus respectivas unidades de medida.
+
+$$
+\begin{aligned}
+& \text { Cuadro 1.1: Unidades básicas utilizadas en mecánica } \\
+& \begin{array}{|c|c|c|c|}
+\hline \text { Magnitudes } & \text { SI } & \text { CGS } & \text { británico } \\
+\hline \hline \text { Longitud } & \text { Metro (m) } & \text { Centímetro (cm) } & \text { Pie (ft) } \\
+\hline \text { Masa } & \text { Kilogramo }(\mathrm{kg}) & \text { Gramo }(\mathrm{g}) & \text { Libra }(\mathrm{lb}) \\
+\hline \text { Tiempo } & \text { Segundo }(\mathrm{s}) & \text { Segundo }(\mathrm{s}) & \text { Segundo }(\mathrm{s}) \\
+\hline
+\end{array}
+\end{aligned}
+$$
+
+El sistema CGS es el Sistema Cegesimal de Unidades o sistema gaussiano, es un sistema de unidades basado en el centímetro, el gramo y el segundo y el sistema británico es un conjunto de unidades de medida diferentes a las del sistema métrico decimal, que se utilizan actualmente como medida principal en los Estados Unidos y el Reino Unido.
+
+En la actualidad los instrumentos de medición pueden encontrarse en formato analógico o digital, figura \ref{anadigi}. Los instrumentos analógicos suelen requerir de cierta práctica para leer las mediciones, mientras que los instrumentos digitales presentan las lecturas directamente en una pantalla. Dependiendo del objeto a medir se puede preferir un instrumento de medición analógico a uno digital. 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=2.2in,width=4.4in]{figuras/fig01}  
+\caption{Instrumentos de medida analógicos y digitales}
+\label{anadigi}
+\end{center}
+\end{figure}
+
+Los instrumentos de medida nos muestran el valor de las medidas dentro de cierto rango de validez que es característico del propio aparato de medida. 
+
+\paragraph{Apreciación:} La menor división en la escala de cualquier instrumento de medida se llama {\it apreciación}. En instrumentos analógicos cuando se lee en una escala única, se  aproxima la lectura a la división más cercana. Por esto, el máximo error que se puede cometer en dicha medición es de $\pm$ la apreciación.
+
+Por lo anterior cualquier medida nunca es exacta, su última cifra siempre es aproximada, debido a ello toda medida presenta siempre una incertidumbre o error determinada por la precisión del instrumento.
+
+La determinación de la apreciación de un instrumento que tiene solamente una escala analógica, se realiza siguiendo la explicación dada a continuación.
+
+Se escogen dos valores sobre la escala, que pueden ser consecutivos o no. Se hace la diferencia del valor mayor $n$ menos el valor menor $m$ y se divide entre el número de partes en que está dividido el intervalo (ver figura \ref{aprecia}).
+$$
+\text { Apreciación }=\frac{n-m}{\text {N}^0 \text { total de divisiones }}
+$$
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.8in,width=3.0in]{figuras/fig02}  
+\caption{Apreciación de un instrumento}
+\label{aprecia}
+\end{center}
+\end{figure}
+
+La apreciación de un instrumento es una indicación del error de la medida, se habla entonces de "precisión" de un instrumento o de la sensibilidad: a menor apreciación, mayor precisión.
+
+
+\subsection{Medición de la masa}
+
+En el Sistema Internacional (SI), la unidad para medir la masa es el kilogramo (kg), con sus derivadas como el gramo y el miligramo. Para medir la masa de un objeto, se utilizan balanzas o básculas. Algunos tipos de balanzas incluyen:
+\begin{itemize}
+\item Balanza de dos platillos: compara la masa desconocida con masas conocidas en dos platillos.
+
+\item Balanza de un solo platillo: el objeto se coloca en un platillo y se ajusta el equilibrio con jinetillos en una escala graduada. Pueden ser mecánicas o electrónicas.
+
+\item Balanza analítica: diseñada para medir masas muy pequeñas, con precisión de hasta la diezmilésima de gramo (0,0001 g o 0,1 mg).
+\end{itemize}
+
+Al usar una balanza, se deben seguir algunas reglas:
+\begin{itemize}
+\item Manejarlas con cuidado, especialmente las electrónicas.
+\item Evitar tocar el platillo con los dedos.
+\item  No poner sustancias químicas o recipientes húmedos directamente en el platillo, utilizar papel.
+\end{itemize}
+
+\subsection{Medición de la longitud}
+
+La longitud se mide en metros (m) y sus múltiplos y submúltiplos según el Sistema Internacional de Unidades (SI). Para medir longitudes enormes, como las del espacio exterior, se utilizan unidades especiales:
+\begin{itemize}
+\item Año luz (ly): Distancia que recorre la luz en un año, aproximadamente 9,46 billones de kilómetros.
+\item Unidad Astronómica (UA): Distancia media entre la Tierra y el Sol, aproximadamente 149,6 millones de kilómetros.
+\item Pársec (pc): Equivalente a 206.264,81 UA.
+\end{itemize}
+
+\subsubsection{La regla o cinta métrica}
+El instrumento más común para medir longitudes es la cinta métrica, con una apreciación de 1 mm. La medición de la longitud de un objeto implica una comparación directa con una cinta métrica. Para llevar a cabo esta medición, debemos fijar la posición de los extremos del objeto sobre la escala graduada de la cinta métrica. Es aconsejable colocar el objeto de manera que sea fácil de leer con claridad, como se muestra en la figura \ref{regla}. \begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.2in,width=3.8in]{figuras/fig02a}  
+\caption{Forma correcta de medir con una regla. Medida: (2,3 $\pm$ 0,1) cm.}
+\label{regla}
+\end{center}
+\end{figure}
+
+La medición de un objeto con una regla graduada o una cinta métrica puede llevar a una fracción de la escala que no puede ser apreciada, como se muestra en la figura \ref{regla}, donde el objeto mide entre 2,3 cm y 2,4 cm.
+
+\subsubsection{El vernier}
+
+El vernier permite medir con mayor precisión que una regla graduada. Su apreciación se calcula como la diferencia entre la longitud de una división de la escala principal y una del nonio. Por ejemplo, un vernier con una apreciación de 0,005 mm permitiría una lectura de 2,355 mm.
+
+En la figura \ref{vernier} de la izquierda podemos ver un vernier midiendo una esfera dando una lectura de $1.640 \pm 0.005$.
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=2.2in,width=5.4in]{figuras/fig02b}  \quad 
+%\includegraphics[height=1.4in,width=2.6in]{figuras/fig02d}  
+\caption{Izquierda: Vernier mostrando una medida de (1.640 $\pm$ 0,005) cm. Derecha: escalas del vernier}
+\label{vernier}
+\end{center}
+\end{figure}
+
+El vernier consta de dos partes principales: una escala principal con divisiones milimétricas y una escala móvil, el nonio, generalmente graduado en 10 o 20 divisiones. En la figura \ref{vernier}, el nonio tiene 20 divisiones. La apreciación del vernier se calcula como la diferencia entre la longitud de una división de la escala principal y la longitud de una división del nonio.
+
+Para el caso general, cuando el nonio tiene $n$ divisiones, la apreciación del vernier se puede determinar de la siguiente manera:
+$$
+\text {Apreciación del vernier }=\frac{\text {Apreciación de la escala principal }}{\text{N}^0 \text { total de divisiones del nonio }} \,.
+$$
+
+Para el vernier de la figura \ref{vernier}, la apreciación es:
+$$
+\text {Apreciación }=\frac{0,1 \mathrm{~cm}}{20}=0,005 \mathrm{~cm}=0,05 \mathrm{~mm}
+$$
+
+Cuando el cero del nonio se coloca, por ejemplo, en la división $4 \mathrm{~cm}$ de la regla fija, como se muestra en la figura derecha de \ref{vernier}, las divisiones del nonio llegan a $5.9 \mathrm{~cm}$. Esto significa que las 20 divisiones del vernier corresponden a una longitud de $1.9 \mathrm{~cm}$ en la escala principal. Por lo tanto, cada división del vernier mide $\frac{1.9}{20} \mathrm{~cm}=0.095 \mathrm{~cm}$. La lectura sería 4,095 cm.
+
+Volviendo a la figura \ref{vernier}, izquierda,   la posición del cero del vernier está entre $1,6$ y $1,7 \mathrm{~cm}$, es decir, las dos primeras cifras son las que corresponden a la medida hecha  con una cinta métrica: $1,6 \pm 0,1 \mathrm{~cm}$. La siguiente  cifra   se obtiene del nonio, en este caso la raya 4 del nonio coincide con la raya 2,4 de la escala principal. Entonces la medida que se lee en el vernier será $1,6 + 0,040 = 1,640 \mathrm{~cm}$, por lo que el resultado correcto es $(1,640 \pm 0,005) \mathrm{~cm}$, o bien, $(16,40 \pm 0,05) \mathrm{~mm}$.
+
+En la figura \ref{vernier2}, se presenta otro ejemplo de lectura de una medición realizada con el vernier. En este caso, a la izquierda del cero del nonio hay 3 divisiones, lo que equivale a 3 mm enteros. En el nonio, la división que está justo entre el cuatro y el cinco coincide con una división de la regla, es decir, 0.45 mm. Por lo tanto, la medida resulta en 3  + 0.45 mm = 3.45 mm.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.4in,width=3.0in]{figuras/fig02d} 
+\caption{Medida (3.45 $\pm$ 0,05) mm.}
+\label{vernier2}
+\end{center}
+\end{figure}
+
+
+\subsubsection{El tornillo micrométrico}
+
+Cuando se utiliza un tornillo que se enrosca en una tuerca, este avanza una distancia determinada con cada giro completo, conocida como el paso del tornillo. Este principio es la base del funcionamiento del Tornillo Micrométrico, un instrumento de precisión utilizado para medir longitudes. La figura izquierda de la Figura \ref{tornillo1} muestra un tornillo micrométrico con sus componentes clave, que incluyen la escala fija graduada, el tambor, la tuerca de seguridad y el freno.
+
+La medición con el tornillo micrométrico comienza con la lectura de las cifras en la escala fija. Por ejemplo, en la figura derecha de la Figura \ref{tornillo1}, la lectura se obtiene al sumar la lectura de la escala fija con la del tambor, resultando en este caso:  5 + 0,5 + 0,28 = 5,78  mm. 
+
+Para comprender esta lectura, es importante tener en cuenta que el tornillo tiene un paso de 0,5 mm, y el tambor está dividido en 50 partes iguales, lo que equivale a una apreciación de 0,01 mm.
+
+La apreciación de un tornillo micrométrico se calcula utilizando la fórmula:
+\[
+\text{Apreciación} = \frac{\text{paso del tornillo}}{\text{Número total de divisiones del tambor}}.
+\]
+
+En el caso del tornillo de la Figura \ref{tornillo1}, la apreciación es de:
+\[
+\text{Apreciación} = \frac{0,5 \mathrm{~mm}}{50} = 0,01 \mathrm{~mm}.
+\]
+Por lo tanto, la lectura en esta figura se expresa como $(5,78 \pm 0,01) \mathrm{mm}$.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.6in,width=3.0in]{figuras/fig02e1} 
+\includegraphics[height=1.6in,width=3.0in]{figuras/fig02e2} 
+\caption{Tornillo Micrométrico}
+\label{tornillo1}
+\end{center}
+\end{figure}
+
+Además, cabe mencionar que en la escala fija milimétrica se incluyen divisiones en la parte inferior que facilitan determinar si el tambor ha dado una vuelta completa, indicando la necesidad de agregar $0,50 \mathrm{~mm}$ a la lectura del tambor.
+
+\subsection{Medición del tiempo}
+
+En física, el tiempo es una magnitud que se utiliza para medir la duración o la separación de uno o más acontecimientos. Su unidad de medición en el Sistema Internacional es el segundo (s), y 60 de estas unidades constituyen una unidad mayor llamada minuto (min). Los aparatos con los que se mide el tiempo son el reloj o el cronómetro.
+
+\subsubsection{El cronómetro}
+
+Los intervalos de tiempo se pueden medir utilizando un cronómetro, que, según la tecnología utilizada en su construcción, puede ser de reloj digital o analógico. Por lo general, indican el tiempo en minutos, segundos y fracciones de segundo. Cuentan con un botón utilizado para iniciar y detener el cronometraje, así como otro botón para regresar la lectura a cero (ver figura \ref{cronos}).
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.0in,width=2.0in]{figuras/fig02f1} \quad 
+\includegraphics[height=1.8in,width=1.8in]{figuras/fig02f2}
+\caption{Cronómetro digital (izquierda) y analógico (derecha)}
+\label{cronos}
+\end{figure}
+El cronómetro digital es más confiable si deseamos medir tiempos con precisión en escalas de milésimas o centésimas de segundo. A diferencia de los cronómetros analógicos, este tipo de instrumentos se basa en tecnologías más modernas, que incluyen osciladores de cuarzo y circuitos electrónicos sofisticados.
+
+
+\subsection{Medición de la temperatura}
+
+La temperatura es una magnitud física que se mide utilizando un termómetro. Existen varias escalas de temperatura, siendo las más comunes:
+
+\begin{itemize}
+    \item \textbf{Escala Celsius (°C):} En esta escala, el punto de congelación del agua es 0 °C, y su punto de ebullición es 100 °C.
+    
+    \item \textbf{Escala Fahrenheit (°F):} Utilizada en muchos países de habla inglesa, donde el punto de congelación del agua es 32 °F y su punto de ebullición es 212 °F.
+    
+    \item \textbf{Escala Kelvin (K):} Empleada en la ciencia, establece el "cero absoluto" en -273.15 °C, donde un objeto no desprende calor alguno.
+\end{itemize}
+
+Estas escalas se basan en diferentes puntos de referencia y sustancias termométricas para su definición, pero la Celsius y la Fahrenheit son las más comunes en el uso cotidiano.
+
+
+\subsubsection{El termómetro}
+
+La medición directa de la temperatura de un objeto se realiza utilizando un instrumento conocido como termómetro. Los termómetros pueden ser de tipo analógico o digital, como se muestra en la figura \ref{termos}. Además, existen termómetros que no requieren contacto físico, como los termómetros infrarrojos, ópticos o de radiación. También hay otros tipos de termómetros, como los de gas y de resistencia.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.4in,width=1.8in]{figuras/fig02g2} \quad
+\includegraphics[height=1.4in,width=1.8in]{figuras/fig02g1}
+\caption{Termómetro digital (izquierda) y analógico (derecha)}
+\label{termos}
+\end{center}
+\end{figure}
+
+Un termómetro típico consta de un bulbo de vidrio que contiene un líquido que experimenta dilatación lineal con la temperatura, junto con un tubo capilar graduado y calibrado. El líquido más comúnmente utilizado en termómetros es el mercurio (Hg), debido a su capacidad de dilatación regular y su buena conductividad térmica.
+
+La escala de un termómetro suele estar dividida por el fabricante, quien garantiza su precisión. La apreciación de un termómetro se puede determinar utilizando el método descrito anteriormente para instrumentos con una sola escala. Las escalas de temperatura pueden estar en grados centígrados (°C), grados Fahrenheit (°F) o kelvins (K, escala absoluta).
+
+La relación entre la escala centígrada y la escala absoluta (kelvin) es:
+\[
+T(\mathrm{K}) = T\left({ }^{\circ} C\right) + 273.2
+\]
+Y la relación entre la escala centígrada y la escala Fahrenheit es:
+\[
+T\left({ }^{\circ} F\right) = \frac{9}{5} T\left({ }^{\circ} C\right) + 32
+\]
+
+Es importante recordar que un cambio de temperatura de un grado kelvin es equivalente a un cambio de un grado centígrado, pero un cambio de un grado centígrado no es igual a un cambio de un grado Fahrenheit.
+
+\subsection{Medición de corriente eléctrica}
+
+La intensidad de la corriente eléctrica está relacionada con el flujo de cargas eléctricas a través de un material conductor por unidad de tiempo. Básicamente, medimos dos tipos de corriente eléctrica: la corriente continua y la corriente alterna. La corriente continua circula siempre en el mismo sentido y tiene un valor constante, se produce por pilas o baterías, y la corriente alterna es corriente que circula en forma oscilatoria. Este tipo de corriente es la que usamos para encender la luz o al enchufar los electrodomésticos del hogar. La forma más común de medir la corriente eléctrica es con un amperímetro, que es un dispositivo que se conecta al circuito eléctrico e indica los Amperios, que es la unidad de medida según el Sistema Internacional de Unidades (SI) que tiene dicho objeto.
+
+\subsubsection{Amperímetros}
+
+El amperímetro es el instrumento utilizado para medir la corriente en amperios (A) en un circuito. Para la medición directa, el amperímetro se conecta en serie con el circuito en el que se va a medir la corriente. Un amperímetro suele tener una resistencia baja para que no produzca una caída de tensión significativa en el circuito que se está midiendo.
+
+Los instrumentos utilizados para medir corrientes más pequeñas, en el rango de los miliamperios o microamperios, se denominan miliamperímetros o microamperímetros, respectivamente.
+
+Existen varios tipos de amperímetros, con tecnologías digitales o analógicas,  ver figura  \ref{ampes}. 
+
+\begin{itemize}
+\item \textbf{Amperímetros magnetoeléctricos o de bobina móvil:} Están formados por un imán permanente fijo y un cuadro o bobina móvil que gira bajo el efecto de la fuerza de Ampère cuando circula corriente por el mismo. La espiral en el eje del cuadro impide la rotación del cuadro. Cuanto mayor sea la corriente que atraviesa el cuadro, mayor será el ángulo de la aguja cuyo extremo se traslada por una escala.
+
+\item \textbf{Amperímetros electromagnéticos o de imán móvil:} Constan de una aguja unida a un imán alojado en el interior de una bobina. Cuando la corriente circula por esta última, se produce un campo magnético que, dependiendo de su sentido, produce una atracción o repulsión del imán que es proporcional a la intensidad de dicha corriente.
+
+\item \textbf{Amperímetros electrodinámicos:} Constan de dos bobinas, una fija y otra móvil que producen campos magnéticos, cada una de las cuales porta una corriente que es función de la corriente a medir. La reacción entre los campos de la bobina fija y la bobina móvil proporciona el torque del sistema móvil, que es compensado por resortes espirales que también se emplean para llevar la corriente a la bobina móvil.
+
+\item \textbf{Amperímetros digitales:} Estos aparatos ofrecen la lectura de la corriente directamente en una pantalla eliminando en gran medida los errores de lectura. Se diferencian de los analógicos en que las partes mecánicas móviles se han sustituido por circuitos electrónicos, con la gran ventaja de eliminar el desgaste de las partes.
+\end{itemize}
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=1.8in,width=4.0in]{figuras/fig02h}
+  \caption{Diferentes tipos de amperímetros}
+  \label{ampes}
+\end{figure}
+
+
+\subsection{Medición de la cantidad de sustancia}
+
+La cantidad de sustancia (símbolo: $n$) en una muestra dada de materia se define como la relación $n=N / N_{\mathrm{A}}$ entre el número de entidades elementales $N$ y la constante de Avogadro $N_{\mathrm{A}}$. 
+
+Las entidades pueden ser moléculas, átomos o iones de un tipo específico. La sustancia concreta que se toma como muestra puede especificarse utilizando un subíndice, por ejemplo, la cantidad de cloruro de sodio $(\mathrm{NaCl})$ se denotaría como $n_{\mathrm{NaCl}}$. 
+
+La unidad de cantidad para la sustancia en el Sistema Internacional de Unidades se denomina mol (símbolo: mol). Desde 2019, el valor de la constante de Avogadro $N_{\mathrm{A}}$ se define exactamente como $6,02214076  \times 10^{23} \mathrm{~mol}^{-1}$. A veces, la cantidad de sustancia se denomina cantidad química.
+
+
+\subsection{Medición de la intensidad luminosa}
+
+La intensidad luminosa es una medida de la potencia ponderada en función de la longitud de onda emitida por una fuente luminosa en una dirección determinada por unidad de ángulo sólido, basada en la función de luminosidad y normalizada para la sensibilidad del ojo humano. La unidad SI de intensidad luminosa es la candela (cd). En la medición de la luz, se distinguen varias magnitudes fotométricas con las que se puede evaluar la luz:
+
+\begin{itemize}
+\item Lúmen (lm): Un lumen es la cantidad de energía visible que podemos realmente medir. Es el flujo luminoso, una medida de la potencia luminosa emitida por la fuente.
+\item Lux (lx): Un lux es el equivalente a la energía producida por un lumen que incide sobre una superficie de 1 $\mathrm{m}^2$. Es el nivel de iluminación de una fuente.
+\item Candela (cd): La candela consiste en la unidad básica que mide la intensidad luminosa. Se define como la intensidad luminosa que va en una dirección dada, por lo que se relaciona con el ángulo de apertura hacia la luz.
+\end{itemize}
+
+Para poder medir la luminancia se utiliza un instrumento denominado luxómetro, como se muestra en la figura \ref{luxi}. Un luxómetro permite medir simple y rápidamente la iluminancia real y no subjetiva de un ambiente. Contiene una célula fotoeléctrica que capta la luz y la convierte en impulsos eléctricos, los cuales son interpretados y representados en un display o aguja con la correspondiente escala de luxes.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=1.7in,width=4.2in]{figuras/fig02i} 
+\caption{Diferentes tipos de luxómetro}
+\label{luxi}
+\end{center}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

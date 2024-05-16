@@ -1,0 +1,166 @@
+\chapter{Redondeo, cifras significativas y orden de magnitud}
+
+
+
+\section{Introducci\'on}
+En este cap\'itulo, se abordar\'an una serie de conceptos fundamentales relacionados con el manejo de datos num\'ericos obtenidos en el contexto del laboratorio. Cuando se efect\'uan c\'alculos con tales datos, surge la necesidad de redondear n\'umeros para obtener un valor aproximado que sea conciso y evite la representaci\'on enga\~nosa de la precisi\'on de una cifra, medida o estimaci\'on en los resultados calculados. En este sentido, resulta crucial considerar los d\'igitos significativos de un n\'umero que sean confiables y esenciales para expresar con precisi\'on la magnitud en cuesti\'on.
+
+
+
+\section{Redondeo}
+En muchos casos, los valores obtenidos de experimentos pueden ser redondeados a un n\'umero espec\'ifico de cifras significativas, prescindiendo de uno o m\'as de sus \'ultimos d\'igitos. Por ejemplo, se puede reemplazar 23,4476 por 23,45, la fracci\'on 312/937 por 1/3 o la expresi\'on $\sqrt{2}$ por 1,414.
+
+El proceso de redondeo suele seguir una regla general: cuando el primer d\'igito que se quiere suprimir es menor que 5, el \'ultimo d\'igito conservado se mantiene sin cambios; por otro lado, cuando el primer d\'igito a suprimir es igual o mayor a 5, se aumenta en una unidad la \'ultima cifra conservada (ver ejemplos en la tabla 2.1).
+
+ $$
+\begin{aligned}
+&\text { Tabla 2.1: Ejemplos de redondeo de un n\'umero}\\
+&\begin{array}{|c|c|c|c|c|c|c|}
+\hline & \text { N\'umero } & 5 \text { cifras } & 4 \text { cifras } & 3 \text { cifras } & 2 \text { cifras } & 1 \text { cifra } \\ \hline
+\hline \text { a } & 3.14159  & 3.1416  & 3.142  & 3.14  & 3.1 & 3  \\
+\hline \text { b } & 9.8070 \times 10^{-3} & 9.8070 \times 10^{-3} & 9.807 \times 10^{-3} & 9.81 \times 10^{-3} & 9.8 \times 10^{-3} & 1 \times 10^{-2} \\
+\hline \text { c } & 0.644510 & 0.64451 & 0.6445 & 0.645 & 0.64 & 0.6 \\
+\hline \text { d } & 327508 & 32751 \times 10 & 3275 \times 10^2 & 328 \times 10^3 & 33 \times 10^4 & 3 \times 10^5 \\
+\hline
+\end{array}
+\end{aligned}
+$$
+
+Note que el redondeo no debe hacerse en forma sucesiva, sino con respecto a la cifra original. Si en el ejercicio c, se realiza un redondeo sucesivo, el resultado ser\'ia:
+$$
+0,644510 \Rightarrow 0,64451 \Rightarrow 0,6445 \Rightarrow 0,645 \Rightarrow 0,65 \Rightarrow 0,7 \text {. }
+$$
+Note que el n\'umero 0,7 difiere m\'as de 0,644510 que el n\'umero 0,6. 
+ 
+ 
+ 
+ \section{Cifras Significativas}
+
+Las cifras significativas en el valor de una magnitud son todos los d\'igitos contados desde el primero que es diferente de cero, empezando desde la izquierda, sin considerar la posici\'on de la coma decimal, hasta el primer d\'igito que se ve afectado por el error. Si un n\'umero que representa el resultado de una medici\'on, como la longitud, la presi\'on o la masa, tiene m\'as d\'igitos que los permitidos por la resoluci\'on de la medici\'on, solo se consideran fiables los d\'igitos que la resoluci\'on permite. Estos d\'igitos son los que se denominan "cifras significativas."
+
+A continuaci\'on, se presentan ejemplos en los que el d\'igito dudoso, es decir, aquel que est\'a afectado por el error, se encuentra resaltado en negrita.
+
+Ejemplos:
+
+\begin{enumerate}
+\item   1,23{\bf 1} m; 123,{\bf 1} cm; 123{\bf 1} mm, tienen todos 4 cifras significativas.
+
+\item   21,0{\bf 3} g y 200,{\bf 3} cm tienen 4 cifras significativas.
+
+\item   2,0{\bf 0} cm y 74{\bf 0} m tienen 3 cifras significativas.
+
+\item   0,4{\bf 8} s y 0,005{\bf 2} g tienen 2 cifras significativas.
+
+\item    $32{\bf 3}\times10^{-3}$ kg y $3,0{\bf 0}\times10^{8}$	m/s tienen 3  significativas.
+\end{enumerate}
+
+Es oportuno observar en el ejemplo 4, que los valores de las magnitudes se han descrito con dos cifras significativas y no con tres (3) y cinco (5) respectivamente, ya
+que los ceros a la izquierda no se deben contar como cifras significativas.
+ 
+
+\subsection{Operaciones con cifras significativas}
+
+\subsubsection{Suma y Resta}
+
+Cuando realizamos operaciones de suma y resta con magnitudes que tienen diferentes cantidades de cifras significativas, es necesario redondear el resultado final para que tenga el mismo n\'umero de cifras decimales que la magnitud que posea menos cifras decimales.
+
+Por ejemplo, consideremos la suma y resta de masas expresadas en gramos.
+\begin{table}[htp]
+\begin{center}
+\begin{tabular}{ccc}
+ \text {1) } 25,340      & \text {2) } 58,0    & \text {3) }\, 1,6523    \\
+\qquad            5,465  & \qquad  \quad  0,038  &\quad   -0,015     \\
+\qquad            0,322  & \qquad  \quad \  1,0001&\quad   ---------    \\  
+\qquad           ---------  & \qquad  \quad ---------   &\quad 1,6373     \\  
+\qquad          31,127   &  \qquad \quad  59,0381 &                    \\ 
+\end{tabular}
+\end{center}
+\end{table}
+
+En los ejemplos 2 y 3 se observa que los resultados son m\'as precisos que uno de los t\'erminos (58,0 g y 0,015 g respectivamente). Por lo tanto, es necesario redondear el resultado al n\'umero de decimales de la magnitud menos precisa. As\'i, las soluciones ser\'an:
+$$
+\text{1)}\,\, 31,127 \mathrm{~g} \quad \text{2)}\,\, 59,0 \mathrm{~g} \quad\text{3)}\,\, 1,637 \mathrm{~g} 
+$$
+
+\subsubsection{Multiplicaci\'on y Divisi\'on}
+
+Cuando realizamos operaciones de multiplicaci\'on y divisi\'on con magnitudes que tienen diferentes cantidades de cifras significativas, es necesario redondear el resultado final para que tenga el mismo n\'umero de cifras significativas que el factor que posea menos cifras significativas.
+\begin{enumerate}
+\item $7.485 \mathrm{~m} \cdot 8.61 \mathrm{~m} = 64.4 \mathrm{~m}^2$
+\item $7485 \mathrm{~m} \cdot 8.61\mathrm{~m}= 644 \times 10^2 \mathrm{~m}^2$
+\item $\dfrac{0.1342}{1.54}= 0.0871$
+ \end{enumerate}
+
+\textbf{Observaci\'on:} Es importante destacar que cuando se conoce el error absoluto (o el error probable) de una magnitud, es precisamente este error el que determina el n\'umero de cifras significativas que debe tener la magnitud.
+
+
+\section{Orden de magnitud}
+
+El orden de magnitud de una cantidad se refiere a la potencia de diez m\'as cercana a dicha cifra.
+
+Por ejemplo,
+\begin{enumerate}
+\item  La masa de la tierra es $5,983 \times 10^{24}$ kg. Su orden de magnitud en el sistema SI es $10^{25}$ kg y en el sistema CGS es $10^{28}$ g.
+\item	El orden de magnitud de 0,0035 es $10^{-3}$.
+
+\item	El orden de magnitud de $800 \times 10^{-3}$ es $10^0$ cm.
+\end{enumerate}
+
+\textbf{Observaci\'on:}  Si la cantidad f\'isica es dimensional, su orden de magnitud tambi\'en es dimensional y depende del sistema de unidades considerado, como se ejemplifica en los casos 1 y 3. El exponente de la potencia de 10 puede ser positivo, negativo o cero.
+
+Tomemos el ejemplo 1 para ilustrar c\'omo se puede determinar el orden de magnitud de una cantidad f\'isica. Para ello, responderemos a la siguiente pregunta: ¿cu\'ales son las potencias de 10 consecutivas, inmediatamente menor y mayor que la cantidad f\'isica considerada?
+$$
+{10^{24}} \mathrm{~kg}<5,983 \times 10^{24} \mathrm{~kg}<10^{25} \mathrm{~kg}
+$$
+¿Cu\'ales son las diferencias respectivas?
+$$
+\begin{aligned}
+& 5,983 \times 10^{24} \mathrm{~kg}-10^{24} \mathrm{~kg}=4,983 \times 10^{24} \mathrm{kg} \\
+& 10^{25} \mathrm{~kg}-5,983 \times 10^{24} \mathrm{~kg}=4,017 \times 10^{24} \mathrm{~kg} \\
+&
+\end{aligned}
+$$
+La menor diferencia que es ($4,017 \times 10^{24}$) implica mayor proximidad, luego $10^{25}$ es la potencia que se aproxima m\'as a $5,983 \times 10^{24}$.
+
+\section{Ejercicios}
+\begin{enumerate}
+\item Determinar el n\'umero de cifras significativas y el orden de magnitud de las siguientes magnitudes f\'isicas.
+\begin{enumerate}
+\item Radio de la tierra = $6, 371 \times 10^6 \mathrm{~m}$.
+\item	Volumen de la tierra =$1, 087 \times 10^{21} \mathrm{~m}^3$
+\item	Aceleraci\'on de gravedad=$9,80665 \mathrm{~m}/\mathrm{s}^2$
+\end{enumerate}
+
+\item Exprese el resultado de los siguientes problemas en \'ordenes de magnitud
+\begin{enumerate}
+\item La edad del universo se cree que es $3 \times 10^{10}$ a\~nos, d\'e el resultado en segundos.
+\item La velocidad de la luz en el vac\'io en: $\mathrm{~m}/\mathrm{s}$,$ \mathrm{~m}/\mathrm{h}$ y en $\mathrm{~km}/\mathrm{dias}$
+\item La d\'ensidad del hierro en	$\mathrm{~kg}/\mathrm{m}^3$ y en  $\mathrm{~g}/\mathrm{cm}^3$
+\end{enumerate}
+
+\item Un estudiante determin\'o que el radio de una esfera es $R=10,00$ mm.
+\begin{enumerate}
+\item ¿Cu\'anto mide su \'area?
+\item¿Cu\'anto mide su volumen?
+\item Indique el orden de magnitud para las tres magnitudes f\'isicas anteriores.
+\end{enumerate}
+
+\item Exprese cada uno de los siguientes n\'umeros con cuatro, tres, dos y una cifra significativa:
+$$
+\begin{array}{|c|c|c|}
+\hline 0,4536 & 98,372 & 70045,6 \\
+\hline \hline 163571 & 3,13100 & 26,39 \\
+\hline \hline 0,45330 & 0,00332998 & 20150,0 \\
+\hline
+\end{array}
+$$
+\item Calcule el valor de $L$ con las cifras significativas correspondientes:
+$$
+L=\frac{k^2}{a} +a
+$$
+Donde $k = 14.3$ cm y $a= 853$ mm.
+
+\end{enumerate}
+
+
+

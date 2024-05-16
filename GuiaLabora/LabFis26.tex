@@ -1,0 +1,91 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage[spanish]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\usepackage{floatrow}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tcolorbox}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{Borrador Preliminar}
+%\SetWatermarkScale{3.5}
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{ghostwhite}{rgb}{0.97, 0.97, 1.0}
+
+
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+%"mystyle" code listing set para las cajitas de código
+\lstset{style=mystyle}
+\setlength{\topmargin}{-0.25in}
+\setlength{\textheight}{10in}
+\setlength{\textwidth}{6.8in}
+\setlength{\oddsidemargin}{-0.5in}
+\usepackage{booktabs}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\topmargin}{-1.0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.8in}
+\setlength{\oddsidemargin}{-0.5in}
+
+\begin{document}
+\begin{figure}
+\raggedright
+{\includegraphics[width=60mm]{figuras/logouis}} 
+\end{figure}
+
+\title{\bf Guía general para el laboratorio de Física}
+\author{Héctor F. Hernández G.}
+\date{Versión 2.6 -  \today }
+
+
+\maketitle
+\newpage
+\thispagestyle{empty}
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+\pagestyle{plain}
+
+\tableofcontents
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{01_Instrumentos.tex}
+\input{02_Redondeos.tex}
+\input{03_ErroresFunda.tex}
+\input{04_Graficos.tex}
+\input{05_InformeLab}
+
+
+
+
+
+\end{document}
