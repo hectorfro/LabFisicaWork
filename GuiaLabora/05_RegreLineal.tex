@@ -1,0 +1,361 @@
+\chapter{Regresión lineal}
+
+\section{Introducción}
+
+En este capítulo, 
+. 
+
+\section{Regresión lineal simple}
+
+
+
+\subsection{Método de los mínimos cuadrados}
+
+El método de los mínimos cuadrados es uno de los métodos estadísticos más usados para determinar la recta que mejor represente la tendencia de un conjunto de puntos experimentales.
+
+Si la dispersión de los puntos experimentales es debida solo a los errores casuales en las mediciones, la mejor recta será aquella para la cual la suma de los cuadrados de las distancias $\left(y_i-y_0 \right)$ sea un mínimo, ver figura 4.4. Es por esto que, a este método se le llama método de los mínimos cuadrados.
+
+Consideremos una relación lineal entre dos magnitudes físicas $y$ y $x$ de la forma:
+$$
+y=m x+b
+$$
+
+Donde $y$ es la variable dependiente y $x$ es la variable independiente, en nuestro caso la magnitud controlada por el experimentador. Como ya se ha dicho anteriormente, los valores de esas magnitudes tendrán sus correspondientes errores, determinados por los métodos ya señalados. 
+
+La desviación de un valor cualquiera $y_i$ determinado experimentalmente con respecto a su valor $y_0$ en la recta, será:
+\begin{equation}
+\Delta y_i=y_i-y_0=y_i-\left(b+m x_i\right)
+\label{deltay}
+\end{equation}
+
+Ahora se puede enunciar el principio básico de este método, el cual dice que la mejor recta que puede ser trazada entre esos puntos, es aquella para la cual la suma de los cuadrados de las desviaciones $\Delta y_i$ de los datos experimentales, con respecto a esa recta, es mínima.
+$$
+\sum_{i=1}^n\left(\Delta y_i\right)^2=\sum_{i=1}^n \left[y_i-b-m x_i \right]^2
+$$
+donde $n$ es el número de pares de valores de $y$ y $x$.
+
+Ya que la condición exigida es la de minimizar la suma anterior, entonces los parámetros $m$ y $b$ deben ajustarse para cumplir con esta condición. Ello se logra calculando las derivadas parciales de la suma con respecto a $m$ y con respecto a $b$, e igualándolas a cero.
+$$
+\begin{aligned}
+& \frac{\partial\left[\sum\left(\Delta y_i\right)^2\right]}{\partial b}=
+\sum_{i=1}^n\frac{\partial\left(y_i-b-m x_i \right)^2}{\partial b} = 
+\sum_{i=1}^n -2(y_i-b-m x_i)=0  \\
+& \frac{\partial\left[\sum\left(\Delta y_i\right)^2\right]}{\partial m}=
+\sum_{i=1}^n\frac{\partial\left(y_i-b-m x_i \right)^2}{\partial m} =
+\sum_{i=1}^n -2x_i(y_i-b-m x_i)=0
+&
+\end{aligned}
+$$
+
+Por lo tanto, se debe resolver el sistema 
+$$
+\begin{aligned}
+&  \sum_{i=1}^n y_i - \sum_{i=1}^nb - \sum_{i=1}^n m x_i = 0  &\,\, \Rightarrow \,\,&
+ nb + m \sum_{i=1}^n  x_i = \sum_{i=1}^n y_i  \\
+&  \sum_{i=1}^n y_ix_i - \sum_{i=1}^n bx_i -\sum_{i=1}^n  m x_i^2 =0 & \,\, \Rightarrow \,\,&
+b \sum_{i=1}^n x_i  + m \sum_{i=1}^n   x_i^2 = \sum_{i=1}^n y_ix_i
+\end{aligned}
+$$
+para $m$ y $b$. 
+
+Utilizando la regla de Cramer
+$$
+\begin{aligned}
+\Delta= 
+{\left|\begin{array}{cc}
+n & \sum x_i \\
+\sum x_i & \sum x_i^2
+\end{array}\right|} = n \sum x_i^2-\left(\sum x_i\right)^2 \,,
+\end{aligned}
+$$
+resulta:
+$$
+m=\frac{\left|\begin{array}{cc}
+n & \sum y_i \\
+\sum x_i & \sum x_i y_i
+\end{array}\right|}{\Delta}=\frac{n\sum x_i y_i-\sum x_i \sum y_i}{n \sum x_i^2-\left(\sum x_i\right)^2} \quad \text{y} \quad
+ b=\frac{\left|\begin{array}{cc}
+\sum y_i & \sum x_i \\
+\sum x_i y_i & \sum x_i^2 
+\end{array}\right|}{\Delta}=\frac{\sum x_i^2 \sum y_i-\sum x_i \sum x_i y_i}{n \sum x_i^2-\left(\sum x_i\right)^2} 
+$$
+
+Por lo tanto:
+\begin{eqnarray}
+m &=&\dfrac{ n\sum\limits_{i=1}^n x_i y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n y_i}{n \sum\limits_{i=1}^n x_i^2-\left(\sum\limits_{i=1}^n x_i\right)^2} = 
+\dfrac{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2}
+\label{eme2} \\
+b &=&\dfrac{\sum\limits_{i=1}^n x_i^2 \sum\limits_{i=1}^n y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n x_i y_i}{n\sum\limits_{i=1}^n x_i^2-\left(\sum\limits_{i=1}^n x_i\right)^2} =  \bar{y}-m \bar{x} \,,
+\label{b2}
+\end{eqnarray}
+donde $\bar{y} \equiv \frac{1}{n} \sum_{i=1}^n y_i$ y $\bar{x} \equiv \frac{1}{n} \sum_{i=1}^n x_i$ son las medias simples.
+
+De esta manera obtenemos la recta $\hat{y}=mx+b$ que mejor de aproxima a los puntos. Nótese que los términos $\sum x_i^2$ y $\left(\sum x_i\right)^2$ no son lo mismo. Idéntica observación se debe hacer para los términos $\sum\left(x_i y_i\right)$ y $\sum x_i \sum y_i$.
+
+Podríamos construir una tabla como \ref{tablamincua}, para así ordenar la información y facilitar los cálculos. Las cuatro sumas en la última línea, son los valores necesarios para calcular $m$ y $b$. Los valores de $m$ y $b$ que se obtengan por el método de los mínimos cuadrados, deberían ser muy próximos a los obtenidos directamente utilizando el método gráfico. 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline $y_i [\,\,]$ & $x_i [\,\,]$ & $x_i^2 [\,\,]$& $x_i y_i [\,\,]$ \\
+\hline \hline $y_1$ & $x_1$ & $x_1^2$ & $x_1 y_1$ \\
+\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+\hline $y_n$ & $x_n$ & $x_n^2$ & $x_n y_n$ \\ \hline
+\hline $\sum y_i$ &$\sum x_i $& $\sum x_i^2$ & $\sum x_i y_i$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Tabla para facilitar el uso del  método de mínimos cuadrados}
+\label{tablamincua}
+\end{table}
+Pero en la actualidad es casi de rutina utilizar alguna herramienta computacional  que permite hacer los cálculos necesarios y los gráficos para el ajuste de la recta. Aunque el uso de este método no nos obliga a hacer el gráfico de la recta, por razones pedagógicas, es conveniente hacerlo para así observar más claramente las desviaciones de los puntos experimentales con respecto a la recta calculada. 
+
+Una vez obtenido los valores de $m$ y ${b}$, es necesario calcular sus errores correspondientes $\Delta m$ y $\Delta b$. Esto lo podemos hacer calculando las desviaciones estándar  de la pendiente y la ordenada al origen, calculadas a partir de la distribución de diferencias $\Delta y_i$, ecuación (\ref{deltay}),  respecto de la mejor línea de ajuste.
+
+Sea $\hat{y}_i=b+m x_i$ la predicción de $y$ basada en el valor $i$ de $x$. Entonces $e_i=y_i-\hat{y}_i$ representa el $i$ residuo - la diferencia entre el $i$ valor de respuesta observado y el $i$ valor de respuesta predicho por nuestro modelo lineal. Definimos la suma residual de cuadrados (RSS) como
+$$
+\mathrm{RSS}=e_1^2+e_2^2+\cdots+e_n^2
+$$
+o equivalentemente como
+$$
+\mathrm{RSS}=\left(y_1-b-m x_1\right)^2+\left(y_2-b-m x_2\right)^2+\cdots+\left(y_n-b-m x_n\right)^2 .
+$$
+
+
+La diferencia entre el valor observado $y_i$ y el correspondiente valor ajustado $\hat{y}_i$ es un residuo. Matemáticamente, el residuo $i$ es
+$$
+e_i=y_i-\hat{y}_i=y_i-\left(b+m x_i\right), \quad i=1,2, \ldots, n
+$$
+
+Los residuos desempeñan un papel importante en la investigación de la adecuación del modelo y en la detección de desviaciones de los supuestos subyacentes. 
+
+Sea SSE (Sum of Squared Errors) la suma de los cuadrados de los residuos.
+$$
+\mathrm{SSE} = \sum\limits_{i=1}^n e_i^2 = \sum\limits_{i=1}^n (y_i-\left(b+m x_i\right) )^2
+$$
+
+En el contexto del análisis de regresión por mínimos cuadrados, se define la cantidad $S_y$ como la desviación estándar de los errores, también conocida como el error estándar residual. Esta cantidad representa la raíz cuadrada de la suma de los cuadrados de los errores dividida por $n-2$,  matemáticamente es:
+$$
+S_y = \sqrt{\frac{\mathrm{SSE}}{n - 2}} 
+$$
+$S_y$ es una medida de la dispersión de los datos alrededor de la recta de regresión ajustada y se utilizada para calcular los errores estándar de la pendiente $\Delta m$
+ y el término independiente $\Delta b$ de la regresión lineal.
+
+\begin{eqnarray}
+\Delta m &= \sqrt{\dfrac{n}{n \sum\limits_{i=1}^n x_i^2 - \left(\sum\limits_{i=1}^n x_i\right)^2}} \cdot S_y 
+\label{Delm}\\ \nonumber  \\
+\Delta b &= \sqrt{\dfrac{\sum\limits_{i=1}^n x_i^2}{n \sum\limits_{i=1}^n x_i^2 - \left(\sum\limits_{i=1}^n x_i\right)^2}} \cdot S_y
+\label{Delb}
+\end{eqnarray}
+
+
+Finalmente para calcular $S_y$ se puede utilizar como ayuda la tabla \ref{tablamincua2}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline$x_i [\,\,]$ & $y_i [\,\,]$ & $y_i-m x_i-b$ & $(y_i-m x_i-b)^2$ \\
+\hline \hline$x_1$ & $y_1$ & $y_1-m x_1-b$ & $\left(y_1-m x_1-b\right)^2$ \\
+\hline$x_2$ & $y_2$ & $y_2-m x_2-b$ & $\left(y_2-m x_2-b\right)^2$ \\
+\hline$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+\hline$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+\hline$x_n$ & $y_n$ & $y_n-m x_n-b$ & $\left(y_n-m x_n-b\right)^2$ \\ \hline
+\hline & & & $\sum\limits_{i=1}^n \qquad \qquad \quad$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Tabla para facilitar los cálculos de $S_y$.}
+\label{tablamincua2}
+\end{table}
+
+\paragraph{Ejemplo 7.}
+
+En un experimento sobre cinemática un grupo de estudiantes mide los tiempos con los que se desplaza  un móvil en un riel de aire. Lis tiempos son medidos en segundos usando un cronómetro de sensibilidad $S=0,01$ s. Un instrumento de mejor precisión mide las velocidades con las que se desplaza el móvil, este instrumento tiene una sensibilidad de $0,001$ m/s.  Los datos se muestran en la tabla \ref{datos1}.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline $t_i \pm 0,01 (\mathrm{s})$ & $v_i \pm 0,01 (\mathrm{m/s})$  \\\hline \hline 
+\hline $0,00$ & 1.00 \\
+\hline $0,10$ & 1.64 \\
+\hline $0,20$ & 1.51 \\
+\hline $0,30$ & 2.03 \\
+\hline $0,40$ & 2.75 \\
+\hline $0,50$ & 3.59 \\
+\hline $0,60$ & 4.87 \\
+\hline $0,70$ & 5.23 \\
+\hline $0,80$ & 5.44 \\
+\hline $1,00$ & 6.37 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Mediciones de la velocidad de un cuerpo en función del tiempo}
+\label{datos1}
+\end{table}
+
+Al graficar los datos anteriores se obtiene la figura
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=2.5in,width=2.5in]{figuras/fig12}  
+\caption{Gráfico de los datos $v$ vs $t$ de la tabla \ref{datos1}.}
+\label{figdatos1}
+\end{center}
+\end{figure}
+
+Es recomendable calcular las siguientes sumas:
+$$
+\begin{array}{c|c|c|c|c}
+n&\sum_{i=1}^n t_i & \sum_{i=1}^n v_i   & \sum_{i=1}^n t_i^2  & \sum_{i=1}^n t_i v_i \\ \hline\hline 
+10 & 4.60 & 34.43 & 3.04 & 21.3
+\end{array}
+$$
+$$
+\Delta=n\sum\limits_{i=1}^n t_i^2-\left(\sum\limits_{i=1}^n t_i\right)^2= 
+10(3.04) - \left(4.60 \right)^2= 9.24 \,\, \mathrm{s}^2
+$$
+$$
+b=\dfrac{\sum\limits_{i=1}^n t_i^2 \sum\limits_{i=1}^n v_i-\sum\limits_{i=1}^n t_i \sum\limits_{i=1}^n t_i v_i}{\Delta} =
+\frac{(3.04)  (34.43) -(4.60) (21.3)}{9.24} = 0.724 \,\, \mathrm{m/s}
+$$
+$$
+m =\dfrac{n \sum\limits_{i=1}^n t_i v_i-\sum\limits_{i=1}^n t_i \sum\limits_{i=1}^n v_i}{\Delta} =\frac{10(21.3)  -(4.60) ( 34.43)}{9.24}= 5.91\,\, \mathrm{m/s^2}
+$$
+
+Procedemos a calcular los errores 
+$$
+\begin{array}{c|c}
+n& \sum\limits_{i=1}^n \left(v_i-b-m t_i\right)  \\ \hline\hline 
+10 & 6.63 
+\end{array}
+$$
+La desviación estándar de $y$:
+$$
+S_y=\left[\frac{\sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2}{n-2}\right]^{\frac{1}{2}}=
+\left(\frac{6.63}{8}\right)^{\frac{1}{2}}=0.91 \,.
+$$
+y los errores 
+$$
+\begin{aligned}
+\Delta m & =\left[\frac{n}{\Delta}\right]^{\frac{1}{2}} S_y = \left[\frac{10}{9.24}\right]^{\frac{1}{2}} (0.91)=0.95 \\
+\Delta b & =\left[\frac{\sum\limits_{i=1}^n\left(t_i\right)^2}{\Delta}\right]^{\frac{1}{2}} S_y= 
+\left[\frac{3.04}{9.24}\right]^{\frac{1}{2}} (0.91)= 0.52
+\end{aligned}
+$$
+
+Por lo tanto nuestro resultado será:
+$$
+v=mt + b= 5.91 t + 0.724 \,\, \mathrm{m/s}
+$$
+donde $m=5.91 \pm 0.95$ y $b=0.72 \pm 0.52$.
+
+En Python podemos hacer todos los casos anteriores, incluida la figura \ref{figdatos1}, pero primero debemos ingresar los datos
+\begin{lstlisting}[language=Python]    
+import numpy as np
+import matplotlib.pyplot as plt
+\end{lstlisting}
+Los datos:
+\begin{lstlisting}[language=Python]    
+yn=  array([1.000, 1.64, 1.51, 2.03, 2.75, 3.59, 4.87, 5.23, 5.44, 6.37])
+xn = array([0.00, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 1.00])
+\end{lstlisting}
+
+La gráfica de la figura \ref{figdatos1} se obtiene a partir de las siguientes lineas de código:
+\begin{lstlisting}[language=Python] 
+plt.scatter(xn, yn, marker='*')
+plt.title(r'Velocidad vs tiempo', fontsize=20)
+plt.xlabel(r'$t$ [s]', fontsize=16)
+plt.ylabel(r'$v$ [m/s]', fontsize=16)
+\end{lstlisting}
+
+Para usar las ecuaciones (\ref{eme2})-(\ref{b2}) hagamos primero los siguientes cálculos intermedios
+\begin{lstlisting}[language=Python] 
+#Se obtiene el valor de n (numero de datos)
+n=len(xn)
+#Las sumatorias necesarias 
+Sum_x=sum(xn)
+Sum_y=sum(yn)
+Sum_xx=sum(xn**2)
+Sum_xy=sum(xn*yn)
+print(n,',', Sum_x, ',',Sum_y,',', Sum_xx,',', Sum_xy)
+\end{lstlisting}
+\begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
+{\small 
+10 , 4.6 , 34.43 , 3.04 , 21.275
+}
+\end{tcolorbox} 
+
+Y finalmente calculamos $b$ y $m$
+\begin{lstlisting}[language=Python] 
+# Se escriben las ecuaciones para b y m 
+b=(Sum_xx*Sum_y-Sum_xy*Sum_x)/(n*Sum_xx-Sum_x**2)
+m=(n*Sum_xy-Sum_x*Sum_y)/(n*Sum_xx-Sum_x**2)
+print('m=',m, ',', 'b=',b)
+\end{lstlisting}
+\begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
+{\small 
+m= 5.884415584415585 , b= 0.7361688311688325
+}
+\end{tcolorbox} 
+
+Notemos lo diferente del valor de $m$ con respecto al obtenido anteriormente, esta diferencia obviamente se debe a que anteriormente fuimos haciendo redondeos en la operaciones. 
+
+Veamos la recta y los datos
+\begin{lstlisting}[language=Python] 
+# La gráfica con los datos y la recta que mejor se ajusta 
+y_pred=m_mc*xn + b_mc
+# 
+plt.figure()
+plt.scatter(xn, yn, color='b',marker='+', label='datos medidos')
+plt.plot(xn, y_pred, 'r--',label='recta por mínimos cuadrados')
+plt.grid(linestyle='dotted')
+plt.legend(loc='best')
+plt.title(r'Velocidad vs tiempo', fontsize=18)
+plt.xlabel(r'$t$ [s]', fontsize=16)
+plt.ylabel(r'$v$ [m/s]', fontsize=16)
+plt.text(0.6, 1.0, '$y=(5.88) x + 0.736$', fontsize=12)
+plt.show()
+\end{lstlisting}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=2.6in,width=3.0in]{figuras/fig13}  
+\label{figdatos2}
+\end{center}
+\end{figure}
+
+El siguiente paso es calcular $\Delta b$ y $\Delta m$
+
+\begin{lstlisting}[language=Python] 
+# Escribimos las sumatorias para calcular Sy
+error = yn - y_pred
+SSE = np.sum(error ** 2)
+Sy = np.sqrt(SSE / (n - 2))
+print("Error estándar de la estimación (RMSE):", Sy)
+\end{lstlisting}
+\begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
+{\small 
+Error estándar de la estimación (RMSE): 0.3943769745458628
+}
+\end{tcolorbox}
+
+Los respectivos errores se obtienen de las ecuaciones (\ref{Delm}) y (\ref{Delb}) 
+
+\begin{lstlisting}[language=Python] 
+Delta_m = np.sqrt(n/(n*np.sum(xn ** 2) - np.sum(xn)**2))*Sy
+Delta_b = np.sqrt(np.sum(xn**2)/(n*np.sum(xn**2)-np.sum(xn)**2))*Sy
+print(f'm = {np.round(m_mc, 1)} \u00B1 {np.round(Delta_m, 1)}')
+print(f'b = {np.round(b_mc, 1)} \u00B1 {np.round(Delta_b, 1)}')
+\end{lstlisting}
+\begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
+{\small 
+$m = 5.9 \pm 0.4$
+
+$b = 0.7 \pm 0.2$
+}
+\end{tcolorbox}
+
+Por lo tanto:
+$$
+v= 5.9 t + 0.7 \,\, \mathrm{m/s} \,.
+$$
+
+
+
+
