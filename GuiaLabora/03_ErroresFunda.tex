@@ -157,9 +157,9 @@ Hemos dicho que cuando se realiza una serie de medidas de una magnitud lo más pr
 
 Para contestar estas preguntas se acostumbra utilizar algunas definiciones necesarias. 
 
-\paragraph{Valor medio aritmético:} se define como el cociente entre la suma de las medidas: $x_1, x_2, \ldots, x_N$ y el número de $N$ medidas realizadas.
+\paragraph{Valor medio aritmético:} se define como el cociente entre la suma de las medidas: $x_1, x_2, \ldots, x_n$ y el número de $n$ medidas realizadas.
 \begin{equation}
-\bar{x}=\frac{x_1+x_2+x_3+\ldots+x_N}{N}=\frac{1}{N} \sum_{i=1}^N x_i
+\bar{x}=\frac{x_1+x_2+x_3+\ldots+x_n}{n}=\frac{1}{n} \sum_{i=1}^n x_i
 \end{equation}
 
 Es decir, la media de las medidas es el valor más probable de la magnitud. Se puede mostrar que $\bar{x}$ es el valor más cercano al valor verdadero (desconocido) de una medida.
@@ -172,7 +172,7 @@ Es decir, la media de las medidas es el valor más probable de la magnitud. Se pu
 
 \paragraph{Error medio absoluto de una serie de medidas:} se define como el valor medio aritmético de los errores absolutos de cada medida.
 \begin{equation}
-\overline{\Delta x}=\frac{\Delta x_1+\Delta x_2+\Delta x_3+\ldots+\Delta x_N}{N}=\frac{1}{N} \sum_{i=1}^N \Delta x_i \,.
+\overline{\Delta x}=\frac{\Delta x_1+\Delta x_2+\Delta x_3+\ldots+\Delta x_n}{n}=\frac{1}{n} \sum_{i=1}^n \Delta x_i \,.
 \label{errmedabs}
 \end{equation}
 
@@ -408,17 +408,27 @@ corresponde a la diferencia entre el valor medio y cada medida y se denota por $
 \end{equation}
 Las desviaciones pueden ser positivas o negativas, lo cual nos señala que las medidas caen a uno u otro lado del valor medio.
 
-\paragraph{Desviación estándar:} Se define como:
+\paragraph{La varianza:}  se calcula tomando la desviación de cada medida respecto al valor medio pero elevando al cuadrado esas diferencias, sumando esos cuadrados y luego dividiendo por el número total de observaciones $n$:
 \begin{equation}
-\sigma=\sqrt{\frac{\sum_{i=1}^N\left(\bar{x}-x_i\right)^2}{(N-1)}}
+\sigma^2=\frac{1}{n} \sum_{i=1}^n\left(x_i-\bar{x}\right)^2
+\label{varianza}
+\end{equation}
+
+\paragraph{Desviación estándar:} es una medida de dispersión que indica cuánto varían los valores de un conjunto de datos alrededor de su media. Es la raíz cuadrada positiva de la varianza. Se calcula de la siguiente manera:
+\begin{equation}
+\sigma =\sqrt{\sigma^2}=\sqrt{\frac{1}{n} \sum_{i=1}^n\left(x_i-\bar{x}\right)^2}
+\label{desest1}
+\end{equation}
+
+Dependiendo del contexto y del propósito del cálculo, cuando se trabaja con poblaciones enteras o con una muestra de esa población podemos definir la varianza y desviación estándar muestral. 
+
+La cantidad
+\begin{equation}
+s=\sqrt{\frac{\sum_{i=1}^n\left(\bar{x}-x_i\right)^2}{n-1}}
 \label{des1}
 \end{equation}
-cuando el número de medidas no es lo suficientemente grande.
+se conoce como la fórmula de Bessel y se utiliza cuando la muestra es una muestra aleatoria simple de la población y se quiere estimar la varianza de la población a partir de la muestra.
 
-En el caso que se tengan varios conjuntos de medidas ($N$ grande), la desviación estándar está dada por:
-\begin{equation}
-\sigma=\sqrt{\frac{\sum_{i=1}^N\left(\bar{x}-x_i\right)^2}{N(N-1)}}
-\end{equation}
 
 La curva de Gauss dibujada en la figura \ref{gauss2}, ayuda a visualizar las definiciones dadas para el valor medio y la desviación estándar.
 \begin{figure}[h]
@@ -508,7 +518,7 @@ La teoría estadística dice que de todas las medidas el:
 \begin{itemize}
 \item  La desviación estándar:
 $$
-\sigma=\sqrt{\frac{\sum_{i=1}^N(\Delta d)^2}{(N-1)}}=\sqrt{\frac{0,0058 \mathrm{~mm}^2}{24}}=0,02 \mathrm{~mm} .
+\sigma=\sqrt{\frac{\sum_{i=1}^n(\Delta d)^2}{n-1}}=\sqrt{\frac{0,0058 \mathrm{~mm}^2}{24}}=0,02 \mathrm{~mm} .
 $$
 \item  Error probable:
 $$
@@ -530,7 +540,7 @@ $$
 
 Con Python podemos hacer los cálculos del Ejemplo 2, pero es bueno notar lo siguiente. Numpy tiene una función para calcular la desviación estándar que es {\bf std} que se basa en la ecuación 
 $$
-\sigma=\sqrt{\frac{\sum_{i=1}^N(d_i -\bar{d})^2}{N}}
+\sigma=\sqrt{\frac{\sum_{i=1}^n(d_i -\bar{d})^2}{n}}
 $$
 que sería la desviación estándar  no corregida de una muestra (considerada como la población total).
 \begin{lstlisting}[language=Python]    
@@ -543,7 +553,7 @@ sig
 }
 \end{tcolorbox}
 
-Pero aquí estaremos utilizando la ecuación \ref{des1}  que también se conoce como la desviación estándar de una muestra corregida. Esa diferencia entre $1/N$ y $1/(N-1)$ se hace cada vez más pequeña a medida que $N$ aumenta. Podemos definir nuestra propia desviación estándar.
+Pero aquí estaremos utilizando la ecuación \ref{des1}  que también se conoce como la desviación estándar de una muestra corregida. Esa diferencia entre $1/n$ y $1/(n-1)$ se hace cada vez más pequeña a medida que $n$ aumenta. Podemos definir nuestra propia desviación estándar.
 \begin{lstlisting}[language=Python]    
 des = sqrt(sum((d - mean(d))**2  )/(len(d)-1))
 des

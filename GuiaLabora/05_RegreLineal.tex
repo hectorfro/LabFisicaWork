@@ -5,7 +5,25 @@
 En este capítulo, nos dedicamos al  análisis de regresión, que es una técnica estadística utilizada para investigar y modelar la relación entre variables. Los métodos de análisis de regresión tienen una gran cantidad de aplicaciones: ingeniería, ciencias físicas y químicas, economía, ciencias de la vida y las ciencias sociales. Otro campo de aplicación es la ciencia y análisis de datos, esto  hace que el espectro de problemas donde se aplica el análisis de regresión sea muy amplio.
 
 
-Supongamos que el encargado de negocios de una tienda de helados está interesado en estudiar  las operaciones de entrega y servicio de productos en las máquinas expendedoras de helados. El encargado sospecha que el tiempo que necesita un repartidor de ruta para cargar y dar servicio a una máquina está relacionado con el número de cajas de producto que debe entregar.  El encargado visita 25 puntos de venta elegidos al azar que tienen máquinas expendedoras y observa el tiempo de entrega en la salida (en minutos) y el volumen de producto entregado (en cajas) en cada uno de ellos. Las 25 observaciones se representan en la figura 1.1. Este gráfico se denomina diagrama de dispersión. Esta representación sugiere claramente que existe una relación entre el tiempo de entrega y el volumen de entrega; de hecho, da la impresión de que los puntos de datos caen generalmente, pero no exactamente, a lo largo de una línea recta, como se ilsutra en la misma figura.
+Supongamos que el encargado de negocios de una tienda de helados está interesado en estudiar  las operaciones de entrega y funcionamiento de productos en las máquinas expendedoras de helados. El encargado piensa que el tiempo que necesita un repartidor  para cargar y ofrecer el servicio en una máquina está relacionado con el número de cajas de producto que debe entregar.  El encargado visita, al azar,  25 puntos de venta que tienen estas máquinas expendedoras y registra el tiempo de entrega en la salida (en minutos) y el volumen de producto entregado (en cajas) en cada uno de ellas. Las 25 observaciones se representan en el gráfico de dispersión mostrado en la figura 1.1. 
+
+Esta representación sugiere  que existe una relación entre el tiempo de entrega y el volumen de entrega, además da la impresión de que los puntos de datos caen generalmente, pero no exactamente, a lo largo de una línea recta:
+\begin{equation}
+y=\beta_0+\beta_1  x \,,
+\label{reglin1}
+\end{equation}
+donde $y$ representa los tiempos de las entregas, $x$ el volumen de entrega, 
+ $\beta_0$ es la intercepción con el eje y $\beta_1$ es la pendiente de la recta. Como se puede ver, los puntos de datos no caen exactamente sobre una línea recta, por lo que la ecuación (\ref{reglin1}) debe modificarse para tener esto en cuenta. 
+ 
+Sea el error  $\varepsilon$ la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables en los tiempos de las entregas, errores de medición, etc. Así, un modelo más plausible para los datos de los tiempos de las entregas es
+\begin{equation}
+y=\beta_0+\beta_1 x+\varepsilon
+\label{reglin2}
+\end{equation}
+
+A la ecuación (\ref{reglin2}) se le denomina Modelo de Regresión Lineal (MRL), donde normalmente a  $x$ se le denomina la variable independiente e $y$ la variable dependiente. Esta denominación puede causar  confusión con el concepto de independencia estadística, por lo que suele denominarse a $x$ como la variable ``predictora'' o ``regresora'' y a $y$ como la variable de respuesta. Dado que la ecuación (\ref{reglin2}) sólo incluye una variable regresora, se denomina Modelo de Regresión Lineal Simple.
+
+Podemos detenernos un momento para analizar el MRL, supongamos que fijamos el valor de la variable regresora $x$ y observamos el valor de la respuesta $y$. Al fijar $x$ la cantidad aleatoria $\varepsilon$ determinará las propiedades de $y$. Supongamos que la media y la varianza de $\varepsilon$ son $0$ y $\sigma^2$, respectivamente. Entonces, la respuesta media a cualquier valor de la variable regresora será
 
 
 
