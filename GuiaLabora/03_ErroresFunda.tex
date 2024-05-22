@@ -264,16 +264,16 @@ $$
 Vamos a reproducir el ejemplo anterior en Python. Primero que todo debemos incorprar las librerias {\bf numpy} y {\bf matplotlib}
 
 \begin{lstlisting}[language=Python]
-from numpy import *
+import numpy as np
 import matplotlib.pyplot as plt
 \end{lstlisting}
    
 Luego introducimos los datos como un arreglo
 \begin{lstlisting}[language=Python]    
-d = array([1.780, 1.780, 1.780, 1.790, 1.790])
-print('Num de datos:',         len(d)  )
-print('promedio:',             mean(d), 'cm' )
-print('suma:',                 sum(d)  )
+d = np.array ([1.780 , 1.780 , 1.780 ,1.790 , 1.790])
+print('Num de datos:', len(d))
+print('Promedio:', np.mean(d), 'cm')
+print('Suma:', np.sum(d))
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]    
 {\small Num de datos: 5 \\
@@ -285,10 +285,10 @@ suma: 8.92
 Podemos calcular la dispersión de la siguiente manera
 \begin{lstlisting}[language=Python]    
 # Valores máximo y mínimos del conjunto de datos
-print('valor máximo:',  amax(d))
-print('valor mínimo:',  amin(d))
-print('dispersión:',   (amax(d)-amin(d)).round(2))
-print('dispersión porcentual:', ((amax(d)-amin(d))/mean(d)*100).round(1),'%')
+print('valor máximo:', np.amax(d))
+print('valor mínimo:', np.amin(d))
+print('dispersión:', (np.amax(d) - np.amin(d)).round(2))
+print('dispersión porcentual:',((np.amax(d)-np.amin(d))/np.mean(d)*100).round(1),'%')
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small valor máximo: 1.79 \\
@@ -300,7 +300,7 @@ dispersión porcentual: 0.6 $\%$
 
 Para el error absoluto del diámetro
 \begin{lstlisting}[language=Python]    
-Delta_d=(sum(abs(mean(d)-d))/len(d)).round(3)
+Delta_d=(np.sum(np.abs(np.mean(d)-d))/len(d)).round(3) 
 Delta_d
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}] 
@@ -311,10 +311,9 @@ Delta_d
 
 Para el error relativo del diámetro
 \begin{lstlisting}[language=Python]    
-err_d=(Delta_d/mean(d)) # error relativo 
-err_dp=(e_d*100)    # error porcentual
-
-print('error relativo:', err_d.round(4))
+err_d=(Delta_d/np.mean(d)) # error relativo 
+err_dp=(err_d*100) # error porcentual
+print('error relativo:', err_d.round(4)) 
 print('error porcentual:', err_dp.round(2),'%')
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]  
@@ -324,9 +323,8 @@ error porcentual: 0.28 \%
 \end{tcolorbox} 
 
 \subsubsection{Cálculo de errores en un número grande de medidas}
-
-Supongamos que, un estudiante necesita conocer el diámetro de un tubo de vidrio, para lo cual realiza  25 medidas, Tabla \ref{diametros}. El instrumento utilizado fue un tornillo micrométrico de apreciación $0,01 \mathrm{~mm}$.
-\begin{table}[h]
+Supongamos que, un estudiante necesita conocer el diámetro de un tubo de vidrio, para lo cual realiza  25 medidas, tabla \ref{diametros}. El instrumento utilizado fue un tornillo micrométrico de apreciación $0,01 \mathrm{~mm}$.
+\begin{table}[!h]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline$N^{\circ}$ de la medida & $\mathrm{d}(\mathrm{mm})$ & $N^{\circ}$ de la medida & $\mathrm{d}(\mathrm{mm})$ & $N^{\circ}$ de la medida & $\mathrm{d}(\mathrm{mm})$ \\
@@ -346,12 +344,9 @@ Supongamos que, un estudiante necesita conocer el diámetro de un tubo de vidrio,
 \label{diametros}
 \end{table}
 
-¿Cómo presentar estas medidas gráficamente? Una manera es por me­dio de un histograma, el cual no es más que un gráfico del número de veces que ocurre una medida (frecuencia) como función del valor de ésta.
-
-El histograma se construye de la forma siguiente: Se divide el conjunto de valores medidos en intervalos iguales y se cuenta el número de veces que ocurre el valor de la medición en cada intervalo. El ancho de cada intervalo es arbitrario y generalmente se escoge el más conveniente. 
+¿Cómo presentar estas medidas gráficamente? Una manera es por me­dio de un histograma, el cual no es más que un gráfico del número de veces que ocurre una medida (frecuencia) como función del valor de ésta. El histograma se construye de la forma siguiente: Se divide el conjunto de valores medidos en intervalos iguales y se cuenta el número de veces que ocurre el valor de la medición en cada intervalo. El ancho de cada intervalo es arbitrario y generalmente se escoge el más conveniente. 
 
 Con los valores de la tabla anterior \ref{diametros} y escogiendo como el ancho del intervalo en  0,01 mm, las frecuencias de las medidas se muestran en la tabla \ref{histo1}. 
-
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -383,24 +378,27 @@ plt.ylabel('Frecuencia')
 plt.title("histograma")
 plt.show()
 \end{lstlisting}
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=2.0in,width=2.6in]{figuras/fig03}  
+\caption{Histograma para los datos de la tabla \ref{diametros}.}
+\label{gauss1}
+\end{center}
+\end{figure} 
+
+Si se efectuaran otras 25 mediciones, el histograma respectivo sería probablemen­te diferente al mostrado en \ref{gauss1}, y si se continuase haciendo medidas del diámetro hasta un número $n$ muy grande y se realizara un nuevo histograma de ellas, tomando los intervalos más pequeños, se obtendría una curva continua, llamada gaussiana o curva de Gauss, ver gráfica \ref{gauss2}. De la curva de Gauss podemos extraer la información, que nos permite decidir que tan confiables son los valores obtenidos en las medidas realizadas.
+
 \begin{figure}[h]
 \begin{center}
-\includegraphics[height=2.5in,width=3.6in]{figuras/fig03}  
-\caption{Histograma para los datos de la tabla \ref{diametros}.}
+\includegraphics[height=2.0in,width=3.0in]{figuras/fig04}  
+\caption{Curva de Gauss para un número $n$ muy grande de medidas.}
 \label{gauss2}
 \end{center}
 \end{figure}
 
-Si se efectuaran otras 25 mediciones, el histograma respectivo sería probablemen­te diferente al mostrado en \ref{gauss2}, y si se continuase haciendo medidas del diámetro hasta un número $n$ muy grande y se realizara un nuevo histograma de ellas, tomando los intervalos más pequeños, se obtendría una curva continua, llamada gaussiana o curva de Gauss, ver gráfica \ref{gauss3}. De la curva de Gauss podemos extraer la información, que nos permite decidir que tan confiables son los valores obtenidos en las medidas realizadas. 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[height=2.5in,width=3.6in]{figuras/fig04}  
-\caption{Curva de Gauss para un número $n$ muy grande de medidas.}
-\label{gauss3}
-\end{center}
-\end{figure}
 
 Además del valor medio aritmético $\bar{x}$ también podemos definir:
+
 \paragraph{Desviación de cada medida respecto al valor medio:} 
 corresponde a la diferencia entre el valor medio y cada medida y se denota por $\Delta x_i$.
 \begin{equation}
@@ -420,22 +418,19 @@ Las desviaciones pueden ser positivas o negativas, lo cual nos señala que las me
 \label{desest1}
 \end{equation}
 
-Dependiendo del contexto y del propósito del cálculo, cuando se trabaja con poblaciones enteras o con una muestra de esa población podemos definir la varianza y desviación estándar muestral. 
-
-La cantidad
+Dependiendo del contexto y del propósito del cálculo, cuando se trabaja con poblaciones enteras o con una muestra de esa población podemos definir la varianza y desviación estándar muestral a la cantidad
 \begin{equation}
 s=\sqrt{\frac{\sum_{i=1}^n\left(\bar{x}-x_i\right)^2}{n-1}}
 \label{des1}
 \end{equation}
-se conoce como la fórmula de Bessel y se utiliza cuando la muestra es una muestra aleatoria simple de la población y se quiere estimar la varianza de la población a partir de la muestra.
+que se conoce como la fórmula de Bessel y se utiliza cuando la muestra es una muestra aleatoria simple de la población y se quiere estimar la varianza de la población a partir de la muestra.
 
-
-La curva de Gauss dibujada en la figura \ref{gauss2}, ayuda a visualizar las definiciones dadas para el valor medio y la desviación estándar.
+La curva de Gauss dibujada en la figura \ref{gauss3}, ayuda a visualizar las definiciones dadas para el valor medio y la desviación estándar.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[height=2.1in,width=3.6in]{figuras/fig05}  
 \caption{Curva de distribución de Gauss mostrando la posición de $\bar{x}$ y $\sigma$}
-\label{gauss4}
+\label{gauss3}
 \end{center}
 \end{figure}
 
@@ -445,12 +440,12 @@ Notemos también que la proporción de las medidas  situada entre la media y las d
 
 \paragraph{Error probable $\left(\varepsilon_p\right)$}
 
-Se define como la desviación respecto al valor medio, que divide la mitad derecha (o izquierda) del área bajo la curva de Gauss en dos partes iguales. Por lo tanto, la probabilidad de observar una desviación dentro del intervalo $\left(\bar{x}-\varepsilon_p\right)$ y $\left(\bar{x}+\varepsilon_p\right)$ es $\frac{1}{2}$, ver la figura \ref{gauss3}.
+Se define como la desviación respecto al valor medio, que divide la mitad derecha (o izquierda) del área bajo la curva de Gauss en dos partes iguales. Por lo tanto, la probabilidad de observar una desviación dentro del intervalo $\left(\bar{x}-\varepsilon_p\right)$ y $\left(\bar{x}+\varepsilon_p\right)$ es $\frac{1}{2}$, ver la figura \ref{gauss4}.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[height=2.1in,width=3.6in]{figuras/fig06}  
 \caption{Curva de distribución de Gauss mostrando la posición de $\bar{x}$ y $\sigma$}
-\label{gauss5}
+\label{gauss4}
 \end{center}
 \end{figure}
 
@@ -544,7 +539,7 @@ $$
 $$
 que sería la desviación estándar  no corregida de una muestra (considerada como la población total).
 \begin{lstlisting}[language=Python]    
-sig=std(d)
+sig=np.std(d) 
 sig
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
@@ -555,7 +550,7 @@ sig
 
 Pero aquí estaremos utilizando la ecuación \ref{des1}  que también se conoce como la desviación estándar de una muestra corregida. Esa diferencia entre $1/n$ y $1/(n-1)$ se hace cada vez más pequeña a medida que $n$ aumenta. Podemos definir nuestra propia desviación estándar.
 \begin{lstlisting}[language=Python]    
-des = sqrt(sum((d - mean(d))**2  )/(len(d)-1))
+des = np.sqrt(sum((d - np.mean(d))**2)/(len(d)-1))
 des
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
@@ -567,9 +562,9 @@ des
 Para el resto de los cálculos del ejemplo 2 tenemos:
 \begin{lstlisting}[language=Python]    
 epr=(0.674*des)
-ed=epr/mean(d)
+ed=epr/np.mean(d)
 ep=ed*100
-print('promedio:', mean(d).round(2))
+print('promedio:', np.mean(d).round(2))
 print('error probable:', epr.round(2))
 print('error relativo:', ed.round(4))
 print('error porcentual:', ep.round(2),'%')
@@ -591,13 +586,13 @@ Volviendo al tema de la precisión y exactitud de las mediciones vimos que están 
 En algunos casos, una alta exactitud puede implicar un error casual pequeño, pero
 en general no es así. La precisión y exactitud no son términos intercambia­bles entre sí y los métodos estadísticos dan específicamente una medida cuantita­tiva de la precisión y no de la exactitud.
 
-Las diferencias entre exactitud y precisión se ilustran en la figura \ref{gauss4}. En la figura de la izquierda se observa que el valor medio difiere bastante del valor verdadero, lo cual se interpreta diciendo que las mediciones fueron de baja exactitud, la gaussiana $B$  indica una baja exactitud y una alta precisión.
+Las diferencias entre exactitud y precisión se ilustran en la figura \ref{gauss5}. En la figura de la izquierda se observa que el valor medio difiere bastante del valor verdadero, lo cual se interpreta diciendo que las mediciones fueron de baja exactitud, la gaussiana $B$  indica una baja exactitud y una alta precisión.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[height=2.1in,width=3.2in]{figuras/fig07a}  
 \includegraphics[height=2.1in,width=3.0in]{figuras/fig07b}  
 \caption{Precisión y Exactitud}
-\label{gauss4}
+\label{gauss5}
 \end{center}
 \end{figure}
 

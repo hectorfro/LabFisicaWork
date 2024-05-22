@@ -203,13 +203,13 @@ $$
 
 Es de hacer notar que al graficar en papel semi-logarítmico y llevar los valores en la escala logarítmica, se llevan directamente los números a la escala y no se calculan los logaritmos, pero al calcular la pendiente si es necesario hacerlo. Además si se está utilizando papel semi-logarítmico, $k$ es el corte de la recta en $x=0$.
 
-En las siguientes lineas de código podemos interpretar lo expuesto anteriormente tomando la función exponencial siguiente:
+En las siguientes lineas de código se puede interpretar lo expuesto anteriormente tomando la función exponencial siguiente:
 $$
 y = 5\cdot 10^{\frac{x}{3}}
 $$
-cuya gráfica la podemoa hacer de la manera siguiente
+cuya gráfica la podemos hacer de la manera siguiente
 \begin{lstlisting}[language=Python] 
-x = arange(10)
+x = np.arange(10)
 y = 5*10**(1/3*x)
 plt.plot(x, y, 'o')
 plt.show()
@@ -270,7 +270,7 @@ $$
 
 Procedemos a realizar su gráfica:
 \begin{lstlisting}[language=Python] 
-x = arange(20)
+x = np.arange(20)
 y = 8*x**(3)
 plt.plot(x, y, '*')
 plt.show()

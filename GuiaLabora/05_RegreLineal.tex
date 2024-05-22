@@ -4,18 +4,32 @@
 
 En este capítulo, nos dedicamos al  análisis de regresión, que es una técnica estadística utilizada para investigar y modelar la relación entre variables. Los métodos de análisis de regresión tienen una gran cantidad de aplicaciones: ingeniería, ciencias físicas y químicas, economía, ciencias de la vida y las ciencias sociales. Otro campo de aplicación es la ciencia y análisis de datos, esto  hace que el espectro de problemas donde se aplica el análisis de regresión sea muy amplio.
 
+El análisis de regresión fue desarrollado por primera vez por Sir Francis Galton\footnote{Francis Galton 1822-1911. \url{https://en.wikipedia.org/wiki/Francis_Galton}} a finales del siglo XIX. Galton redescubrió de forma independiente el concepto de correlación y demostró su aplicación en el estudio de la herencia, la antropología y la psicología. Galton desarrolló una descripción matemática de la tendencia regresiva, precursora de los modelos de regresión actuales y el término regresión sigue utilizándose para describir las relaciones estadísticas entre variables.
 
-Supongamos que el encargado de negocios de una tienda de helados está interesado en estudiar  las operaciones de entrega y funcionamiento de productos en las máquinas expendedoras de helados. El encargado piensa que el tiempo que necesita un repartidor  para cargar y ofrecer el servicio en una máquina está relacionado con el número de cajas de producto que debe entregar.  El encargado visita, al azar,  25 puntos de venta que tienen estas máquinas expendedoras y registra el tiempo de entrega en la salida (en minutos) y el volumen de producto entregado (en cajas) en cada uno de ellas. Las 25 observaciones se representan en el gráfico de dispersión mostrado en la figura 1.1. 
+\section{Regresión y la construcción de modelos}
+El análisis de regresión es una técnica estadística que permite investigar y construir modelos que establecen relaciones entre variables.
 
-Esta representación sugiere  que existe una relación entre el tiempo de entrega y el volumen de entrega, además da la impresión de que los puntos de datos caen generalmente, pero no exactamente, a lo largo de una línea recta:
+Las relaciones estadísticas son diferentes de las  relaciones funcionales porque las relaciones estadísticas no son perfectas, es decir, las observaciones de una relación estadística no caen directamente sobre una curva de relación. 
+
+Veamos el siguiente ejemplo, supongamos que al encargado de negocios de una tienda que fabrica y distribuye  helados le interesa  las operaciones de entrega y funcionamiento de los productos en las máquinas expendedoras de helados. Él  piensa que el tiempo que necesita un repartidor para ofrecer los productos en una máquina está relacionado con el número de cajas de producto que debe entregar, por lo tanto, decide visitar al azar 25 puntos de ventas que tienen estas máquinas expendedoras y registra el tiempo de entrega  (en minutos) y el volumen de producto entregado (en cajas) en cada uno de ellas. Las 25 observaciones se representan en el gráfico de dispersión mostrado en la figura \ref{regres1}. 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=2.4in,width=2.4in]{figuras/fig18}  
+\caption{Gráfico de dispersión para el tiempo y cantidad de entregas}
+\label{regres1}
+\end{center}
+\end{figure}
+
+
+Esta representación sugiere  que existe una relación entre el tiempo de entrega y el volumen de entrega,  a medida que aumenta el número de cajas aumenta el tiempo de entrega de los productos. Además, los puntos de datos caen aproximadamente a lo largo de una línea recta, existe una dispersión de los puntos. Se puede pensar que existe una relación que nos indica la tendencia de la forma
 \begin{equation}
 y=\beta_0+\beta_1  x \,,
 \label{reglin1}
 \end{equation}
 donde $y$ representa los tiempos de las entregas, $x$ el volumen de entrega, 
- $\beta_0$ es la intercepción con el eje y $\beta_1$ es la pendiente de la recta. Como se puede ver, los puntos de datos no caen exactamente sobre una línea recta, por lo que la ecuación (\ref{reglin1}) debe modificarse para tener esto en cuenta. 
+ $\beta_0$ es la intersección con el eje y $\beta_1$ es la pendiente de la recta. Como se puede ver, los puntos de datos no caen exactamente sobre una línea recta, esta dispersión de puntos en torno a la línea representa una variación en el número de cajas repartidas y el tiempo de entrega y es de naturaleza aleatoria. Veremos que estas  relaciones estadísticas pueden ser muy útiles, aunque no tengan la exactitud de una relación funcional. Por lo tanto, la ecuación (\ref{reglin1}) debe modificarse para tener esta característica en cuenta. 
  
-Sea el error  $\varepsilon$ la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables en los tiempos de las entregas, errores de medición, etc. Así, un modelo más plausible para los datos de los tiempos de las entregas es
+Llamemos el error  $\varepsilon$ a la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables en los tiempos de las entregas, errores de medición, etc. Así, un modelo más plausible para los datos de los tiempos de las entregas es
 \begin{equation}
 y=\beta_0+\beta_1 x+\varepsilon
 \label{reglin2}
@@ -23,9 +37,53 @@ y=\beta_0+\beta_1 x+\varepsilon
 
 A la ecuación (\ref{reglin2}) se le denomina Modelo de Regresión Lineal (MRL), donde normalmente a  $x$ se le denomina la variable independiente e $y$ la variable dependiente. Esta denominación puede causar  confusión con el concepto de independencia estadística, por lo que suele denominarse a $x$ como la variable ``predictora'' o ``regresora'' y a $y$ como la variable de respuesta. Dado que la ecuación (\ref{reglin2}) sólo incluye una variable regresora, se denomina Modelo de Regresión Lineal Simple.
 
-Podemos detenernos un momento para analizar el MRL, supongamos que fijamos el valor de la variable regresora $x$ y observamos el valor de la respuesta $y$. Al fijar $x$ la cantidad aleatoria $\varepsilon$ determinará las propiedades de $y$. Supongamos que la media y la varianza de $\varepsilon$ son $0$ y $\sigma^2$, respectivamente. Entonces, la respuesta media a cualquier valor de la variable regresora será
+Podemos detenernos un momento para analizar el MRL, supongamos que fijamos el valor de la variable regresora $x$ y observamos el valor de la respuesta $y$. Al fijar $x$ la cantidad aleatoria $\varepsilon$ determinará las propiedades de $y$. Supongamos que la media y la varianza de $\varepsilon$ son $0$ y $\sigma^2$, respectivamente. 
+
+La respuesta media a cualquier valor de la variable regresora se puede escribir de la siguiente manera:
+\begin{equation}
+\mu_{y \mid x} \equiv E(y \mid x)=E\left(\beta_0+\beta_1 x+\varepsilon\right)=\beta_0+\beta_1 x \,,
+\end{equation}
+que es la misma relación (\ref{reglin1}). La varianza de $y$ dado cualquier valor de $x$ es la siguiente:
+\begin{equation}
+\sigma_{y \mid x}^2 \equiv \operatorname{Var}(y \mid x)=\operatorname{Var}\left(\beta_0+\beta_1 x+\varepsilon\right)=\sigma^2 \,.
+\end{equation}
+
+Por lo tanto, el verdadero modelo de regresión $\mu_{y \mid x}=\beta_0+\beta_1 x$ es una línea de valores medios, es decir, la altura de la línea de regresión en cualquier valor de $x$ es sólo el valor esperado de $y$ para ese $x$. La pendiente, $\beta_1$ puede interpretarse como el cambio en la media de $y$ para un cambio unitario en $x$. Además, la variabilidad de $y$ en un valor concreto de $x$ viene determinada por la varianza del componente de error del modelo, $\sigma^2$. Esto implica que existe una distribución de los valores de $y$ en cada $x$ y que la varianza de esta distribución es la misma en cada $x$.
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=2.5in,width=2.5in]{figuras/fig19}  
+\caption{La  generación de observaciones en la regresión lineal.}
+\label{regres2}
+\end{center}
+\end{figure}
+
+Por ejemplo, si suponemos que el verdadero modelo de regresión que relaciona el tiempo de entrega con el volumen de entrega es $\mu_{y \mid x}=3,5+2 x$, y si suponemos también que la varianza es $\sigma^2=2$ entonces el resultado de estas suposiciones se puede ver figura \ref{regres2}. Aquí hemos utilizado una distribución normal para describir la variación aleatoria de $\varepsilon$. Puesto que $y$ es la suma de una constante $\beta_0+\beta_1 x$ (la media) y una variable aleatoria $\varepsilon$ de distribución normal, $y$ es una variable aleatoria de distribución normal. Para el caso en que  $x=10$ cajas, el plazo de entrega $y$ tiene una distribución normal con media $3,5+2(10)=23,5$ minutos y varianza 2. La varianza $\sigma^2$ determina la cantidad de variabilidad o ruido en las observaciones $y$ sobre el tiempo de entrega. Cuando $\sigma^2$ es pequeño, los valores observados del plazo de entrega caerán cerca de la recta, y cuando $\sigma^2$ es grande, los valores observados del plazo de entrega pueden desviarse considerablemente de la recta.
+
+De alguna manera, los modelos de regresión pueden considerarse como modelos empíricos. Si la relación entre las variables es muy compleja se puede utilizar regresiones lineales a trozos para aproximar la relación verdadera entre las variables $y$ y $x$. En este caso las ecuaciones de regresión sólo son válidas en la región de las variables regresoras contenidas en los datos observados. 
+
+De manera general, la variable de respuesta $y$ puede estar relacionada con un número $k$ regresores, $x_1, x_2, . . . , x_k$, de forma que
+\begin{equation}
+y=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k+\varepsilon
+\label{reglin3}
+\end{equation}
+
+La ecuación (\ref{reglin3}) se denomina Modelo de Regresión Lineal Múltiple, y el adjetivo lineal se emplea para indicar que el modelo es lineal en los parámetros $\beta_0, \beta_1, \ldots, \beta_k$, no porque $y$ sea una función lineal de las $x$. Esto significa que muchos modelos en los que $y$ se relaciona con las $x$ de forma no lineal pueden seguir tratándose como modelos de regresión lineal siempre que la ecuación sea lineal en los $\beta$ 's.
+
+Recordemos que el fin principal en  el análisis de regresión es estimar los parámetros desconocidos del modelo de regresión. Este proceso también se denomina ajuste del modelo a los datos. Existen varias técnicas de estimación de parámetros y una de estas técnicas es el método de los mínimos cuadrados. En el ejemplo que hemos mencionado  de los tiempos de entregas de cajas de helados y los tiempos de salida de los productos un ajuste de mínimos cuadrados a los datos del plazo de entrega nos llevaría a una ecuación como la que se muestra a continuación
+$$
+\hat{y}=3.31+2.18 x \,,
+$$
+donde $\hat{y}$  es el valor ajustado o estimado del tiempo de entrega correspondiente a un volumen de entrega de $x$ cajas de helados. Esta ecuación ajustada es la que se  representa en la figura \ref{regres1}.
 
 
+La siguiente fase de un análisis de regresión es la comprobación de la adecuación del modelo. En esta etapa, se evalúa la idoneidad del modelo y la calidad del ajuste. Este análisis determina la utilidad del modelo de regresión y puede indicar si el modelo es razonable o si necesita ser modificado. Por lo tanto, el análisis de regresión es un proceso iterativo en el que los datos guían la construcción del modelo, se ajusta el modelo a los datos y se evalúa la calidad del ajuste para decidir si se adopta o se modifica.
+
+Es importante señalar que un modelo de regresión no implica una relación causa-efecto entre las variables. Una fuerte relación empírica entre dos o más variables no prueba que exista una relación causal entre los regresores y la respuesta. Para establecer causalidad, la relación debe basarse en algo más allá de los datos de la muestra, como consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación causa-efecto, pero no debe ser la única base para tal afirmación.
+
+Finalmente, el análisis de regresión es parte de un enfoque más amplio de análisis de datos para la resolución de problemas. La ecuación de regresión en sí puede no ser el objetivo principal del estudio; a menudo, es más importante entender el sistema que genera los datos.
+
+En el trabajo de laboratorio es importante considerar la parte que tiene que ver con 
+La recolección de los datos,  todo análisis de regresión es tan bueno como los datos en los que se basa. 
 
 
 
