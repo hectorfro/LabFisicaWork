@@ -28,7 +28,7 @@ y=\beta_0+\beta_1  x \,,
 \end{equation}
 donde $y$ representa las notas obtenidas, $x$ la dedicación en estudio por número de horas,  $\beta_0$ es la intersección con el eje y $\beta_1$ es la pendiente de la recta. Como se puede ver, los puntos de datos no caen exactamente sobre una línea recta, esta dispersión de puntos en torno a la línea representa una variación en el número de cajas repartidas y el tiempo de entrega y es de naturaleza aleatoria. Veremos que estas  relaciones estadísticas pueden ser muy útiles, aunque no tengan la exactitud de una relación funcional. Por lo tanto, la ecuación (\ref{reglin1}) debe modificarse para tener esta característica en cuenta. 
  
-Llamemos el error  $\varepsilon$ a la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables al contabilizar las horas de estudio, errores de medición, etc. Así, un modelo más plausible para los datos de los tiempos de las entregas es
+Llamemos el error  $\varepsilon$ a la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables al contabilizar las horas de estudio, errores de medición, etc. Así, un modelo más plausible para los datos de las notas obtenidas es
 \begin{equation}
 y=\beta_0+\beta_1 x+\varepsilon
 \label{reglin2}
@@ -293,13 +293,13 @@ $S_y$ es una medida de la dispersión de los datos alrededor de la recta de regre
 Finalmente para calcular $S_y$ se puede utilizar como ayuda la tabla \ref{tablamincua2}
 
 
-\paragraph{Ejemplo 7.}
-
+%example
+\begin{example}
 En un experimento sobre cinemática un grupo de estudiantes mide los tiempos con los que se desplaza  un móvil en un riel de aire. Los tiempos son medidos en segundos usando un cronómetro de sensibilidad $\Delta t=0,01$ s. Otro  instrumento  mide las velocidades con las que se desplaza el móvil, este instrumento tiene una sensibilidad de $\Delta v= 0,01$ m/s.  La tabla de datos y la respectiva gráfica se muestran la figura \ref{datosvt}.
 
 \begin{figure}[h]
 \centering
-\begin{minipage}{0.49\textwidth}
+\begin{minipage}{0.54\textwidth}
     \centering
     \begin{tabular}{|c|c|}
     \hline $t_i \pm 0,01 (\mathrm{s})$ & $v_i \pm 0,01 (\mathrm{m/s})$  \\\hline \hline 
@@ -315,14 +315,13 @@ En un experimento sobre cinemática un grupo de estudiantes mide los tiempos con 
     \hline $1,00$ & 6.37 \\
     \hline
     \end{tabular}
-    \caption{Mediciones de la velocidad de un cuerpo en función del tiempo}
+    \caption{Mediciones de la velocidad de un cuerpo en función del tiempo y la gráfica de dispersión respectiva}
     \label{datosvt}
 \end{minipage}
 \hfill
-\begin{minipage}{0.49\textwidth}
+\begin{minipage}{0.44\textwidth}
     \centering
-    \includegraphics[height=2.5in,width=2.5in]{figuras/fig12}
-    \label{figdatos1}
+    \includegraphics[height=2.6in,width=2.6in]{figuras/fig12}
 \end{minipage}
 \end{figure}
 
@@ -384,7 +383,7 @@ yn=  array([1.000, 1.64, 1.51, 2.03, 2.75, 3.59, 4.87, 5.23, 5.44, 6.37])
 xn = array([0.00, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 1.00])
 \end{lstlisting}
 
-La gráfica de la figura \ref{figdatos1} se obtiene a partir de las siguientes lineas de código:
+La gráfica de la figura \ref{datosvt} se obtiene a partir de las siguientes lineas de código:
 \begin{lstlisting}[language=Python] 
 plt.scatter(xn, yn, marker='*')
 plt.title(r'Velocidad vs tiempo', fontsize=20)
@@ -553,4 +552,14 @@ plt.show()
 \label{figdatos2}
 \end{center}
 \end{figure}
+\end{example}
 
+\exampleline
+
+\subsection{Propiedades del método de mínimos cuadrados}
+
+Podemos notar de la ecuación (\ref{eme2})
+$$
+m  = \dfrac{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2}
+\label{eme3}
+$$

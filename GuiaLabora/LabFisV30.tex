@@ -11,6 +11,18 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{tcolorbox}
+\usepackage{amsthm}
+% Definir el entorno para ejemplos con texto en roman (no itálico)
+\newtheorem{example}{Ejemplo}[chapter]
+% Redefinir el entorno para que use normalfont en lugar de itálica
+\makeatletter
+\def\th@plain{\normalfont} % Cambiar el estilo del cuerpo del texto a normalfont
+\makeatother
+% Comando para la línea personalizada
+\newcommand{\exampleline}{
+\par\noindent
+\textcolor{red}{\rule{0.25\linewidth}{0.8pt}}
+}
 %\usepackage{draftwatermark}
 %\SetWatermarkText{Borrador Preliminar}
 %\SetWatermarkScale{3.5}
@@ -20,9 +32,6 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{ghostwhite}{rgb}{0.97, 0.97, 1.0}
-
-
-
 %Code listing style named "mystyle"
 \lstdefinestyle{mystyle}{
   backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
