@@ -18,15 +18,20 @@ y=f(x)+\varepsilon \,.
 \end{equation}
 donde $f$ es alguna función fija pero desconocida de $x_1, \ldots, x_k$, y $\varepsilon$ es un término de error aleatorio, que es independiente de $x$ y tiene media cero. En esta formulación, $f$ representa la información sistemática que $x$ proporciona sobre $y$.
 
-Existen dos razones principales para querer estimar $f$: la predicción y la inferencia. En el caso de la predicción, es común encontrarse en situaciones donde se dispone fácilmente de un conjunto de entradas $x$, pero no es posible obtener de manera sencilla la salida $y$. En este escenario, dado que el término de error es igual a cero, podemos predecir $y$ utilizando
+Existen dos razones principales para querer estimar $f$: la predicción y la inferencia. 
+
+\paragraph{Predicción:} Aquí hablamos en el proceso de usar un modelo estadístico o de aprendizaje automático para predecir valores futuros o no observados basados en datos existentes. El objetivo principal de la predicción es obtener valores precisos de la variable de interés y la precisión de las predicciones es el criterio más importante. En este caso, es común encontrarse en situaciones donde se dispone fácilmente de un conjunto de entradas $x$, pero no es posible obtener de manera sencilla la salida $y$. En este escenario, dado que el término de error es igual a cero, podemos predecir $y$ utilizando
 $$
 \hat{y} = \hat{f}(x)\,,
 $$
-donde $\hat{f}$ representa nuestra estimación de $f$, y $\hat{y}$ es la predicción resultante para $y$. En este contexto, podemos considerar a $\hat{f}$ como una caja negra, en el sentido de que no nos preocupa la forma exacta de $\hat{f}$, siempre y cuando genere predicciones precisas para $y$.
+donde $\hat{f}$ representa nuestra estimación de $f$, y $\hat{y}$ es la predicción resultante para $y$. En este contexto, podemos considerar a $\hat{f}$ como una caja negra, en el sentido de que no nos preocupa la forma exacta de $\hat{f}$, siempre y cuando genere predicciones precisas para $y$.  En general, $\hat{f}$ no será una estimación perfecta de $f$, y esta imprecisión introducirá algún error. Este error puede ser reducible si logramos mejorar la precisión de $\hat{f}$ utilizando una técnica de aprendizaje estadístico más adecuada para estimar $f$. Si pudiésemos construir una predicción perfecta de $f$, de manera que $\hat{y} = f(x)$, esta predicción aún tendría error porque en realidad $y$ es una función de $\varepsilon$, que es de carácter aleatorio. Esto se conoce como error irreducible, ya que por muy bien que estimemos $f$, no podemos reducir el error introducido por $\varepsilon$. 
 
-En general, $\hat{f}$ no será una estimación perfecta de $f$, y esta imprecisión introducirá algún error. Este error puede ser reducible si logramos mejorar la precisión de $\hat{f}$ utilizando una técnica de aprendizaje estadístico más adecuada para estimar $f$. Si pudiésemos construir una predicción perfecta de $f$, de manera que $\hat{y} = f(x)$, esta predicción aún tendría error porque en realidad $y$ es una función de $\varepsilon$, que es de carácter aleatorio. Esto se conoce como error irreducible, ya que por muy bien que estimemos $f$, no podemos reducir el error introducido por $\varepsilon$.
+Los métodos más utilizados para la predicción son la regresión lineal, los árboles de decisión, las redes neuronales, métodos que podríamos usas si queremos predecir precios en la bolsa de valores o el valor de un determinado producto bajo determinadas condiciones.
 
-En el caso de la inferencia, el objetivo no es necesariamente hacer predicciones para $y$ al estimar $f$, sino conocer $f$ de manera exacta. En este contexto, podríamos preguntarnos si existe una relación entre $y$ y cada predictor que tome la forma de una ecuación lineal, o si se trata de una relación más compleja. Históricamente, la mayoría de los métodos para estimar $f$ han adoptado una forma lineal. En algunas situaciones, este supuesto es razonable o incluso deseable. Sin embargo, a menudo la relación verdadera es más complicada, en cuyo caso un modelo lineal puede no proporcionar una representación precisa de la relación entre las variables de entrada y de salida.
+
+\paragraph{Inferencia:} Aquí el objetivo no es necesariamente hacer predicciones para $y$ al estimar $f$, sino conocer $f$ de manera exacta. Se refiere al proceso de usar un modelo estadístico para entender la relación entre las variables y sacar conclusiones sobre la población de la cual se extrajo la muestra. El objetivo principal de la inferencia es realizar afirmaciones sobre los parámetros del modelo y sobre la naturaleza de las relaciones entre las variables. En este contexto, podríamos preguntarnos si existe una relación entre $y$ y cada predictor que tome la forma de una ecuación lineal, o si se trata de una relación más compleja. Históricamente, la mayoría de los métodos para estimar $f$ han adoptado una forma lineal. En algunas situaciones, este supuesto es razonable o incluso deseable. Sin embargo, a menudo la relación verdadera es más complicada, en cuyo caso un modelo lineal puede no proporcionar una representación precisa de la relación entre las variables de entrada y de salida. 
+
+Los métodos más utilizados en la inferencia son las pruebas de hipótesis, estimación de los intervalos de confianza, el análisis de varianza (ANOVA), la regresión lineal múltiple. Estas técnicas pueden usarse para un estudio estadístico para inferir si existe una relación entre el consumo de café y el riesgo de padecer diabetes. 
 
 Es muy probable encontrar situaciones que se encuadren en el ámbito de la predicción, en el de la inferencia, o en una combinación de ambos. Por ejemplo, los modelos lineales permiten una inferencia relativamente sencilla e interpretable, pero pueden no producir predicciones tan precisas como otros enfoques. Por el contrario, algunos de los enfoques no lineales pueden proporcionar predicciones bastante precisas para $y$, pero a costa de un modelo menos interpretable, haciendo la inferencia más difícil.
 
@@ -743,8 +748,8 @@ array([ 106.75830064,  -67.27457406,  -14.59363144,   65.08868706,
 
 Hay varias propiedades de los mínimos cuadrados que podemos probar:
 
-\begin{enumerate}
-\item  La suma de los valores observados $y_i$ es igual a la suma de los valores ajustados $\hat{y}_i$, o bien
+
+1)  La suma de los valores observados $y_i$ es igual a la suma de los valores ajustados $\hat{y}_i$, o bien
 $$
 \sum_{i=1}^n y_i=\sum_{i=1}^n \hat{y}_i
 $$
@@ -769,7 +774,7 @@ Sum_yp
 }
 \end{tcolorbox}
 
-\item La suma de los residuos en cualquier modelo de regresión que contiene un intercepto $\beta_0$ es siempre cero, es decir,
+2) La suma de los residuos en cualquier modelo de regresión que contiene un intercepto $\beta_0$ es siempre cero, es decir,
 $$
 \sum_{i=1}^n\left(y_i-\hat{y}_i\right)=\sum_{i=1}^n e_i=0
 $$
@@ -784,7 +789,10 @@ np.sum(e_i)
 \end{tcolorbox}
 Es decir, $\sum e_i=0.00$. 
 
-\item  La recta de regresión por mínimos cuadrados siempre pasa por el centroide [el punto $(\bar{y}, \bar{x})]$ de los datos.
+3)  La recta de regresión por mínimos cuadrados siempre pasa por el centroide, el punto $(\bar{x}, \bar{y})$ de los datos.
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n  x_i \,, \quad  \bar{y} = \frac{1}{n}\sum_{i=1}^n  y_i= m\bar{x} +b \,. 
+$$
 \begin{lstlisting}[language=Python] 
 # Los promedios de x y y 
 xp =np.sum(xn)/len(xn) 
@@ -798,7 +806,7 @@ print(xp,',', yp,',', m * xp + b)
 }
 \end{tcolorbox}
 
-\item La suma de los residuos ponderada por el valor correspondiente de la variable regresora siempre es igual a cero, es decir,
+4) La suma de los residuos ponderada por el valor correspondiente de la variable regresora siempre es igual a cero, es decir,
 $$
 \sum_{i=1}^n x_i e_i=0
 $$
@@ -811,7 +819,7 @@ np.sum(xn*e_i)
 }
 \end{tcolorbox}
 
-\item La suma de los residuos ponderada por el valor ajustado correspondiente siempre
+5) La suma de los residuos ponderada por el valor ajustado correspondiente siempre
 es igual a cero, es decir
 $$
 \sum_{i=1}^n \hat{y}_i e_i=0
@@ -824,7 +832,7 @@ np.sum(y_pred*e_i)
 6.478512659668922e-08
 }
 \end{tcolorbox}
-\end{enumerate}
+
 
 Los programas estadísticos suelen ofrecer un resumen de todos los cálculos que realiza el programa. La salida en pantalla o consola de la figura \ref{figejemciza} presenta los resultados de la librería ``statsmodels''  para el ejemplo que estamos considerando. La parte superior de la tabla contiene el modelo de regresión ajustado. Observe que, antes del redondeo, los coeficientes de regresión coinciden con los que calculamos manualmente. La salida en pantalla mostrada el la figura \ref{figejemciza} también contiene otra información sobre el modelo de regresión que pueden ser consultadas en el manual de la librería. 
 
@@ -844,11 +852,30 @@ print(results.summary())
 \exampleline
 
 
+\subsubsection{La estimación de $\sigma^2$}
 
+Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión. Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la suma de cuadrados de los  errores:
+\begin{equation}
+\hat{\sigma}^2=\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 \,.
+\end{equation}
 
+Conocidos los valores estimados de $\beta_0$ y $\beta_1$, es decir: $
+\hat{y}_i=b+m x_i $ y al sustituir en la ecuación anterior
+\begin{equation}
+\hat{\sigma}^2=\sum_{i=1}^n\left(y_i - b-m x_i \right)^2 = 
+\sum_{i=1}^n\left(y_i - \bar{y}+m\bar{x} -m x_i \right)^2 = 
+\sum_{i=1}^n\left(y_i - \bar{y}+m(\bar{x} - x_i) \right)^2 
+\end{equation}
 
+\begin{equation}
+\sum_{i=1}^n y_i^2-n \bar{y}^2-\hat{\beta}_1 \sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
+\end{equation}
 
+$$
+=\sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
+$$
 
+$b=\bar{y}-m\bar{x}$
 
 
 
