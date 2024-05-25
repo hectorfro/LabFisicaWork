@@ -35,7 +35,6 @@ Los métodos más utilizados en la inferencia son las pruebas de hipótesis, estima
 
 Es muy probable encontrar situaciones que se encuadren en el ámbito de la predicción, en el de la inferencia, o en una combinación de ambos. Por ejemplo, los modelos lineales permiten una inferencia relativamente sencilla e interpretable, pero pueden no producir predicciones tan precisas como otros enfoques. Por el contrario, algunos de los enfoques no lineales pueden proporcionar predicciones bastante precisas para $y$, pero a costa de un modelo menos interpretable, haciendo la inferencia más difícil.
 
-
 Uno de los métodos más utilizados para estimar $f$ es el ``método paramétrico'', donde, en primer lugar, se hace una suposición sobre la forma funcional de $f$. Por ejemplo, una suposición muy simple es que $f$ es lineal en $x$:
 \begin{equation}
 f(x)=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k \,, 
@@ -48,10 +47,6 @@ $$
 El enfoque más habitual para ajustar el modelo lineal (\ref{modlineal}) es el de los mínimos cuadrados ordinarios, por ser uno de los métodos más comunes para ajustar el modelo (\ref{modlineal}). Sin embargo, los mínimos cuadrados son una de las muchas formas posibles de ajustar el modelo lineal; existen otras alternativas.
 
 
-
-
-
-
 Veamos el siguiente ejemplo de regresión poblacional, supongamos que en una universidad se ha hecho diferentes estudios sobre la relación que puede haber entre el tiempo de estudio (en horas) y las calificaciones obtenidas por los estudiantes en el  examen final de un curso de matemáticas aplicadas. El curso en cuestión tiene 25 estudiantes y las 25 observaciones se representan en el gráfico de dispersión mostrado en el lado izquierdo de la figura \ref{regres1}. 
 \begin{figure}[!h]
 \begin{center}
@@ -62,25 +57,23 @@ Veamos el siguiente ejemplo de regresión poblacional, supongamos que en una univ
 \end{center}
 \end{figure}
 
-Esta representación sugiere  que existe una relación entre el tiempo de estudio y las notas obtenidas, a medida que aumenta el número de horas aumentan las notas. Además, se puede apreciar que los puntos caen aproximadamente a lo largo de una línea recta, se dice que existe una dispersión de los puntos. Se puede pensar que existe una relación que nos indica la tendencia de la forma
+Esta representación sugiere  que existe una relación entre el tiempo de estudio y las notas obtenidas: a medida que aumenta el número de horas aumentan las notas. Además, se puede apreciar que los puntos caen aproximadamente a lo largo de una línea recta, se dice que existe una dispersión de los puntos. Se puede suponer que existe una relación que nos indica esta tendencia y que es de la forma
 \begin{equation}
 y=\beta_0+\beta_1  x \,,
 \label{reglin1}
 \end{equation}
 donde $y$ representa las notas obtenidas, $x$ la dedicación en estudio por número de horas,  $\beta_0$ es la intersección con el eje y $\beta_1$ es la pendiente de la recta. 
 
-Como se puede ver, los puntos de datos no caen exactamente sobre una línea recta, esta dispersión de puntos en torno a la línea representa una variación en el número de cajas repartidas y el tiempo de entrega y es de naturaleza aleatoria. Veremos que estas  relaciones estadísticas pueden ser muy útiles, aunque no tengan la exactitud de una relación funcional. Por lo tanto, la ecuación (\ref{reglin1}) debe modificarse para tener esta característica en cuenta. 
+Observamos que los puntos de datos no caen exactamente sobre una línea recta, esta dispersión de puntos en torno a la línea representa una variación en las notas obtenidas   y el tiempo de estudio y es de naturaleza aleatoria. Veremos que estas  relaciones estadísticas pueden ser muy útiles, aunque no tengan la exactitud de una relación funcional. Por lo tanto, la ecuación (\ref{reglin1}) debe modificarse para tener esta característica en cuenta. 
  
-Llamemos el error  $\varepsilon$ a la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables al contabilizar las horas de estudio, errores de medición, etc. Así, un modelo más plausible para los datos de las notas obtenidas es
+Así, un modelo más plausible para los datos de las notas obtenidas es
 \begin{equation}
 y=\beta_0+\beta_1 x+\varepsilon
 \label{reglin2}
 \end{equation}
+donde  $\varepsilon$  es la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$, y se le suele llamar el error del modelo. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables al contabilizar las horas de estudio, errores de medición, etc. 
 
 A la ecuación (\ref{reglin2}) se le denomina Modelo de Regresión Lineal (MRL), donde normalmente a  $x$ se le denomina la variable independiente y a $y$ la variable dependiente. Esta denominación puede causar  confusión con el concepto de independencia estadística, por lo que suele denominarse a $x$ como la variable ``predictora'' o ``regresora'' y a la variable $y$ como la variable de respuesta. Dado que la ecuación (\ref{reglin2}) sólo incluye una variable regresora, al modelo se le denomina Modelo de Regresión Lineal Simple (MRLS)
-
-
-
 
 Podemos detenernos un momento para analizar el MRL, supongamos que fijamos el valor de la variable regresora $x$ y observamos el valor de la respuesta $y$. Al fijar $x$ la cantidad aleatoria $\varepsilon$ determinará las propiedades de $y$. Supongamos que la media y la varianza de $\varepsilon$ son $0$ y $\sigma^2$, respectivamente. 
 
@@ -95,13 +88,9 @@ que es la misma relación (\ref{reglin1}). La varianza de $y$ dado cualquier valo
 
 Por lo tanto, el verdadero modelo de regresión $\mu_{y \mid x}=\beta_0+\beta_1 x$ es una línea de valores medios, es decir, la altura de la línea de regresión en cualquier valor de $x$ es sólo el valor esperado de $y$ para ese $x$. La pendiente, $\beta_1$ puede interpretarse como el cambio en la media de $y$ para un cambio unitario en $x$. Además, la variabilidad de $y$ en un valor concreto de $x$ viene determinada por la varianza del componente de error del modelo, $\sigma^2$. Esto implica que existe una distribución de los valores de $y$ en cada $x$ y que la varianza de esta distribución es la misma en cada $x$.
 
-Por ejemplo, si suponemos que el verdadero modelo de regresión que relaciona el tiempo de estudio con las notas es $\mu_{y \mid x}=3.5+2.0 x $, y si suponemos también que la varianza es $\sigma^2=2$ entonces el resultado de estas suposiciones se puede ver en la parte derecha de la  figura \ref{regres1}. Aquí hemos utilizado una distribución normal para describir la variación aleatoria de $\varepsilon$. Puesto que $y$ es la suma de una constante $\beta_0+\beta_1 x$ (la media) y una variable aleatoria $\varepsilon$ de distribución normal, $y$ es una variable aleatoria de distribución normal. Para el caso en que  $x=10$ horas, la nota obtenida $y$ tiene una distribución normal con media $3.5+2(10)=23.5$ minutos y varianza 2. La varianza $\sigma^2$ determina la cantidad de variabilidad o ruido en las observaciones $y$ sobre el tiempo de estudio. Cuando $\sigma^2$ es pequeño, los valores observados de las notas obtenidas caerán cerca de la recta, y cuando $\sigma^2$ es grande, los valores observados de las notas observadas  pueden desviarse considerablemente de la recta.
+Si suponemos que el verdadero modelo de regresión que relaciona el tiempo de estudio con las notas es $\mu_{y \mid x}=3.5+2.0 x $, y si suponemos también que la varianza es $\sigma^2=2$ entonces el resultado de estas suposiciones se puede ver en la parte derecha de la  figura \ref{regres1}. Aquí hemos utilizado una distribución normal para describir la variación aleatoria de $\varepsilon$. Puesto que $y$ es la suma de una constante $\beta_0+\beta_1 x$ (la media) y una variable aleatoria $\varepsilon$ de distribución normal, $y$ es una variable aleatoria de distribución normal. Para el caso en que  $x=10$ horas, la nota obtenida $y$ tiene una distribución normal con media $3.5+2(10)=23.5$ minutos y varianza 2. La varianza $\sigma^2$ determina la cantidad de variabilidad o ruido en las observaciones $y$ sobre el tiempo de estudio. Cuando $\sigma^2$ es pequeño, los valores observados de las notas obtenidas caerán cerca de la recta, y cuando $\sigma^2$ es grande, los valores observados de las notas observadas  pueden desviarse considerablemente de la recta.
 
-Notemos que pudimos haber hecho un estudio similar pero con ocho estudiantes del curso,  que elegiríamos de manera aleatoria, para entonces proceder a recopilar los datos sobre el tiempo de estudio y las calificaciones de estos estudiantes. En este caso estaríamos  haciendo lo que se llama un estudio de regresión muestral. Si aplicáramos un  método de regresión, como mínimos cuadrados, podríamos obtener un resultado del tipo  $\hat{y}=3.7+1.8 x$, donde los estimadores obtenidos de la muestra (estimadores muestrales) los llamaremos $m=1.8$ y $b=3.7$.  Para evaluar la precisión de estos  estimadores muestrales, podríamos calcular los errores estándar de $m$ y $b$. Esto nos dará una idea de cuánto pueden variar nuestros estimadores muestrales con respecto a los verdaderos parámetros poblacionales. Por ejemplo, si calculamos el error estándar de $m$ y obtenemos $\Delta m=0.1$, podemos reportar el estimador muestral con su error estándar:
-$$
-m=1.8 \pm 0.1 \,.
-$$
-Esto significa que el verdadero valor de $m$ probablemente se encuentra en el intervalo $[1.7,1.9]$.
+Notemos que pudimos haber hecho un estudio similar pero con ocho estudiantes del curso,  que elegiríamos de manera aleatoria, para entonces proceder a recopilar los datos sobre el tiempo de estudio y las calificaciones de estos estudiantes. En este caso estaríamos  haciendo lo que se llama un estudio de regresión muestral. 
 
 De alguna manera, los modelos de regresión pueden considerarse como modelos empíricos. Si la relación entre las variables es muy compleja se puede utilizar regresiones lineales a trozos para aproximar la relación verdadera entre las variables $y$ y $x$. En este caso las ecuaciones de regresión sólo son válidas en la región de las variables regresoras contenidas en los datos observados. 
 
@@ -854,7 +843,7 @@ print(results.summary())
 
 \subsubsection{La estimación de $\sigma^2$}
 
-Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión. Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la suma de cuadrados de los  errores:
+Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico, como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión. Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la suma de cuadrados de los  errores:
 \begin{equation}
 \hat{\sigma}^2=\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 \,.
 \end{equation}
