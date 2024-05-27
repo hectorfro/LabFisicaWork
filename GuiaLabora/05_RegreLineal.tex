@@ -20,34 +20,37 @@ donde $f$ es alguna función fija pero desconocida de $x_1, \ldots, x_k$, y $\var
 
 Existen dos razones principales para querer estimar $f$: la predicción y la inferencia. 
 
-\paragraph{Predicción:} Aquí hablamos en el proceso de usar un modelo estadístico o de aprendizaje automático para predecir valores futuros o no observados basados en datos existentes. El objetivo principal de la predicción es obtener valores precisos de la variable de interés y la precisión de las predicciones es el criterio más importante. En este caso, es común encontrarse en situaciones donde se dispone fácilmente de un conjunto de entradas $x$, pero no es posible obtener de manera sencilla la salida $y$. En este escenario, dado que el término de error es igual a cero, podemos predecir $y$ utilizando
+\begin{itemize}
+\item Predicción:  Este proceso utiliza un modelo estadístico o de aprendizaje automático para predecir valores futuros basados en datos existentes. El objetivo principal es obtener valores precisos de la variable de interés, y la precisión de las predicciones es crucial. En este contexto, es común tener entradas $x$ disponibles, pero no la salida $y$. Podemos predecir $y$ usando
 $$
 \hat{y} = \hat{f}(x)\,,
 $$
-donde $\hat{f}$ representa nuestra estimación de $f$, y $\hat{y}$ es la predicción resultante para $y$. En este contexto, podemos considerar a $\hat{f}$ como una caja negra, en el sentido de que no nos preocupa la forma exacta de $\hat{f}$, siempre y cuando genere predicciones precisas para $y$.  En general, $\hat{f}$ no será una estimación perfecta de $f$, y esta imprecisión introducirá algún error. Este error puede ser reducible si logramos mejorar la precisión de $\hat{f}$ utilizando una técnica de aprendizaje estadístico más adecuada para estimar $f$. Si pudiésemos construir una predicción perfecta de $f$, de manera que $\hat{y} = f(x)$, esta predicción aún tendría error porque en realidad $y$ es una función de $\varepsilon$, que es de carácter aleatorio. Esto se conoce como error irreducible, ya que por muy bien que estimemos $f$, no podemos reducir el error introducido por $\varepsilon$. 
+donde $\hat{f}$ es nuestra estimación de $f$, y $\hat{y}$ es la predicción para $y$. Consideramos $\hat{f}$ como una caja negra, no importando su forma exacta siempre que las predicciones sean precisas. Generalmente, $\hat{f}$ no será perfecta, introduciendo error que puede reducirse con mejores técnicas de aprendizaje estadístico. Incluso con una predicción perfecta $f$, $\hat{y} = f(x)$ aún tendría error debido a $\varepsilon$, de carácter aleatorio, conocido como error irreducible.
 
-Los métodos más utilizados para la predicción son la regresión lineal, los árboles de decisión, las redes neuronales, métodos que podríamos usas si queremos predecir precios en la bolsa de valores o el valor de un determinado producto bajo determinadas condiciones.
+Métodos comunes para predicción incluyen regresión lineal, árboles de decisión, y redes neuronales, aplicables en situaciones como la predicción de precios en la bolsa o el valor de un producto bajo ciertas condiciones.
 
+\item Inferencia:  El objetivo no es necesariamente predecir $y$ al estimar $f$, sino conocer $f$ de manera exacta. Se trata de usar un modelo estadístico para entender la relación entre variables y sacar conclusiones sobre la población de la cual se extrajo la muestra. El objetivo principal es realizar afirmaciones sobre los parámetros del modelo y la naturaleza de las relaciones entre las variables. Podríamos preguntarnos si existe una relación entre $y$ y cada predictor en forma de una ecuación lineal, o si es más compleja. Históricamente, la mayoría de los métodos para estimar $f$ han adoptado una forma lineal, lo cual es a veces razonable o deseable. Sin embargo, a menudo la relación verdadera es más complicada, y un modelo lineal puede no representar con precisión la relación entre las variables.
 
-\paragraph{Inferencia:} Aquí el objetivo no es necesariamente hacer predicciones para $y$ al estimar $f$, sino conocer $f$ de manera exacta. Se refiere al proceso de usar un modelo estadístico para entender la relación entre las variables y sacar conclusiones sobre la población de la cual se extrajo la muestra. El objetivo principal de la inferencia es realizar afirmaciones sobre los parámetros del modelo y sobre la naturaleza de las relaciones entre las variables. En este contexto, podríamos preguntarnos si existe una relación entre $y$ y cada predictor que tome la forma de una ecuación lineal, o si se trata de una relación más compleja. Históricamente, la mayoría de los métodos para estimar $f$ han adoptado una forma lineal. En algunas situaciones, este supuesto es razonable o incluso deseable. Sin embargo, a menudo la relación verdadera es más complicada, en cuyo caso un modelo lineal puede no proporcionar una representación precisa de la relación entre las variables de entrada y de salida. 
+Métodos comunes en inferencia incluyen pruebas de hipótesis, estimación de intervalos de confianza, análisis de varianza (ANOVA), y regresión lineal múltiple. Estas técnicas pueden usarse para inferir si existe una relación entre el consumo de café y el riesgo de padecer diabetes.
 
-Los métodos más utilizados en la inferencia son las pruebas de hipótesis, estimación de los intervalos de confianza, el análisis de varianza (ANOVA), la regresión lineal múltiple. Estas técnicas pueden usarse para un estudio estadístico para inferir si existe una relación entre el consumo de café y el riesgo de padecer diabetes. 
+\end{itemize}
+
 
 Es muy probable encontrar situaciones que se encuadren en el ámbito de la predicción, en el de la inferencia, o en una combinación de ambos. Por ejemplo, los modelos lineales permiten una inferencia relativamente sencilla e interpretable, pero pueden no producir predicciones tan precisas como otros enfoques. Por el contrario, algunos de los enfoques no lineales pueden proporcionar predicciones bastante precisas para $y$, pero a costa de un modelo menos interpretable, haciendo la inferencia más difícil.
 
-Uno de los métodos más utilizados para estimar $f$ es el ``método paramétrico'', donde, en primer lugar, se hace una suposición sobre la forma funcional de $f$. Por ejemplo, una suposición muy simple es que $f$ es lineal en $x$:
+
+Uno de los métodos más utilizados para estimar $f$ es el ``método paramétrico'', que comienza con una suposición sobre la forma funcional de $f$. Por ejemplo, una suposición simple es que $f$ es lineal en $x$:
 \begin{equation}
 f(x)=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k \,, 
 \label{modlineal}
 \end{equation}
-En este caso, el problema de estimar $f$ se simplifica enormemente, ya que en lugar de tener que estimar una función $k$-dimensional completamente arbitraria $f(x)$, solo hay que estimar los coeficientes $\beta_0, \beta_1, \ldots, \beta_k$. Y en segundo lugar, una vez seleccionado un modelo, necesitamos un procedimiento que utilice los datos para ajustar o entrenar el modelo. En el caso del modelo lineal (\ref{modlineal}), necesitamos estimar los parámetros \( \beta_0, \beta_1, \ldots, \beta_k \). Es decir, queremos encontrar valores de estos parámetros tales que
+Esto simplifica enormemente el problema de estimar $f$, ya que solo hay que estimar los coeficientes $\beta_0, \beta_1, \ldots, \beta_k$. Una vez seleccionado un modelo, necesitamos un procedimiento para ajustar o entrenar el modelo con los datos. En el caso del modelo lineal (\ref{modlineal}), queremos estimar los parámetros \( \beta_0, \beta_1, \ldots, \beta_k \), encontrando valores de estos parámetros tales que
 $$
 y \approx \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k \,.
 $$
-El enfoque más habitual para ajustar el modelo lineal (\ref{modlineal}) es el de los mínimos cuadrados ordinarios, por ser uno de los métodos más comunes para ajustar el modelo (\ref{modlineal}). Sin embargo, los mínimos cuadrados son una de las muchas formas posibles de ajustar el modelo lineal; existen otras alternativas.
+El enfoque más común para ajustar el modelo lineal (\ref{modlineal}) es el de los mínimos cuadrados ordinarios, aunque existen otros métodos para ajustar el modelo.
 
-
-Veamos el siguiente ejemplo de regresión poblacional, supongamos que en una universidad se ha hecho diferentes estudios sobre la relación que puede haber entre el tiempo de estudio (en horas) y las calificaciones obtenidas por los estudiantes en el  examen final de un curso de matemáticas aplicadas. El curso en cuestión tiene 25 estudiantes y las 25 observaciones se representan en el gráfico de dispersión mostrado en el lado izquierdo de la figura \ref{regres1}. 
+Supongamos que en una universidad se estudió la relación entre el tiempo de estudio (en horas) y las calificaciones de 25 estudiantes en el examen final de matemáticas aplicadas. El gráfico de dispersión en la figura \ref{regres1} muestra que a mayor tiempo de estudio, las notas tienden a aumentar, sugiriendo una relación lineal aproximada entre las variables. 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[height=2.5in,width=2.5in]{figuras/fig18}  \quad 
@@ -57,38 +60,33 @@ Veamos el siguiente ejemplo de regresión poblacional, supongamos que en una univ
 \end{center}
 \end{figure}
 
-Esta representación sugiere  que existe una relación entre el tiempo de estudio y las notas obtenidas: a medida que aumenta el número de horas aumentan las notas. Además, se puede apreciar que los puntos caen aproximadamente a lo largo de una línea recta, se dice que existe una dispersión de los puntos. Se puede suponer que existe una relación que nos indica esta tendencia y que es de la forma
+Podemos suponer una relación de la forma
 \begin{equation}
-y=\beta_0+\beta_1  x \,,
+y = \beta_0 + \beta_1 x \,,
 \label{reglin1}
 \end{equation}
-donde $y$ representa las notas obtenidas, $x$ la dedicación en estudio por número de horas,  $\beta_0$ es la intersección con el eje y $\beta_1$ es la pendiente de la recta. 
+donde $y$ son las notas, $x$ es el tiempo de estudio, $\beta_0$ es la intersección y $\beta_1$ es la pendiente de la recta.
 
-Observamos que los puntos de datos no caen exactamente sobre una línea recta, esta dispersión de puntos en torno a la línea representa una variación en las notas obtenidas   y el tiempo de estudio y es de naturaleza aleatoria. Veremos que estas  relaciones estadísticas pueden ser muy útiles, aunque no tengan la exactitud de una relación funcional. Por lo tanto, la ecuación (\ref{reglin1}) debe modificarse para tener esta característica en cuenta. 
- 
-Así, un modelo más plausible para los datos de las notas obtenidas es
+Dado que los puntos no caen exactamente sobre la línea recta, la ecuación (\ref{reglin1}) se ajusta añadiendo un término de error:
 \begin{equation}
-y=\beta_0+\beta_1 x+\varepsilon
+y = \beta_0 + \beta_1 x + \varepsilon \,,
 \label{reglin2}
 \end{equation}
-donde  $\varepsilon$  es la diferencia entre el valor observado de $y$ y la recta $\left(\beta_0+\beta_1 x\right)$, y se le suele llamar el error del modelo. Es conveniente pensar en $\varepsilon$ como un error estadístico; es decir, es una variable aleatoria que explica el fracaso del modelo para ajustarse exactamente a los datos. El error puede estar compuesto por los efectos de otras variables al contabilizar las horas de estudio, errores de medición, etc. 
+donde $\varepsilon$ representa la variación aleatoria en las notas. Este modelo más realista considera factores no medidos y errores, denominándose Modelo de Regresión Lineal (MRL). Aquí, $x$ es la variable ``predictora'' o ``regresora'' y $y$ la variable de respuesta. Al incluir solo una variable regresora, este modelo se llama Modelo de Regresión Lineal Simple (MRLS).
 
-A la ecuación (\ref{reglin2}) se le denomina Modelo de Regresión Lineal (MRL), donde normalmente a  $x$ se le denomina la variable independiente y a $y$ la variable dependiente. Esta denominación puede causar  confusión con el concepto de independencia estadística, por lo que suele denominarse a $x$ como la variable ``predictora'' o ``regresora'' y a la variable $y$ como la variable de respuesta. Dado que la ecuación (\ref{reglin2}) sólo incluye una variable regresora, al modelo se le denomina Modelo de Regresión Lineal Simple (MRLS)
 
-Podemos detenernos un momento para analizar el MRL, supongamos que fijamos el valor de la variable regresora $x$ y observamos el valor de la respuesta $y$. Al fijar $x$ la cantidad aleatoria $\varepsilon$ determinará las propiedades de $y$. Supongamos que la media y la varianza de $\varepsilon$ son $0$ y $\sigma^2$, respectivamente. 
-
-La respuesta media a cualquier valor de la variable regresora se puede escribir de la siguiente manera:
+Podemos analizar el MRL fijando el valor de $x$ y observando $y$. Si la media y varianza de $\varepsilon$ son 0 y $\sigma^2$, respectivamente, la respuesta media para cualquier valor de $x$ es:
 \begin{equation}
 \mu_{y \mid x} \equiv E(y \mid x)=E\left(\beta_0+\beta_1 x+\varepsilon\right)=\beta_0+\beta_1 x \,,
 \end{equation}
-que es la misma relación (\ref{reglin1}). La varianza de $y$ dado cualquier valor de $x$ es la siguiente:
+igual a la relación (\ref{reglin1}). La varianza de $y$ dado $x$ es:
 \begin{equation}
 \sigma_{y \mid x}^2 \equiv \operatorname{Var}(y \mid x)=\operatorname{Var}\left(\beta_0+\beta_1 x+\varepsilon\right)=\sigma^2 \,.
 \end{equation}
 
-Por lo tanto, el verdadero modelo de regresión $\mu_{y \mid x}=\beta_0+\beta_1 x$ es una línea de valores medios, es decir, la altura de la línea de regresión en cualquier valor de $x$ es sólo el valor esperado de $y$ para ese $x$. La pendiente, $\beta_1$ puede interpretarse como el cambio en la media de $y$ para un cambio unitario en $x$. Además, la variabilidad de $y$ en un valor concreto de $x$ viene determinada por la varianza del componente de error del modelo, $\sigma^2$. Esto implica que existe una distribución de los valores de $y$ en cada $x$ y que la varianza de esta distribución es la misma en cada $x$.
+El verdadero modelo de regresión $\mu_{y \mid x}=\beta_0+\beta_1 x$ es una línea de valores medios, donde $\beta_1$ indica el cambio en la media de $y$ por un cambio unitario en $x$. La variabilidad de $y$ en cada $x$ está dada por $\sigma^2$, implicando que los valores de $y$ tienen la misma varianza en cada $x$.
 
-Si suponemos que el verdadero modelo de regresión que relaciona el tiempo de estudio con las notas es $\mu_{y \mid x}=3.5+2.0 x $, y si suponemos también que la varianza es $\sigma^2=2$ entonces el resultado de estas suposiciones se puede ver en la parte derecha de la  figura \ref{regres1}. Aquí hemos utilizado una distribución normal para describir la variación aleatoria de $\varepsilon$. Puesto que $y$ es la suma de una constante $\beta_0+\beta_1 x$ (la media) y una variable aleatoria $\varepsilon$ de distribución normal, $y$ es una variable aleatoria de distribución normal. Para el caso en que  $x=10$ horas, la nota obtenida $y$ tiene una distribución normal con media $3.5+2(10)=23.5$ minutos y varianza 2. La varianza $\sigma^2$ determina la cantidad de variabilidad o ruido en las observaciones $y$ sobre el tiempo de estudio. Cuando $\sigma^2$ es pequeño, los valores observados de las notas obtenidas caerán cerca de la recta, y cuando $\sigma^2$ es grande, los valores observados de las notas observadas  pueden desviarse considerablemente de la recta.
+Si el modelo de regresión es $\mu_{y \mid x}=3.5+2.0 x$ y $\sigma^2=2$ el resultado se ve en la figura derecha de  \ref{regres1}. Utilizando una distribución normal para $\varepsilon$, $y$ también es normal. Para $x=10$ horas, $y$ tiene como media $3.5+2(10)=23.5$ y varianza 2. $\sigma^2$ determina la variabilidad en $y$ sobre el tiempo de estudio: un $\sigma^2$ pequeño indica valores de $y$ cerca de la recta, mientras que un $\sigma^2$ grande indica mayores desviaciones.
 
 Notemos que pudimos haber hecho un estudio similar pero con ocho estudiantes del curso,  que elegiríamos de manera aleatoria, para entonces proceder a recopilar los datos sobre el tiempo de estudio y las calificaciones de estos estudiantes. En este caso estaríamos  haciendo lo que se llama un estudio de regresión muestral. 
 
@@ -109,23 +107,27 @@ $$
 donde $\hat{y}$  es el valor ajustado o estimado de las notas correspondiente a un valor del número de horas $x$. Esta ecuación ajustada es la que se  representa en la parte izquierda de la figura \ref{regres1}. Note que un estudiante que estudia cero horas $x=0$ obtendría una nota de $3.7$ de 100. 
 
 
-Una fase importante de un análisis de regresión es la comprobación de la adecuación del modelo. En esta etapa, se evalúa la idoneidad del modelo y la calidad del ajuste. Este análisis determina la utilidad del modelo de regresión y puede indicar si el modelo es razonable o si necesita ser modificado. Por lo tanto, el análisis de regresión es un proceso iterativo en el que los datos guían la construcción del modelo, se ajusta el modelo a los datos y se evalúa la calidad del ajuste para decidir si se adopta o se modifica.
 
-Es importante señalar que un modelo de regresión no implica una relación causa-efecto entre las variables. Una fuerte relación empírica entre dos o más variables no prueba que exista una relación causal entre los regresores y la respuesta. Para establecer causalidad, la relación debe basarse en algo más allá de los datos de la muestra, como consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación causa-efecto, pero no debe ser la única base para tal afirmación.
+Una fase crucial del análisis de regresión es comprobar la adecuación del modelo, evaluando su idoneidad y calidad del ajuste. Este análisis determina la utilidad del modelo y puede indicar si necesita ser modificado, haciendo del análisis de regresión un proceso iterativo guiado por los datos.
 
-Finalmente, el análisis de regresión es parte de un enfoque más amplio de análisis de datos para la resolución de problemas. La ecuación de regresión en sí puede no ser el objetivo principal del estudio; a menudo, es más importante entender el sistema que genera los datos.
+Es importante destacar que un modelo de regresión no implica causalidad entre variables. Una fuerte relación empírica no prueba una relación causal entre regresores y respuesta. Para establecer causalidad, se necesita más que los datos de la muestra, como consideraciones teóricas. El análisis de regresión puede confirmar una relación causal, pero no debe ser la única base para tal afirmación.
 
-En el trabajo de laboratorio es importante considerar la etapa que tiene que ver con la recolección de los datos,  todo análisis de regresión es tan bueno como los datos en los que se basa. 
+El análisis de regresión es parte de un enfoque más amplio para resolver problemas. La ecuación de regresión puede no ser el objetivo principal del estudio; a menudo es más importante entender el sistema que genera los datos.
 
-Los problemas de estimación de parámetros pueden resolverse mediante métodos de regresión con el objetivo de predecir la variable de respuesta. Sin embargo, al extrapolar utilizando un modelo de regresión para predecir eventos futuros, se corren riesgos significativos debido a los errores inherentes del modelo. Aun cuando la forma del modelo sea correcta, una estimación incorrecta de los parámetros puede llevar a predicciones deficientes o incorrectas. Es esencial tener en cuenta tanto la precisión del modelo como la exactitud en la estimación de los parámetros para minimizar estos riesgos y mejorar la fiabilidad de las predicciones.
+En el trabajo de laboratorio, la recolección de datos es crucial. Un análisis de regresión es tan bueno como los datos en que se basa. Los problemas de estimación de parámetros se resuelven mediante regresión para predecir la variable de respuesta, pero al extrapolar, se corren riesgos significativos debido a errores del modelo. Una estimación incorrecta de parámetros puede llevar a predicciones deficientes. Es esencial tener en cuenta la precisión del modelo y la exactitud en la estimación de parámetros.
 
-Los modelos de regresión pueden utilizarse con fines de control, donde es crucial que las variables estén relacionadas de forma causal. Sin embargo, para predicción, no es estrictamente necesario que exista una relación causa-efecto; basta con que las relaciones presentes en los datos originales utilizados para construir la ecuación de regresión sigan siendo válidas. Por ejemplo, el consumo diario de electricidad durante el mes de agosto en una ciudad puede ser un buen predictor de la temperatura máxima diaria en agosto. No obstante, cualquier intento de reducir la temperatura máxima disminuyendo el consumo de electricidad estaría claramente condenado al fracaso, ya que la relación entre estas variables no es causal.
+Los modelos de regresión pueden usarse con fines de control, donde las variables deben estar causalmente relacionadas. Sin embargo, para predicción, no es estrictamente necesario que exista una relación causal. Basta con que las relaciones en los datos originales sigan siendo válidas. Por ejemplo, el consumo diario de electricidad en agosto puede predecir la temperatura máxima diaria, pero intentar reducir la temperatura disminuyendo el consumo de electricidad fracasaría, ya que la relación no es causal.
+
+
 
 \section{Los algoritmos en los modelos de regresión}
 
-Desde el punto de vista computacional, la construcción de un modelo de regresión es un proceso iterativo. Los datos de entrada incluyen tanto los conocimientos teóricos del proceso que se está estudiando como los datos disponibles para especificar un modelo de regresión inicial. Las representaciones gráficas de los datos son muy útiles para esta especificación inicial. A continuación, se estiman los parámetros del modelo, normalmente utilizando el método de mínimos cuadrados. Luego, debe evaluarse la adecuación del modelo, lo que implica identificar posibles errores de especificación en la forma del modelo, la omisión de variables importantes, la inclusión de variables innecesarias o la presencia de datos inusuales o inadecuados. Si el modelo resulta ser inadecuado, es necesario realizar ajustes y volver a estimar los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, se debe validar el modelo para asegurarse de que producirá resultados aceptables para la aplicación final.
 
-El análisis de regresión requiere un uso inteligente y hábil del ordenador. Un buen programa de cálculo de regresión es una herramienta esencial en el proceso de creación de modelos. Sin embargo, la aplicación rutinaria de programas de regresión estándar no suele conducir a resultados satisfactorios. El ordenador no sustituye al pensamiento creativo sobre el problema. Debemos aprender a interpretar lo que nos dice el ordenador y a incorporar esa información en modelos posteriores. Entre la gran variedad de software estadístico disponible, se puede mencionar el SAS (Statistical Analysis System), un paquete de software comercial para análisis de datos que ofrece una amplia gama de procedimientos estadísticos, desde pruebas de hipótesis básicas hasta análisis multivariantes complejos. También está R, un lenguaje de código abierto y gratuito desarrollado por una comunidad global de colaboradores, conocido por su flexibilidad, extensibilidad e innovación.
+
+Desde el punto de vista computacional, construir un modelo de regresión es un proceso iterativo. Los datos de entrada incluyen conocimientos teóricos y datos disponibles para especificar un modelo inicial. Las representaciones gráficas son útiles para esta especificación. A continuación, se estiman los parámetros del modelo, generalmente con el método de mínimos cuadrados. Luego, se evalúa la adecuación del modelo, identificando posibles errores de especificación, omisión de variables importantes, inclusión de variables innecesarias o presencia de datos inusuales. Si el modelo es inadecuado, se ajusta y se vuelven a estimar los parámetros. Este proceso se repite hasta obtener un modelo adecuado, que finalmente debe ser validado para asegurar resultados aceptables.
+
+El análisis de regresión requiere un uso hábil del computador. Un buen programa de cálculo de regresión es esencial, pero la aplicación rutinaria de programas estándar no siempre da resultados satisfactorios. El computador no sustituye el pensamiento creativo sobre el problema. Debemos aprender a interpretar la información que proporciona y usarla en modelos posteriores. Entre el software estadístico disponible, se destaca el SAS (Statistical Analysis System), un paquete comercial para análisis de datos con una amplia gama de procedimientos estadísticos, y R, un lenguaje de código abierto y gratuito, conocido por su flexibilidad e innovación.
+
 
 
 \section{Regresión lineal simple}
@@ -619,7 +621,7 @@ Una pega para piezas metálicas se prueba mediante una fuerza de cizallamiento en
 \hline Observación, $i$ & \begin{tabular}{c} 
 Cizallamiento, $y_i ( \mathrm{psi} )$
 \end{tabular} & \begin{tabular}{c} 
-Edad de la pega, $x_i ($ semanas $)$
+Edad del pegamento, $x_i ($ semanas $)$
 \end{tabular} \\
 \hline 1 & 2158.70 & 15.50 \\
 2 & 1678.15 & 23.75 \\
