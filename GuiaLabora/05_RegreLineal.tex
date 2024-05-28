@@ -50,11 +50,92 @@ y \approx \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k \,.
 $$
 El enfoque más común para ajustar el modelo lineal (\ref{modlineal}) es el de los mínimos cuadrados ordinarios, aunque existen otros métodos para ajustar el modelo.
 
+
+De alguna manera, los modelos de regresión pueden considerarse como modelos empíricos. Si la relación entre las variables es muy compleja se puede utilizar regresiones lineales a trozos para aproximar la relación verdadera entre las variables $y$ y $x$. En este caso las ecuaciones de regresión sólo son válidas en la región de las variables regresoras contenidas en los datos observados. 
+
+De manera general, la variable de respuesta $y$ puede estar relacionada con un número $k$ regresores, $x_1, x_2, . . . , x_k$, de forma que
+\begin{equation}
+y=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k+\varepsilon
+\label{reglin3}
+\end{equation}
+
+La ecuación (\ref{reglin3}) se denomina Modelo de Regresión Lineal Múltiple, y el adjetivo lineal se emplea para indicar que el modelo es lineal en los parámetros $\beta_0, \beta_1, \ldots, \beta_k$, no porque $y$ sea una función lineal de las $x$. Esto significa que muchos modelos en los que $y$ se relaciona con las $x$ de forma no lineal pueden seguir tratándose como modelos de regresión lineal siempre que la ecuación sea lineal en los $\beta$ 's.
+
+Una fase crucial del análisis de regresión es comprobar la adecuación del modelo, evaluando su idoneidad y calidad del ajuste. Este análisis determina la utilidad del modelo y puede indicar si necesita ser modificado, haciendo del análisis de regresión un proceso iterativo guiado por los datos.
+
+Es importante destacar que un modelo de regresión no implica causalidad entre variables. Una fuerte relación empírica no prueba una relación causal entre regresores y respuesta. Para establecer causalidad, se necesita más que los datos de la muestra, como consideraciones teóricas. El análisis de regresión puede confirmar una relación causal, pero no debe ser la única base para tal afirmación.
+
+El análisis de regresión es parte de un enfoque más amplio para resolver problemas. La ecuación de regresión puede no ser el objetivo principal del estudio; a menudo es más importante entender el sistema que genera los datos.
+
+En el trabajo de laboratorio, la recolección de datos es crucial. Un análisis de regresión es tan bueno como los datos en que se basa. Los problemas de estimación de parámetros se resuelven mediante regresión para predecir la variable de respuesta, pero al extrapolar, se corren riesgos significativos debido a errores del modelo. Una estimación incorrecta de parámetros puede llevar a predicciones deficientes. Es esencial tener en cuenta la precisión del modelo y la exactitud en la estimación de parámetros.
+
+Los modelos de regresión pueden usarse con fines de control, donde las variables deben estar causalmente relacionadas. Sin embargo, para predicción, no es estrictamente necesario que exista una relación causal. Basta con que las relaciones en los datos originales sigan siendo válidas. Por ejemplo, el consumo diario de electricidad en agosto puede predecir la temperatura máxima diaria, pero intentar reducir la temperatura disminuyendo el consumo de electricidad fracasaría, ya que la relación no es causal.
+
+
+
+\section{Los algoritmos en los modelos de regresión}
+
+Desde el punto de vista computacional, construir un modelo de regresión es un proceso iterativo. Los datos de entrada incluyen conocimientos teóricos y datos disponibles para especificar un modelo inicial. Las representaciones gráficas son útiles para esta especificación. A continuación, se estiman los parámetros del modelo, generalmente con el método de mínimos cuadrados. Luego, se evalúa la adecuación del modelo, identificando posibles errores de especificación, omisión de variables importantes, inclusión de variables innecesarias o presencia de datos inusuales. Si el modelo es inadecuado, se ajusta y se vuelven a estimar los parámetros. Este proceso se repite hasta obtener un modelo adecuado, que finalmente debe ser validado para asegurar resultados aceptables.
+
+El análisis de regresión requiere un uso hábil del computador. Un buen programa de cálculo de regresión es esencial, pero la aplicación rutinaria de programas estándar no siempre da resultados satisfactorios. El computador no sustituye el pensamiento creativo sobre el problema. Debemos aprender a interpretar la información que proporciona y usarla en modelos posteriores. Entre el software estadístico disponible, se destaca el SAS (Statistical Analysis System), un paquete comercial para análisis de datos con una amplia gama de procedimientos estadísticos, y R, un lenguaje de código abierto y gratuito, conocido por su flexibilidad e innovación.
+
+
+\section{Regresión lineal simple}
+
+Un modelo con un único regresor $x$ y que tiene una relación con la respuesta $y$ en la forma de una línea recta es lo que se denomina un modelo de regresión lineal simple:
+\begin{equation}
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i \,.
+\label{regrelineal}
+\end{equation}
+
+La intersección $\beta_0$  y la pendiente $\beta_1$  son constantes desconocidas, mientras que $\varepsilon$ es un componente de error aleatorio. Suponemos que los errores tienen media cero y varianza desconocida $\sigma^2$. También asumimos que los errores no están correlacionados, lo que significa que el valor de un error no depende del valor de ningún otro error. Es importante considerar el regresor $x$
+como controlado por el analista de datos o experimentador y medido con un error despreciable, mientras que la respuesta $y$ es una variable aleatoria. Esto implica que existe una distribución de probabilidad para $y$  en cada valor posible de $x$.
+
+\paragraph{Características importantes de este modelo}
+\begin{enumerate}
+\item La respuesta $y_i$  es la suma de dos componentes: (1) el término constante $\beta_0+\beta_1 x_i$ y (2) el término aleatorio $\varepsilon_i$. Por lo tanto, $y_i$ es una variable aleatoria.
+
+\item Como $E\left\{\varepsilon_i\right\}=0$, se puede demostrar que la media de esta distribución es:
+$$
+E(y \mid x)=E\left\{y_i\right\}=E\left\{\beta_0+\beta_1x_i+\varepsilon_i\right\}=\beta_0+\beta_1 x_i+E\left\{\varepsilon_i\right\}=\beta_0+\beta_1 x_i
+$$
+Así, la respuesta $y_i$ para  $x_i$, procede de una distribución de probabilidad cuya media es:
+$$
+E\left\{y_i\right\}=\beta_0+\beta_1 x_i
+$$
+Por tanto, sabemos que la función de regresión para el modelo (\ref{regrelineal}) es:
+$$
+E\{y\}=\beta_0+\beta_1 x
+$$
+ya que la función de regresión relaciona las medias de las distribuciones de probabilidad de $y$ para $x$.
+
+\item La respuesta $y_i$ supera o no alcanza el valor de la función de regresión por la cantidad del término de error $\varepsilon_i$.
+
+\item  Se supone que los términos de error $\varepsilon_i$ tienen una varianza constante $\sigma^2$. Por lo tanto, se deduce que las respuestas $y_i$ tienen la misma varianza constante:
+$$
+\sigma^2\left\{y_i\right\}=\sigma^2
+$$
+Se puede demostrar también que:
+$$
+\sigma^2\left\{\beta_0+\beta_1 x_i+\varepsilon_i\right\}=\sigma^2\left\{\varepsilon_i\right\}=\sigma^2
+$$
+Así, el modelo de regresión (\ref{regrelineal}) asume que las distribuciones de probabilidad de $y$ tienen la misma varianza $\sigma^2$, independientemente del nivel de la variable predictora $x$.
+
+\item  Se supone que los términos de error no están correlacionados. Dado que los términos de error $\varepsilon_i$ y $\varepsilon_j$ no están correlacionados, tampoco lo están las respuestas $y_i$ y $y_j$.
+
+\item En resumen, el modelo de regresión (\ref{regrelineal}) implica que las respuestas $y_i$ proceden de distribuciones de probabilidad cuyas medias son $E\left\{y_i\right\}=\beta_0+\beta_1 x_i$ y cuyas varianzas son $\sigma^2$, iguales para todos los niveles de $x$. Además, dos respuestas cualesquiera $y_i$ y $y_j$ no están correlacionadas.
+
+\end{enumerate}
+
+\paragraph{Significado de los parámetros de regresión}
+
+Los parámetros $\beta_0$ y $\beta_1$ del modelo de regresión (\ref{regrelineal}) se denominan coeficientes de regresión. $\beta_1$ es la pendiente de la recta de regresión. Indica el cambio en la media de la distribución de probabilidad de $y$ por unidad de aumento en $x$. El parámetro $\beta_0$ es la intercepción $y$ de la recta de regresión. Cuando el ámbito del modelo incluye $x=0$, $\beta_0$ da la media de la distribución de probabilidad de $y$ en $x=0$. Cuando el ámbito del modelo no incluye $x=0, \beta_0$ no tiene ningún significado particular como término separado en el modelo de regresión.
+
 Supongamos que en una universidad se estudió la relación entre el tiempo de estudio (en horas) y las calificaciones de 25 estudiantes en el examen final de matemáticas aplicadas. El gráfico de dispersión en la figura \ref{regres1} muestra que a mayor tiempo de estudio, las notas tienden a aumentar, sugiriendo una relación lineal aproximada entre las variables. 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[height=2.5in,width=2.5in]{figuras/fig18}  \quad 
-\includegraphics[height=2.6in,width=2.6in]{figuras/fig19}  
+\includegraphics[height=3.0in,width=3.0in]{figuras/fig18}  \quad 
+\includegraphics[height=3.0in,width=3.0in]{figuras/fig19}  
 \caption{Izquierda: gráfico de dispersión para las horas de estudio y las notas obtenidas. Derecha: la  generación de observaciones en la regresión lineal.}
 \label{regres1}
 \end{center}
@@ -90,74 +171,12 @@ Si el modelo de regresión es $\mu_{y \mid x}=3.5+2.0 x$ y $\sigma^2=2$ el result
 
 Notemos que pudimos haber hecho un estudio similar pero con ocho estudiantes del curso,  que elegiríamos de manera aleatoria, para entonces proceder a recopilar los datos sobre el tiempo de estudio y las calificaciones de estos estudiantes. En este caso estaríamos  haciendo lo que se llama un estudio de regresión muestral. 
 
-De alguna manera, los modelos de regresión pueden considerarse como modelos empíricos. Si la relación entre las variables es muy compleja se puede utilizar regresiones lineales a trozos para aproximar la relación verdadera entre las variables $y$ y $x$. En este caso las ecuaciones de regresión sólo son válidas en la región de las variables regresoras contenidas en los datos observados. 
-
-De manera general, la variable de respuesta $y$ puede estar relacionada con un número $k$ regresores, $x_1, x_2, . . . , x_k$, de forma que
-\begin{equation}
-y=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k+\varepsilon
-\label{reglin3}
-\end{equation}
-
-La ecuación (\ref{reglin3}) se denomina Modelo de Regresión Lineal Múltiple, y el adjetivo lineal se emplea para indicar que el modelo es lineal en los parámetros $\beta_0, \beta_1, \ldots, \beta_k$, no porque $y$ sea una función lineal de las $x$. Esto significa que muchos modelos en los que $y$ se relaciona con las $x$ de forma no lineal pueden seguir tratándose como modelos de regresión lineal siempre que la ecuación sea lineal en los $\beta$ 's.
 
 Recordemos que el fin principal en el análisis de regresión es estimar los parámetros desconocidos del modelo de regresión. Este proceso también se denomina ajuste del modelo a los datos. Existen varias técnicas de estimación de parámetros y una de estas técnicas es el método de los mínimos cuadrados. En el ejemplo que hemos mencionado  de las horas de estudio y las notas obtenidas por los estudiantes nos llevaría a una ecuación como la que se muestra a continuación
 $$
 \hat{y}=3.687+ 1.821 x \,,
 $$
 donde $\hat{y}$  es el valor ajustado o estimado de las notas correspondiente a un valor del número de horas $x$. Esta ecuación ajustada es la que se  representa en la parte izquierda de la figura \ref{regres1}. Note que un estudiante que estudia cero horas $x=0$ obtendría una nota de $3.7$ de 100. 
-
-
-
-Una fase crucial del análisis de regresión es comprobar la adecuación del modelo, evaluando su idoneidad y calidad del ajuste. Este análisis determina la utilidad del modelo y puede indicar si necesita ser modificado, haciendo del análisis de regresión un proceso iterativo guiado por los datos.
-
-Es importante destacar que un modelo de regresión no implica causalidad entre variables. Una fuerte relación empírica no prueba una relación causal entre regresores y respuesta. Para establecer causalidad, se necesita más que los datos de la muestra, como consideraciones teóricas. El análisis de regresión puede confirmar una relación causal, pero no debe ser la única base para tal afirmación.
-
-El análisis de regresión es parte de un enfoque más amplio para resolver problemas. La ecuación de regresión puede no ser el objetivo principal del estudio; a menudo es más importante entender el sistema que genera los datos.
-
-En el trabajo de laboratorio, la recolección de datos es crucial. Un análisis de regresión es tan bueno como los datos en que se basa. Los problemas de estimación de parámetros se resuelven mediante regresión para predecir la variable de respuesta, pero al extrapolar, se corren riesgos significativos debido a errores del modelo. Una estimación incorrecta de parámetros puede llevar a predicciones deficientes. Es esencial tener en cuenta la precisión del modelo y la exactitud en la estimación de parámetros.
-
-Los modelos de regresión pueden usarse con fines de control, donde las variables deben estar causalmente relacionadas. Sin embargo, para predicción, no es estrictamente necesario que exista una relación causal. Basta con que las relaciones en los datos originales sigan siendo válidas. Por ejemplo, el consumo diario de electricidad en agosto puede predecir la temperatura máxima diaria, pero intentar reducir la temperatura disminuyendo el consumo de electricidad fracasaría, ya que la relación no es causal.
-
-
-
-\section{Los algoritmos en los modelos de regresión}
-
-
-
-Desde el punto de vista computacional, construir un modelo de regresión es un proceso iterativo. Los datos de entrada incluyen conocimientos teóricos y datos disponibles para especificar un modelo inicial. Las representaciones gráficas son útiles para esta especificación. A continuación, se estiman los parámetros del modelo, generalmente con el método de mínimos cuadrados. Luego, se evalúa la adecuación del modelo, identificando posibles errores de especificación, omisión de variables importantes, inclusión de variables innecesarias o presencia de datos inusuales. Si el modelo es inadecuado, se ajusta y se vuelven a estimar los parámetros. Este proceso se repite hasta obtener un modelo adecuado, que finalmente debe ser validado para asegurar resultados aceptables.
-
-El análisis de regresión requiere un uso hábil del computador. Un buen programa de cálculo de regresión es esencial, pero la aplicación rutinaria de programas estándar no siempre da resultados satisfactorios. El computador no sustituye el pensamiento creativo sobre el problema. Debemos aprender a interpretar la información que proporciona y usarla en modelos posteriores. Entre el software estadístico disponible, se destaca el SAS (Statistical Analysis System), un paquete comercial para análisis de datos con una amplia gama de procedimientos estadísticos, y R, un lenguaje de código abierto y gratuito, conocido por su flexibilidad e innovación.
-
-
-
-\section{Regresión lineal simple}
-
-Un modelo con un único regresor $x$ y que tiene una relación con la respuesta $y$ en la forma de una línea recta es lo que se denomina un modelo de regresión lineal simple:
-\begin{equation}
-y=\beta_0+\beta_1 x+\varepsilon \,.
-\label{regrelineal}
-\end{equation}
-
-La intersección $\beta_0$  y la pendiente $\beta_1$  son constantes desconocidas, mientras que $\varepsilon$ es un componente de error aleatorio. Suponemos que los errores tienen media cero y varianza desconocida $\sigma^2$. También asumimos que los errores no están correlacionados, lo que significa que el valor de un error no depende del valor de ningún otro error. Es importante considerar el regresor $x$
-como controlado por el analista de datos o experimentador y medido con un error despreciable, mientras que la respuesta $y$ es una variable aleatoria. Esto implica que existe una distribución de probabilidad para $y$ 
-en cada valor posible de $x$.
-
-Recordemos que la media de esta distribución es:
-\begin{equation}
-E(y \mid x)=\beta_0+\beta_1 x\,.
-\label{medireglin}
-\end{equation}
-
-Mientras que la varianza es
-\begin{equation}
-\operatorname{Var}(y \mid x)=\sigma^2=\operatorname{Var}\left(\beta_0+\beta_1 x+\varepsilon\right) \,.
-\label{varireglin}
-\end{equation}
-
-La media de $y$ es una función lineal de $x$, aunque la varianza de $y$ no depende del valor de $x$. Además, como los errores no están correlacionados, las respuestas tampoco lo están. Los coeficientes de regresión $\beta_0$ y $\beta_1$ tienen una interpretación sencilla y a menudo útil. La pendiente $\beta_1$ indica el cambio en la media de la distribución de $y$ producido por un cambio unitario en $x$. Si el rango de datos de $x$ incluye $x = 0$, entonces  $\beta_0$ representa la media de la distribución de la respuesta $y$ cuando $x = 0$. Si el rango de $x$ no incluye cero, entonces $\beta_0$ carece de una interpretación práctica.
-
-
-
 
 
 \subsection{Método de los mínimos cuadrados}
@@ -220,14 +239,14 @@ b \sum_{i=1}^n x_i  + m \sum_{i=1}^n   x_i^2 = \sum_{i=1}^n y_ix_i
 $$
 para $m$ y $b$. 
 
-Utilizando la regla de Cramer
+Utilizando la regla de Cramer y definiendo $\Delta$ como se muestra a continuación:
 $$
 \begin{aligned}
 \Delta= 
 {\left|\begin{array}{cc}
 n & \sum x_i \\
 \sum x_i & \sum x_i^2
-\end{array}\right|} = n \sum x_i^2-\left(\sum x_i\right)^2 \,,
+\end{array}\right|} = n \sum\limits_{i=1}^n x_i^2-\left(\sum\limits_{i=1}^nx_i\right)^2 \,,
 \end{aligned}
 $$
 resulta:
@@ -244,26 +263,36 @@ $$
 
 Por lo tanto:
 \begin{eqnarray}
-m &=&\dfrac{ n\sum\limits_{i=1}^n x_i y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n y_i}{n \sum\limits_{i=1}^n x_i^2-\left(\sum\limits_{i=1}^n x_i\right)^2} = 
+m &=&\dfrac{ n\sum\limits_{i=1}^n x_i y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n y_i}{\Delta} = 
 \dfrac{\sum\limits_{i=1}^n y_i \left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2} 
 \label{eme2} \\
-b &=&\dfrac{\sum\limits_{i=1}^n x_i^2 \sum\limits_{i=1}^n y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n x_i y_i}{n\sum\limits_{i=1}^n x_i^2-\left(\sum\limits_{i=1}^n x_i\right)^2} =  \bar{y}-m \bar{x} \,,
+b &=&\dfrac{\sum\limits_{i=1}^n x_i^2 \sum\limits_{i=1}^n y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n x_i y_i}{\Delta} =  \bar{y}-m \bar{x} \,,
 \label{b2}
 \end{eqnarray}
-donde $\bar{y} \equiv \frac{1}{n} \sum_{i=1}^n y_i$ y $\bar{x} \equiv \frac{1}{n} \sum_{i=1}^n x_i$ son las medias simples.
+donde $\bar{y} \equiv \frac{1}{n} \sum_{i=1}^n y_i$ y $\bar{x} \equiv \frac{1}{n} \sum_{i=1}^n x_i$ son las medias simples.  Nótese que los términos $\sum x_i^2$ y $\left(\sum x_i\right)^2$ no son lo mismo. Idéntica observación se debe hacer para los términos $\sum x_i y_i $ y $\sum x_i \sum y_i$.
 
-De esta manera obtenemos la recta $\hat{y}=mx+b$ que mejor de aproxima a los puntos. Nótese que los términos $\sum x_i^2$ y $\left(\sum x_i\right)^2$ no son lo mismo. Idéntica observación se debe hacer para los términos $\sum x_i y_i $ y $\sum x_i \sum y_i$.
+De esta manera obtenemos la recta $\hat{y}=mx+b$ que mejor de aproxima a los puntos. Es muy común utilizar las siguiente notación:
+\begin{eqnarray}
+S_{x x}&=&\sum_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^n x_i\right)^2}{n}=\sum_{i=1}^n\left(x_i-\bar{x}\right)^2  \,,\\
+S_{x y}&=&\sum_{i=1}^n y_i x_i-\frac{\left(\sum_{i=1}^n y_i\right)\left(\sum_{i=1}^n x_i\right)}{n}=\sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
+\end{eqnarray}
 
-Podríamos construir una tabla como la mostrada en \ref{tablamincua}, para así ordenar la información y facilitar los cálculos. Las cuatro sumas en la última línea, son los valores necesarios para calcular $m$ y $b$. Los valores de $m$ y $b$ que se obtengan por el método de los mínimos cuadrados, deberían ser muy próximos a los obtenidos directamente utilizando el método gráfico. 
+Esto permite escribir (\ref{eme2}) como
+\begin{equation}
+m=\frac{S_{x y}}{S_{x x}}
+\end{equation}
+
+
+En el trabajo de laboratorio podríamos construir una tabla como la mostrada en \ref{tablamincua}, para así ordenar la información y facilitar los cálculos. Las cuatro sumas en la última línea, son los valores necesarios para calcular $m$ y $b$. Los valores de $m$ y $b$ que se obtengan por el método de los mínimos cuadrados, deberían ser muy próximos a los obtenidos directamente utilizando el método gráfico. 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline $y_i [\,\,]$ & $x_i [\,\,]$ & $x_i^2 [\,\,]$& $x_i y_i [\,\,]$ \\
-\hline \hline $y_1$ & $x_1$ & $x_1^2$ & $x_1 y_1$ \\
-\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-\hline $y_n$ & $x_n$ & $x_n^2$ & $x_n y_n$ \\ \hline
-\hline $\sum y_i$ &$\sum x_i $& $\sum x_i^2$ & $\sum x_i y_i$ \\
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline $y_i [\,\,]$ & $x_i [\,\,]$ & $x_i^2 [\,\,]$& $x_i y_i [\,\,]$ & $y_i-m x_i-b$ & $(y_i-m x_i-b)^2$  \\
+\hline \hline $y_1$ & $x_1$ & $x_1^2$ & $x_1 y_1$ & $y_1-m x_1-b$ & $\left(y_1-m x_1-b\right)^2$\\
+\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ & $\vdots$ \\
+\hline $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  $\vdots$ & $\vdots$ \\
+\hline $y_n$ & $x_n$ & $x_n^2$ & $x_n y_n$ & $y_n-m x_n-b$ &$\left(y_n-m x_n-b\right)^2$ \\ \hline
+\hline $\sum y_i$ &$\sum x_i $& $\sum x_i^2$ & $\sum x_i y_i$ & & $\sum\limits_{i=1}^n (y_i-m x_i-b)^2$  \\
 \hline
 \end{tabular}
 \end{center}
@@ -283,22 +312,7 @@ o equivalentemente como
 $$
 \mathrm{RSS}=\left(y_1-b-m x_1\right)^2+\left(y_2-b-m x_2\right)^2+\cdots+\left(y_n-b-m x_n\right)^2 .
 $$
-\begin{table}[!t]
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline$x_i [\,\,]$ & $y_i [\,\,]$ & $y_i-m x_i-b$ & $(y_i-m x_i-b)^2$ \\
-\hline \hline$x_1$ & $y_1$ & $y_1-m x_1-b$ & $\left(y_1-m x_1-b\right)^2$ \\
-\hline$x_2$ & $y_2$ & $y_2-m x_2-b$ & $\left(y_2-m x_2-b\right)^2$ \\
-\hline$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-\hline$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-\hline$x_n$ & $y_n$ & $y_n-m x_n-b$ & $\left(y_n-m x_n-b\right)^2$ \\ \hline
-\hline & & & $\sum\limits_{i=1}^n \qquad \qquad \quad$ \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Tabla para facilitar los cálculos de $S_y$.}
-\label{tablamincua2}
-\end{table}
+
 
 La diferencia entre el valor observado $y_i$ y el correspondiente valor ajustado $\hat{y}_i$ es un residuo. Matemáticamente, el residuo $i$ es
 $$
@@ -318,16 +332,15 @@ S_y = \sqrt{\frac{\mathrm{SSE}}{n - 2}}
 $$
 $S_y$ es una medida de la dispersión de los datos alrededor de la recta de regresión ajustada y se utilizada para calcular los errores estándar de la pendiente $\Delta m$
  y el término independiente $\Delta b$ de la regresión lineal.
-
 \begin{eqnarray}
-\Delta m &= \sqrt{\dfrac{n}{n \sum\limits_{i=1}^n x_i^2 - \left(\sum\limits_{i=1}^n x_i\right)^2}} \cdot S_y 
+\Delta m &=& \sqrt{\dfrac{n}{\Delta}} \cdot S_y 
 \label{Delm}\\ \nonumber  \\
-\Delta b &= \sqrt{\dfrac{\sum\limits_{i=1}^n x_i^2}{n \sum\limits_{i=1}^n x_i^2 - \left(\sum\limits_{i=1}^n x_i\right)^2}} \cdot S_y
+\Delta b &= &\sqrt{\dfrac{\sum\limits_{i=1}^n x_i^2}{\Delta} } \cdot S_y
 \label{Delb}
 \end{eqnarray}
 
 
-Finalmente para calcular $S_y$ se puede utilizar como ayuda la tabla \ref{tablamincua2}.
+Finalmente, para calcular $S_y$ se puede utilizar como ayuda la tabla \ref{tablamincua}.
 
 
 %example
@@ -386,9 +399,15 @@ $$
 \begin{array}{c|c}
 n& \sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2  \\ \hline\hline 
 10 & 1.244  
-\end{array} \,\,\Rightarrow \,\,  S_y=\left[\frac{\sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2}{n-2}\right]^{\frac{1}{2}}=
+\end{array} 
+$$
+Por lo tanto 
+$$
+S_y=\left[\frac{\sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2}{n-2}\right]^{\frac{1}{2}}=
 \left(\frac{1.244}{8}\right)^{\frac{1}{2}}= 0.394 \,.
 $$
+
+
 y los errores 
 $$
 \begin{aligned}
@@ -405,12 +424,18 @@ $$
 donde lo correcto sería escribir: $m=5.9 \pm 0.4$ y $b=0.7 \pm 0.2$.
 
 
-En Python podemos hacer todos los cálculos anteriores, incluida la figura  \ref{datosvt}.
+Con Python podemos hacer todos los cálculos anteriores, incluida la figura  \ref{datosvt}. Aquí vamos a  transcribir la ecuaciones las fórmulas utilizadas con anterioridad a manera de entender el proceso de los mínimos cuadrados. Luego veremos que existen otras opciones más directas. 
+
+Primero que todo, debemos llamar las librerías:
+
 \begin{lstlisting}[language=Python]    
 import numpy as np
 import matplotlib.pyplot as plt
 \end{lstlisting}
-Los datos:
+\vspace{5mm}
+
+Los datos deben escribirse en formas de arreglos:
+
 \begin{lstlisting}[language=Python]    
 yn=  array([1.000, 1.64, 1.51, 2.03, 2.75, 3.59, 4.87, 5.23, 5.44, 6.37])
 xn = array([0.00, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 1.00])
@@ -424,7 +449,7 @@ plt.xlabel(r'$t$ [s]', fontsize=16)
 plt.ylabel(r'$v$ [m/s]', fontsize=16)
 \end{lstlisting}
 
-Para usar las ecuaciones (\ref{eme2})-(\ref{b2}) hagamos primero los siguientes cálculos intermedios
+Para usar las ecuaciones (\ref{eme2})-(\ref{b2}) se necesita hacer una serie de  cálculos intermedios, como se muestra a continuación:
 \begin{lstlisting}[language=Python] 
 #Se obtiene el valor de n (numero de datos)
 n=len(xn)
@@ -444,6 +469,7 @@ print(n,',', Sum_x, ',',Sum_y,',', Sum_xx,',', Sum_xy,',', Sum_xSumy, ',',Delta)
 \end{tcolorbox} 
 
 Y finalmente calculamos $b$ y $m$
+
 \begin{lstlisting}[language=Python] 
 # Se escriben las ecuaciones para b y m 
 b=(Sum_xx*Sum_y-Sum_xy*Sum_x)/(n*Sum_xx-Sum_x**2)
@@ -456,10 +482,12 @@ m= 5.884415584415585 , b= 0.7361688311688325
 }
 \end{tcolorbox} 
 
-Grafiquemos la recta y los datos
+En este bloque de comandos lo que se quiere es hacer una gráfica que contenga la gráfica de dispersión y la recta que mejor ajusta los datos
+
 \begin{lstlisting}[language=Python] 
 # La gráfica con los datos y la recta que mejor se ajusta 
 y_pred=m_mc*xn + b_mc
+#
 plt.figure()
 plt.scatter(xn, yn, color='b',marker='+', label='datos medidos')
 plt.plot(xn, y_pred, 'r--',label='recta por mínimos cuadrados')
@@ -473,7 +501,7 @@ plt.show()
 \end{lstlisting}
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[height=2.6in,width=3.0in]{figuras/fig13}  
+\includegraphics[height=3.0in,width=3.6in]{figuras/fig13}  
 \label{figdatos2}
 \end{center}
 \end{figure}
@@ -512,7 +540,11 @@ $$
 v= 5.9 t + 0.7 \,\, \mathrm{m/s} \,.
 $$
 
-Numpy tiene una función específica para calcular los parámetros $m$ y $b$, más información en \url{https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html}
+Numpy tiene una función específica para calcular los parámetros $m$ y $b$, que se llama ''linalg.lstsq". Para mayor información se puede consultar: 
+
+ \url{https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html}
+
+La librería ''linalg.lstsq" resuelve para  el vector x la ecuación matricial $a.x = b$  utilizando el método de los mínimos cuadrados. Esta función se utiliza comúnmente en una variedad de aplicaciones, como el análisis de regresión, el ajuste de curvas y otras tareas de aprendizaje automático.
 
 Veamos como funciona:
 
@@ -520,6 +552,7 @@ Veamos como funciona:
 # Ajustar la recta por mínimos cuadrados usando linalg.lstsq
 A = np.vstack([xn, np.ones(len(xn))]).T
 m_c, b_c = np.linalg.lstsq(A, yn, rcond=None)[0]
+#
 print(f'm = {np.round(m_c, 1)}' )
 print(f'b = {np.round(b_c, 1)}' )
 \end{lstlisting}
@@ -532,10 +565,16 @@ $b = 0.7 $
 \end{tcolorbox}
 
 
-Actualmente, la función ``np.linalg.lstsq'' de Numpy no proporciona directamente los errores estándar de los coeficientes. Sin embargo, hay otras bibliotecas en Python que pueden hacer regresión lineal y proporcionar estos errores de manera más directa. Una de las bibliotecas más utilizadas para este propósito es ``statsmodels''. Para más información ver: \url{https://www.statsmodels.org/stable/index.html}
+Actualmente, la función ``np.linalg.lstsq'' de Numpy no proporciona directamente los errores estándar de los coeficientes. Sin embargo, hay otras bibliotecas en Python que pueden hacer regresión lineal y proporcionar estos errores de manera más directa. 
 
-Veamos como funciona en nuestro ejemplo, primero cargamos la librería 
+Una de las bibliotecas más utilizadas para este propósito es ``statsmodels''. Para más información ver: 
+
+\url{https://www.statsmodels.org/stable/index.html}
+
+Para estudiar como funciona en el ejemplo que estamos considerando lo primero que hay que hacer es  cargar la librería 
+
 \begin{lstlisting}[language=Python] 
+# Importamos la librería 
 import statsmodels.api as sm
 \end{lstlisting}
 
@@ -573,17 +612,33 @@ y_pred = m * xn + b
 # Graficamos los datos originales y la línea ajustada
 plt.scatter(xn, yn, color='blue', label='Datos originales')
 plt.plot(xn, y_pred, color='red', label='Línea ajustada')
-plt.xlabel('x')
-plt.ylabel('y')
+plt.xlabel('$t$ [s]')
+plt.ylabel('$v$ [m/s]')
 plt.legend()
 plt.show()
 \end{lstlisting}
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[height=2.6in,width=3.0in]{figuras/fig20}  
+\includegraphics[height=3.0in,width=3.6in]{figuras/fig20}  
 \label{figdatos2}
 \end{center}
 \end{figure}
+
+
+Se puede pedir que se genere en consola un resumen del modelo 
+
+\begin{lstlisting}[language=Python] 
+results = model
+print(results.summary
+\end{lstlisting}
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=3.0in,width=4.6in]{figuras/fig20a}  
+\label{figdatos2}
+\end{center}
+\end{figure}
+
+Se pueden identificar fácilmente los valores de los parámetros y sus errores estándar que relatan la precisión de las estimaciones obtenidas. De ``R-squared: 0.963'' hablaremos más adelante, pero este valor indica qué tan bien los datos se ajustan al modelo de regresión (0 a 1, donde valores más cercanos a 1 indican un mejor ajuste).
 \end{example}
 \exampleline
 
@@ -615,7 +670,11 @@ $$
 %example
 \begin{example}
 \label{ejemcizalla}
-Una pega para piezas metálicas se prueba mediante una fuerza de cizallamiento entre las partes. La resistencia al cizallamiento de la unión entre los dos tipos de piezas es una característica crucial de calidad. Se observa que, con el transcurso del tiempo, la pega se debilita, lo cual es un problema que los ingenieros deben resolver. Los datos muestran esta relación con la edad de aplicación de la pega, medida en semanas. Se han recogido veinte observaciones sobre la resistencia al cizallamiento y la edad de la pega, como se muestra en la tabla \ref{datosciza}. Un diagrama de dispersión sugiere una fuerte relación estadística entre la resistencia al cizallamiento y la edad del pegamento. La hipótesis inicial de un modelo lineal, $y=\beta_0+\beta_1 x+\varepsilon$, parece razonable. 
+Un pegamento para piezas metálicas se prueba mediante la aplicación de una fuerza de cizallamiento entre las partes que han sido pegadas. La resistencia al cizallamiento de la unión entre los dos tipos de piezas es una característica crucial de calidad del pegamento. Los investigadores observan que con el transcurso del tiempo el pegamento se debilita, lo cual es un problema que los ingenieros deben resolver. 
+
+Los datos muestran que probablemente existe una relación entre el tiempo transcurrido desde que se aplica el pegamento,  medida en semanas, y la resistencia a una fuerza de cizallamiento aplicada. Los datos se han recogido para veinte observaciones sobre la resistencia al cizallamiento y la edad del pegamento, como se muestra en la tabla \ref{datosciza}. 
+
+Un diagrama de dispersión sugiere una fuerte relación estadística entre la resistencia al cizallamiento y la edad del pegamento. La hipótesis inicial de un modelo lineal, $y=\beta_0+\beta_1 x+\varepsilon$, parece razonable. 
 \begin{figure}[h]
 \begin{tabular}{ccc}
 \hline Observación, $i$ & \begin{tabular}{c} 
@@ -690,14 +749,14 @@ plt.scatter(xn, yn, color='blue', label='Datos')
 plt.plot(xn, y_pred, color='red', label='Línea ajustada')
 plt.grid(linestyle='dotted')
 plt.legend(loc='best')
-plt.xlabel('Edad de la pega (semanas)')
+plt.xlabel('Edad del pegamento (semanas)')
 plt.ylabel('Fuerza de cizallamiento (psi)')
 plt.legend()
 plt.show()
 \end{lstlisting}
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[height=2.6in,width=3.0in]{figuras/fig21}  
+\includegraphics[height=3.0in,width=3.6in]{figuras/fig21}  
 \label{figdatos2}
 \end{center}
 \end{figure}
@@ -824,16 +883,14 @@ np.sum(y_pred*e_i)
 }
 \end{tcolorbox}
 
-
-Los programas estadísticos suelen ofrecer un resumen de todos los cálculos que realiza el programa. La salida en pantalla o consola de la figura \ref{figejemciza} presenta los resultados de la librería ``statsmodels''  para el ejemplo que estamos considerando. La parte superior de la tabla contiene el modelo de regresión ajustado. Observe que, antes del redondeo, los coeficientes de regresión coinciden con los que calculamos manualmente. La salida en pantalla mostrada el la figura \ref{figejemciza} también contiene otra información sobre el modelo de regresión que pueden ser consultadas en el manual de la librería. 
-
+Como ya lo señalamos, los programas estadísticos suelen ofrecer un resumen de todos los cálculos que realiza el programa. La salida en pantalla o consola de la figura \ref{figejemciza} presenta los resultados de la librería ``statsmodels''  para el ejemplo que estamos considerando. La parte superior de la tabla contiene el modelo de regresión ajustado. Observe que, antes del redondeo, los coeficientes de regresión coinciden con los que calculamos manualmente. La salida en pantalla también contiene otra información sobre el modelo de regresión que pueden ser consultadas en el manual de la librería. 
 \begin{lstlisting}[language=Python] 
 results = model
 print(results.summary())
 \end{lstlisting}
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[height=4.0in,width=6.4in]{figuras/fig22}  
+\includegraphics[height=3.0in,width=4.6in]{figuras/fig22}  
 \caption{Resumen de las estimaciones estadísticas por consola.}
 \label{figejemciza}
 \end{center}
@@ -848,25 +905,102 @@ print(results.summary())
 Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico, como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión. Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la suma de cuadrados de los  errores:
 \begin{equation}
 \hat{\sigma}^2=\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 \,.
+\label{sigma2}
 \end{equation}
+En inglés $\sigma^2=$ Error Sum of Squares=SS$_{\text{Res}}$
 
 Conocidos los valores estimados de $\beta_0$ y $\beta_1$, es decir: $
-\hat{y}_i=b+m x_i $ y al sustituir en la ecuación anterior
+\hat{y}_i=b+m x_i $ y al sustituir en la ecuación anterior se llega al siguiente resultado
 \begin{equation}
-\hat{\sigma}^2=\sum_{i=1}^n\left(y_i - b-m x_i \right)^2 = 
-\sum_{i=1}^n\left(y_i - \bar{y}+m\bar{x} -m x_i \right)^2 = 
-\sum_{i=1}^n\left(y_i - \bar{y}+m(\bar{x} - x_i) \right)^2 
+\hat{\sigma}^2=\sum_{i=1}^n y_i^2-n \bar{y}^2-m \sum_{i=1}^n y_i\left(x_i-\bar{x}\right) \,.
+\end{equation}
+Como
+\begin{equation}
+\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \equiv S S_{\mathrm{T}} \,,
 \end{equation}
 
+Esto no es más que la suma de cuadrados corregida de las observaciones de respuesta, por lo que
 \begin{equation}
-\sum_{i=1}^n y_i^2-n \bar{y}^2-\hat{\beta}_1 \sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
+\hat{\sigma}^2=S S_{\mathrm{Res}}=S S_{\mathrm{T}}-m S_{x y}
+\label{sigma2b}
 \end{equation}
 
+La suma residual de cuadrados tiene $n-2$ grados de libertad, porque dos grados de libertad están asociados con las estimaciones $b$ y $m$ implicadas en la obtención de $\hat{y}_i$. Se puede mostrar que el valor esperado de $S S_{\text {Res}}$ es $E\left(S S_{\text {Res }}\right)=(n-2) \sigma^2$, por lo que un estimador no sesgado de $\sigma^2$ es
+\begin{equation}
+\hat{\sigma}^2=\frac{S S_{\mathrm{Res}}}{n-2}=M S_{\mathrm{Res}}
+\label{sigma2c}
+\end{equation}
+
+La cantidad $M S_{\text {Res }}$ se denomina cuadrado medio residual. La raíz cuadrada de $\hat{\sigma}^2$ se llama a veces el error estándar de regresión, y tiene las mismas unidades que la variable de respuesta $y$.
+
+Dado que $\hat{\sigma}^2$ depende de la suma residual de cuadrados, cualquier violación de los supuestos sobre los errores del modelo o cualquier especificación errónea de la forma del modelo puede dañar seriamente la utilidad de $\hat{\sigma}^2$ como estimación de $\sigma^2$. Dado que $\hat{\sigma}^2$ se calcula a partir de los residuos del modelo de regresión, decimos que es una estimación dependiente del modelo de $\sigma^2$.
+
+A partir de  $\hat{\sigma}^2$ los errores estándar de $m$ y $b$ se pueden obtener a partir de las siguientes ecuaciones
+\begin{equation}
+\mathrm{SE}\left(b\right)^2=\sigma^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right], \quad 
+\mathrm{SE}\left(m\right)^2=\frac{\sigma^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2},
+\label{SEmyb}
+\end{equation}
+
+
+Si volvemos al ejemplo \ref{ejemcizalla} se pueden hacer los siguientes cálculos
+
 $$
-=\sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
+\begin{aligned}
+S S_{\mathrm{T}} & =\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n y_i^2-\frac{\left(\sum_{i=1}^n y_i\right)^2}{n} \\
+& =92547433.45-\frac{(42,627.15)^2}{20}=1693737.60
+\end{aligned}
 $$
 
-$b=\bar{y}-m\bar{x}$
+De la ecuación  (\ref{sigma2b}) la suma residual de cuadrados es
+$$
+\begin{aligned}
+S S_{\text {Res }} & =S S_{\mathrm{T}}-\hat{\beta}_1 S_{x y} \\
+& =1693737.60-(-37.15)(-41112.65)=166402.65
+\end{aligned}
+$$
+
+El valor estimado de $\sigma^2$ se obtiene a partir de la ecuación (\ref{sigma2c}) 
+$$
+\hat{\sigma}^2=\frac{S S_{\mathrm{Res}}}{n-2}=\frac{166402.65}{18}=9244.59
+$$
+
+Para los errores usamos las ecuaciones (\ref{SEmyb})
+$$
+\Delta b=\sqrt{(9244.59)\left[\frac{1}{20}+\frac{178.56}{1106.56}\right]}=44.184 \,,\quad 
+\Delta m=\frac{9244.59}{1106.56}=2.889 \,,
+$$
+
+\subsubsection{Prueba de hipótesis sobe $m$ y $b$}
+
+
+Los errores estándar también pueden utilizarse para realizar pruebas de hipótesis sobre los coeficientes. La prueba de hipótesis más común consiste en probar la hipótesis nula:
+$$
+H_0 \text {: No hay relación entre } x \text{ y } y
+$$
+frente a la hipótesis alternativa 
+$$
+H_a  \text {:  Existe alguna relación entre } x \text{ y }  y
+$$
+
+Matemáticamente, esto corresponde a probar
+$$
+H_0: \beta_1=0
+$$
+frente a
+$$
+H_a: \beta_1 \neq 0,
+$$
+
+ya que si $\beta_1=0$ entonces el modelo (3.5) se reduce a $Y=\beta_0+\epsilon$, y $X$ no está asociado con $Y$. Para probar la hipótesis nula, tenemos que determinar si $\hat{\beta}_1$, nuestra estimación de $\beta_1$, es lo suficientemente lejos de cero que podemos estar seguros de que $\beta_1$ es distinto de cero. ¿Qué distancia es suficiente? Esto, por supuesto, depende de la exactitud de $\hat{\beta}_1$-es decir, depende de $\operatorname{SE}\left(\hat{\beta}_1\right)$. Si $\operatorname{SE}\left(\hat{\beta}_1\right)$ es pequeño, entonces incluso valores relativamente pequeños de $\hat{\beta}_1$ pueden proporcionar una fuerte evidencia de que $\beta_1 \neq 0$, y por lo tanto que existe una relación entre $X$ y $Y$. Por el contrario, si $\mathrm{SE}\left(\hat{\beta}_1\right)$ es grande, entonces $\hat{\beta}_1$ debe ser grande en valor absoluto para que podamos rechazar la hipótesis nula. En la práctica, calculamos un estadístico $t$, dado por
+$$
+t=\frac{\hat{\beta}_1-0}{\mathrm{SE}\left(\hat{\beta}_1\right)}
+$$
+
+
+
+
+
 
 
 
