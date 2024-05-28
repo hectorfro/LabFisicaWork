@@ -968,7 +968,7 @@ $$
 Para los errores usamos las ecuaciones (\ref{SEmyb})
 $$
 \Delta b=\sqrt{(9244.59)\left[\frac{1}{20}+\frac{178.56}{1106.56}\right]}=44.184 \,,\quad 
-\Delta m=\frac{9244.59}{1106.56}=2.889 \,,
+\Delta m=\sqrt{\frac{9244.59}{1106.56}}=2.889 \,,
 $$
 
 \subsubsection{Prueba de hipótesis sobe $m$ y $b$}
@@ -985,17 +985,16 @@ $$
 
 Matemáticamente, esto corresponde a probar
 $$
-H_0: \beta_1=0
+H_0: \beta_1=0 \text { frente a } H_a: \beta_1 \neq 0 \,,
 $$
-frente a
-$$
-H_a: \beta_1 \neq 0,
-$$
+ya que si $\beta_1=0$ entonces el modelo (\ref{regrelineal}) se reduce a $y=\beta_0+\varepsilon$, y $x$ no está asociado con $y$. Para probar la hipótesis nula, tenemos que determinar si $m$, nuestra estimación de $\beta_1$, está lo suficientemente lejos de cero para que podemos estar seguros de que $\beta_1$ es distinto de cero ¿Qué distancia es suficiente? Esto, por supuesto, depende de la exactitud de $m$, es decir, depende de $\operatorname{SE}\left(m\right)$. Si $\operatorname{SE}\left(m\right)$ es pequeño, entonces incluso valores relativamente pequeños de $m$ pueden proporcionar una fuerte evidencia de que $\beta_1 \neq 0$, y por lo tanto que existe una relación entre $x$ y $y$. Por el contrario, si $\mathrm{SE}\left(m\right)$ es grande, entonces $m$ debe ser grande en valor absoluto para que podamos rechazar la hipótesis nula. En la práctica, se suele calcular un ``estadístico'' $t$ o valor $t$, dado por
+\begin{equation}
+t=\frac{m-0}{\mathrm{SE}\left(m\right)} \,,
+\label{valort}
+\end{equation}
+que mide el número de desviaciones típicas que $\beta_1$ se aleja de 0. Si realmente no hay relación entre $x$ y $y$, entonces esperamos que (\ref{valort}) tenga una distribución $t$ con $n - 2$ grados de libertad. La distribución $t$ tiene forma de campana y para valores de $n$ superiores a 30 aproximadamente es bastante similar a la distribución normal estándar. En consecuencia, resulta sencillo calcular la probabilidad de observar cualquier número igual a $|t|$ o mayor en valor absoluto, suponiendo que $\beta_1=0$. 
 
-ya que si $\beta_1=0$ entonces el modelo (3.5) se reduce a $Y=\beta_0+\epsilon$, y $X$ no está asociado con $Y$. Para probar la hipótesis nula, tenemos que determinar si $\hat{\beta}_1$, nuestra estimación de $\beta_1$, es lo suficientemente lejos de cero que podemos estar seguros de que $\beta_1$ es distinto de cero. ¿Qué distancia es suficiente? Esto, por supuesto, depende de la exactitud de $\hat{\beta}_1$-es decir, depende de $\operatorname{SE}\left(\hat{\beta}_1\right)$. Si $\operatorname{SE}\left(\hat{\beta}_1\right)$ es pequeño, entonces incluso valores relativamente pequeños de $\hat{\beta}_1$ pueden proporcionar una fuerte evidencia de que $\beta_1 \neq 0$, y por lo tanto que existe una relación entre $X$ y $Y$. Por el contrario, si $\mathrm{SE}\left(\hat{\beta}_1\right)$ es grande, entonces $\hat{\beta}_1$ debe ser grande en valor absoluto para que podamos rechazar la hipótesis nula. En la práctica, calculamos un estadístico $t$, dado por
-$$
-t=\frac{\hat{\beta}_1-0}{\mathrm{SE}\left(\hat{\beta}_1\right)}
-$$
+Llamamos a esta probabilidad el valor $p$. A grandes rasgos, interpretamos el valor $p$ de la siguiente manera: un valor $p$ pequeño indica que es poco probable observar una asociación tan sustancial entre el predictor y la respuesta debido al azar, en ausencia de cualquier asociación real entre el predictor y la respuesta. Por lo tanto, si vemos un valor $p$ pequeño, podemos inferir que existe una asociación entre el predictor y la respuesta. Rechazamos la hipótesis nula, es decir, declaramos que existe una relación entre $x$ y $y$, si el valor $p$ es lo suficientemente pequeño. Los límites típicos del valor $p$ para rechazar la hipótesis nula son el 5\% o el 1\%. Cuando $n = 30$, estos valores corresponden a estadísticos $t$ (\ref{valort}) de alrededor de 2 y 2.75, respectivamente.
 
 
 
