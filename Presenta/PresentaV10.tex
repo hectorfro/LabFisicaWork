@@ -166,41 +166,38 @@ Por lo tanto, $x$ e $y$ son variables aleatorias, por lo que no se puede estable
     \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}
 \begin{itemize}
-\item Ejemplo:  Ley de enfriamiento de Newton. 
+\item Ejemplo:  Ley de enfriamiento de Steinhart-Hart. 
  \vspace{0.5cm}
  
-Esta ley establece que la tasa de cambio de la temperatura de un objeto es proporcional a la diferencia entre la temperatura del objeto y la temperatura del ambiente:
+Para describir con precisión la relación entre la resistencia $R$  de un termistor y su temperatura $T$ se utiliza la ecuación de Steinhart-Hart:
 $$
-\frac{d T}{d t}=-k\left(T-T_{\text {e}}\right)
+\frac{1}{T}=A+B \ln (R)+C[\ln (R)]^3
 $$
 donde:
 
-- $T$ es la temperatura del objeto.
+- $T$ es la temperatura en grados Kelvin.
 
-- $T_{\text {e}}$ es la temperatura del entorno.
+- $R$ es la resistencia en ohmios.
 
-- $k$ es una constante  que depende de las características del objeto y del entorno.
+- $A, B, C$ son constantes específicas del termistor.
 
-- $\frac{dT}{dt}$ es la tasa de cambio de la temperatura con respecto al tiempo.
-
+En un rango pequeño de temperaturas, la relación entre $R$ y $T$ puede aproximarse a:
+$$
+R \approx R_0+\alpha\left(T-T_0\right)
+$$
  \end{itemize} 
             \vspace{0.5cm} % Espacio vertical
         \end{column}
         \begin{column}{0.5\textwidth}
-La solución de esta ecuación diferencial es:
-$$
-T(t)=T_{\text {e}}+\left(T_0-T_{\text {e}}\right) e^{-k t}
-$$
-donde: $T(t)$ es la temperatura del objeto en el tiempo $t$ y $T_0$ es la temperatura inicial.
-
+es decir, a una linea recta donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ es el coeficiente de temperatura, que indica la tasa de cambio de la resistencia con la temperatura.
 \vspace{0.5cm}
 
-{\bf Experimento:}  Enfriamiento de un material con exposición a un medio refrigerante
+{\bf Experimento:}  Medición de la Resistencia de un Termistor NTC
 
 Descripción del Experimento:
 \begin{itemize}
-\item  Objetivo: Determinar cómo la temperatura de un material disminuye con el tiempo cuando se expone a un medio refrigerante.
-\item Variables: $y$, temperatura del material (en grados Celsius) y $x$ tiempo de exposición al refrigerante (en minutos)
+\item  Objetivo: Determinar la relación lineal aproximada entre la resistencia y la temperatura de un termistor NTC en un rango limitado de temperaturas.
+\item Variables: $y$, resistencia del material (en ohmios) y $x$ la temperatura  (en grados Kelvin)
 \end{itemize}
         \end{column}
     \end{columns}
@@ -212,14 +209,10 @@ Descripción del Experimento:
         \begin{column}{0.5\textwidth}
 Procedimiento:  
 \begin{itemize}
-\item Inicialización: Calentar un material a una temperatura inicial alta.
-\item  Exposición: Colocar el material en un medio refrigerante.
-\item Medición: Registrar la temperatura del material a intervalos regulares de tiempo
-\item Datos Recogidos:
+\item Calentar el Termistor: Coloca el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente.
+\item  Medir la Resistencia y Temperatura: Retira el termistor del agua caliente y mide su resistencia a intervalos regulares mientras se enfría. Simultáneamente, mide la temperatura del termistor.
+\item Registrar los Datos: Anota las mediciones de resistencia $R$ y temperatura $T$
 
-- $y_n$ : Temperatura del material en diferentes momentos.
-
-- $x_n$ : Tiempo transcurrido desde el inicio del enfriamiento.
  \end{itemize} 
             \vspace{0.5cm} % Espacio vertical
         \end{column}
@@ -283,24 +276,23 @@ La cantidad $m$ se denomina coeficiente de regresión de $y$ sobre $x$, lo denota
 
 \begin{frame}{}
 En nuestro ejemplo, los estadísticos descriptivos anteriores para las variables temperatura y tiempo del enfriamiento son los siguientes:
-\vspace{1.0cm} 
+\vspace{0.5cm} 
     \begin{columns}[T] % Alineación superior de las columnas
-        \begin{column}{0.5\textwidth}
-        
+        \begin{column}{0.5\textwidth}      
 $$
 \begin{aligned}
-& \bar{x}=13.3625 , \quad \bar{y}=213.0075\\
-& S_x^2=110.6559, \quad S_y^2=1692.2956 \\
-& S_{xy}=-410.3117 \\
-& m= -3.708, \quad   b=  262.556
+& \bar{x}=125.0119 , \quad \bar{y}=2156.81\\
+& S_x^2=12896.0685, \quad S_y^2=196582.6099 \\
+& S_{xy}=-48017.6465 \\
+& m= -3.7234, \quad   b=  2622.2834
 \end{aligned}
 $$
 
 La recta de regresión ajustada es la siguiente:
 $$
-\hat{y}=262.556 -3.708 x \,,
+\hat{y}=2622.2834 -3.7234 x \,,
 $$
-donde $\hat{y}$ es la temperatura y $x$ el tiempo de enfriamiento. 
+donde $\hat{y}$ es la resistencia y $x$ la temperatura. 
             \vspace{0.5cm} % Espacio vertical
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -356,12 +348,12 @@ El coeficiente de regresión nos da información sobre el comportamiento de la var
 \end{enumerate}
 
 
-En el ajuste de regresión lineal para la temperatura y el tiempo de enfriamiento resultó 
+En el ajuste de regresión lineal para la resistencia y la temperatura resultó en 
 $$
-\hat{y}=262.556 -3.708 x \,,
+\hat{y}=2622.2834 -3.7234 x \,,
 $$
 
-El coeficiente de regresión que se obtuvo fue  $m_{y/x}=-3.708  < 0$ y esto indica que al aumentar $x$ disminuye $y$.
+El coeficiente de regresión que se obtuvo fue  $m_{y/x}=-3.7234 < 0$ y esto indica que al aumentar $x$ disminuye $y$.
 \end{frame}
 
 
@@ -386,19 +378,32 @@ Propiedades del coeficiente de correlación:
 \begin{frame}{}
 Para nuestro ejemplo el valor de $r$ es
 $$
-r=\frac{S_{xy}}{S_x S_y} = \frac{-410,3117}{ \sqrt{110,6559} \sqrt{1692.2956}}= -0.9482
+r=\frac{S_{xy}}{S_x S_y} = \frac{-48017.6465}{ \sqrt{12896.0685} \sqrt{196582.6099}}= -0.9537
 $$
+El menos indica que existe una relación inversa entre las variables. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
+    \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}      
+        \vspace{0.4cm} 
+El coeficiente de determinación al cuadrado es $r^2=0.9095$.
 
-Al ser  negativo, esto indica que existe una relación inversa entre las variables cizallamiento y edad del pegamento. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
-
-El coeficiente de determinación al cuadrado es $r^2=0.8990$.
-
-Relación entre los coeficientes de regresión y de correlación:
+La relación entre los coeficientes de regresión y de correlación:
 $$
-m_{y/ x}=r \frac{S_y}{S_x}=-3.708, \quad m_{x / y}=r \frac{S_x}{S_y}=-0.242 .
+m_{y/ x}=r \frac{S_y}{S_x}=-3.7234\,,
 $$
-
+$$
+m_{x / y}=r \frac{S_x}{S_y}=-0.2443 
+$$
 Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+        \begin{column}{0.5\textwidth}
+%        \vspace{1.0cm} 
+            \centering
+            \includegraphics[width=\textwidth]{figuras/fig05} % Imagen de ejemplo
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+    \end{columns}
+
 \end{frame}
 
 \begin{frame}{}
