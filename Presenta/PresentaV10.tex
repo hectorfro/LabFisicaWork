@@ -3,41 +3,58 @@
 \usepackage{amssymb,amsmath,amsfonts}
 \usepackage[spanish,es-tabla]{babel}
 \usepackage[ansinew]{inputenc}
-
-\usetheme{Madrid} % Cambia "Madrid" por el tema que prefieras
-\usecolortheme{default} % Cambia "beaver" por el esquema de colores que prefieras
 \usepackage{xcolor}
+\usepackage{lipsum} % Para texto de ejemplo
+
+\usetheme{Madrid} 
+\useinnertheme{circles}
+\usecolortheme{default} 
+
 \setbeamercolor{structure}{fg=green!60!black} % Color principal a un tono de verde
 \setbeamercolor{title}{fg=green!60!black} % Establece el color del título al verde
 \setbeamercolor{subtitle}{fg=green!50!black} % Establece el color del subtítulo al verde
 
-% Ajustes adicionales
 \usefonttheme[onlymath]{serif} % Cambiar a fuente serif para matemáticas
-
-
+%\usefonttheme{serif}
 
 \title{\bf Regresión Lineal}
-\subtitle{Algunos consideraciones para el análisis de datos en los cursos de laboratorio de Física}
+\subtitle{Consideraciones para el análisis de datos en los cursos de laboratorio de Física}
 \author{Héctor F. Hernández G.}
 \date{\today}
+
+% Definir el color verde personalizado
+\definecolor{customgreen}{RGB}{0,128,0}
+
+% Configurar los colores de Beamer para el tema Warsaw
+\setbeamercolor{title in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{author in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{date in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{section in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{subsection in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{frametitle}{bg=customgreen, fg=white}
+\setbeamercolor{block title}{bg=customgreen, fg=white}
+\setbeamercolor{block body}{bg=customgreen!10, fg=black}
+\setbeamercolor{item}{fg=customgreen}
+
 
 \begin{document}
 
 \begin{frame}
-    \centering
-    \vspace{1cm} % Espacio superior
-    {\huge \color{green!60!black}  \inserttitle\par} % Título
-        \vspace{0.5cm} % Espacio entre el título y el subtítulo
-    {\large \color{green!50!black} \insertsubtitle\par} % Subtítulo en verde
-    \vspace{1cm} % Espacio entre el título y la imagen
-    \includegraphics[width=0.7\textwidth]{figuras/fig01} % Imagen
-%    \vspace{1cm} % Espacio entre la imagen y el autor
-%    {\large \insertauthor\par} % Autor
-%    \vspace{0.5cm} \\ % Espacio entre el autor y la fecha 
- %   \insertdate % Fecha
+    \begin{minipage}[t]{0.0\linewidth}
+        \vspace{0.0cm} % Ajustar el espacio vertical si es necesario
+        \includegraphics[width=2.5cm]{figuras/logouis} 
+    \end{minipage}
+    \begin{minipage}[t]{1.0\linewidth}
+        \centering
+        \vspace{0.2cm}  \hspace{0.0cm} % Espacio superior
+        {\huge \color{green!60!black} \inserttitle\par} % Título
+        \vspace{0.4cm} \hspace{0.0cm}  % Espacio entre el título y el subtítulo
+        {\large \color{green!50!black} \insertsubtitle\par} % Subtítulo en verde
+        \vspace{0.6cm} \hspace{0.0cm} % Espacio entre el título y la imagen
+        \includegraphics[width=0.6\textwidth]{figuras/fig01} % Imagen
+    \end{minipage}
 \end{frame}
-
-%\frame{\titlepage}
+% \frame{\titlepage}
 
 \begin{frame}
     \frametitle{Regresión Lineal}
@@ -57,26 +74,348 @@
 
 
 \begin{frame}
-    \frametitle{ El problema de la regresión lineal}
+    \frametitle{1. El problema de la regresión lineal}
     \begin{itemize}
-     \item El análisis de regresión es una técnica estadística para investigar y modelar relaciones entre variables.
+     \item La regresión es una técnica estadística para investigar y modelar relaciones entre variables.
 \item Las relaciones estadísticas difieren de las funcionales porque no son perfectas; las observaciones no caen directamente sobre una curva.
 \item Se supone una relación entre una respuesta cuantitativa $y$ y $k$ predictores $x_1, x_2, \ldots, x_k$ de la forma general:
 $$
-y=f(x)+\varepsilon,
+y=f(x)+\varepsilon 
 $$
-donde $f$ es una función desconocida de $x_1, \ldots, x_k, \mathrm{y} \varepsilon$ es un término de error aleatorio independiente de $x$ con media cero.
-\item  $f$ representa la información sistemática que $x$ proporciona sobre $y$.
-\item El método paramétrico más utilizado asume que $f$ es lineal en $x$ :
+donde $f$ es una función desconocida de $x_1, \ldots, x_k$ y  $\varepsilon$ es un término de error aleatorio independiente de $x$ con media cero.
+\item  La función  $f$ representa la información sistemática que $x$ proporciona sobre $y$.
+\item El método paramétrico más utilizado asume que $f$ es lineal en $x$:
 $$
-f(x)=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k .
+f(x)=\beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k 
 $$
 \item Para ajustar el modelo lineal, se estiman los parámetros $\beta_0, \beta_1, \ldots, \beta_k$ de manera que:
 $$
-y \approx \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k .
+y \approx \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k 
 $$
     \end{itemize}
 \end{frame}
+
+
+\begin{frame}{2. La regresión lineal simple}
+\begin{itemize}
+\item Modelo:
+$$
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i
+$$
+donde $y_i$ es la respuesta, $x_i$ es el regresor, $\beta_0$ es la intersección, $\beta_1$ es la pendiente, y $\varepsilon_i$ es el término de error aleatorio.
+ \end{itemize}
+ 
+    \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}
+ 
+\begin{itemize}
+\item Características del Modelo:
+
+1. $y_i$ es una variable aleatoria compuesta por $\beta_0+\beta_1 x_i$
+
+2. La función de regresión:
+$$
+E\left(y_i \mid x_i\right)=\beta_0+\beta_1 x_i
+$$
+relaciona las medias de las distribuciones de $y_i$ para cada $x_i$.
+
+ \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+\vspace{0.5cm} 
+3. $\varepsilon_i$ introduce variabilidad adicional a $y_i$ con varianza constante $\sigma^2$.
+
+4. El modelo asume varianza constante para $y_i$:
+$$
+\sigma^2\left\{y_i\right\}=\sigma^2
+$$
+5. Los términos de error $\varepsilon_i$ no están correlacionados entre sí, lo que implica que las respuestas $y_i$ tampoco lo están.
+
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{}
+Con técnicas de regresión de una variable $y$ (respuesta) sobre una variable $x$ (regresor), se busca una función que sea una buena aproximación de una nube de puntos,  mediante una curva del tipo: 
+$$
+\hat{y}= f(x)
+$$
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figuras/fig03}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{}
+Un modelo con un único regresor $x$ y que tiene una relación con la respuesta $y$ en la forma de una línea recta es lo que se denomina un modelo de regresión lineal simple:
+$$
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i
+$$
+
+En donde $\beta_0$ es la ordenada en el origen (el valor que toma $y$ cuando $x$ vale 0 ), $\beta_1$ es la pendiente de la recta (e indica cómo cambia $y$ al incrementar $x$ en una unidad) y $\varepsilon$ una variable que incluye un conjunto grande de factores, cada uno de los cuales influye en la respuesta sólo en pequeña magnitud, a la que llamaremos error. 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\textwidth]{figuras/fig04}
+    \end{figure}
+
+Por lo tanto, $x$ e $y$ son variables aleatorias, por lo que no se puede establecer una relación lineal exacta entre ellas.
+\end{frame}
+
+\begin{frame}{ }
+    \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}
+\begin{itemize}
+\item Ejemplo:  Ley de enfriamiento de Newton. 
+ \vspace{0.5cm}
+ 
+Esta ley establece que la tasa de cambio de la temperatura de un objeto es proporcional a la diferencia entre la temperatura del objeto y la temperatura del ambiente:
+$$
+\frac{d T}{d t}=-k\left(T-T_{\text {e}}\right)
+$$
+donde:
+
+- $T$ es la temperatura del objeto.
+
+- $T_{\text {e}}$ es la temperatura del entorno.
+
+- $k$ es una constante  que depende de las características del objeto y del entorno.
+
+- $\frac{dT}{dt}$ es la tasa de cambio de la temperatura con respecto al tiempo.
+
+ \end{itemize} 
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+        \begin{column}{0.5\textwidth}
+La solución de esta ecuación diferencial es:
+$$
+T(t)=T_{\text {e}}+\left(T_0-T_{\text {e}}\right) e^{-k t}
+$$
+donde: $T(t)$ es la temperatura del objeto en el tiempo $t$ y $T_0$ es la temperatura inicial.
+
+\vspace{0.5cm}
+
+{\bf Experimento:}  Enfriamiento de un material con exposición a un medio refrigerante
+
+Descripción del Experimento:
+\begin{itemize}
+\item  Objetivo: Determinar cómo la temperatura de un material disminuye con el tiempo cuando se expone a un medio refrigerante.
+\item Variables: $y$, temperatura del material (en grados Celsius) y $x$ tiempo de exposición al refrigerante (en minutos)
+\end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}{ }
+    \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}
+Procedimiento:  
+\begin{itemize}
+\item Inicialización: Calentar un material a una temperatura inicial alta.
+\item  Exposición: Colocar el material en un medio refrigerante.
+\item Medición: Registrar la temperatura del material a intervalos regulares de tiempo
+\item Datos Recogidos:
+
+- $y_n$ : Temperatura del material en diferentes momentos.
+
+- $x_n$ : Tiempo transcurrido desde el inicio del enfriamiento.
+ \end{itemize} 
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+        \begin{column}{0.5\textwidth}
+       \vspace{0.8cm} 
+            \centering
+            \includegraphics[width=\textwidth]{figuras/fig02} % Imagen de ejemplo
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{3. Método de mínimos cuadrados}
+
+El método de los mínimos cuadrados permite  estimar $\beta_0$ y $\beta_1$ de forma que la suma de los cuadrados de las diferencias entre las observaciones $y_i$ y la recta sea un mínimo. 
+\begin{equation}
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i, \quad i=1,2, \ldots, n
+\label{diferencia}
+\end{equation}
+
+La ecuación (\ref{diferencia}) es un modelo de regresión muestral, escrito en términos de los $n$ pares de datos $\left(y_i, x_i\right)$, con $i=1,2, \ldots, n$. 
+
+A los estimadores obtenidos por mínimos cuadrados $\beta_0$ y $\beta_1$, los llamaremos $b$ y $m$, respectivamente, y deben satisfacer una relación lineal de la forma:
+$$
+\hat{y}=m x+b \,,
+$$
+donde $\hat{y}$ es la variable dependiente y $x$ es la variable independiente, en nuestro caso la magnitud controlada por el experimentador.  El método de mínimos cuadrados consiste en minimizar suma de los cuadrados de los errores:
+$$
+\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2
+$$
+Es decir, la suma de los cuadrados de las diferencias entre los valores reales observados $\left(y_i\right)$ y los valores estimados $\left(\hat{y}_i\right)$.
+
+\end{frame}
+
+
+\begin{frame}{}
+Minimizar suma de los cuadrados de los errores se logra calculando las derivadas parciales de la suma con respecto a $m$ y con respecto a $b$, e igualándolas a cero.
+
+Con este método, las expresiones que se obtiene para $b$ y $m$ son las siguientes:
+$$
+m=\frac{S_{xy}}{S_x^2} \quad b=\bar{y}-m \bar{x} \,,
+$$
+
+En donde $\bar{x}$ e $\bar{y}$ denotan las medias muestrales de $x$ y $y$ (respectivamente), 
+$$
+\bar{x}=\frac{\sum_{i=1}^n x_i}{n}, \, \bar{y}=\frac{\sum_{i=1}^n y_i}{n}\,,
+$$
+
+$S_x^2$ es la varianza muestral de $x$ y $S_{xy}$ es la covarianza muestral entre $x$ y $y$. Estos parámetros se calculan como:
+$$
+S_x^2=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}, \, S_y^2=\frac{\sum_{i=1}^n\left(y_i-\bar{y}\right)^2}{n}, \, S_{xy}=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{n} .
+$$
+
+La cantidad $m$ se denomina coeficiente de regresión de $y$ sobre $x$, lo denotamos por $m_{y/x}$.
+
+\end{frame}
+
+\begin{frame}{}
+En nuestro ejemplo, los estadísticos descriptivos anteriores para las variables temperatura y tiempo del enfriamiento son los siguientes:
+\vspace{1.0cm} 
+    \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}
+        
+$$
+\begin{aligned}
+& \bar{x}=13.3625 , \quad \bar{y}=213.0075\\
+& S_x^2=110.6559, \quad S_y^2=1692.2956 \\
+& S_{xy}=-410.3117 \\
+& m= -3.708, \quad   b=  262.556
+\end{aligned}
+$$
+
+La recta de regresión ajustada es la siguiente:
+$$
+\hat{y}=262.556 -3.708 x \,,
+$$
+donde $\hat{y}$ es la temperatura y $x$ el tiempo de enfriamiento. 
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+        \begin{column}{0.5\textwidth}
+%        \vspace{1.0cm} 
+            \centering
+            \includegraphics[width=\textwidth]{figuras/fig02b} % Imagen de ejemplo
+            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+    \end{columns}
+
+Hay varias propiedades que se cumplen para los mínimos cuadrados:
+\end{frame}
+
+
+\begin{frame}{}
+\begin{enumerate}
+\item La suma de los valores observados $y_i$ es igual a la suma de los valores ajustados $\hat{y}_i$, o bien
+$$
+\sum_{i=1}^n y_i=\sum_{i=1}^n \hat{y}_i
+$$ 
+
+\item  La suma de los residuos que contiene un intercepto $\beta_0$ es siempre cero
+$$
+\sum_{i=1}^n\left(y_i-\hat{y}_i\right)=\sum_{i=1}^n e_i=0
+$$
+\item La recta siempre pasa por el centroide, el punto $(\bar{x}, \bar{y})$ de los datos.
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n  x_i \,, \quad  \bar{y} = \frac{1}{n}\sum_{i=1}^n  y_i= m\bar{x} +b \,. 
+$$
+
+\item  La suma de los residuos ponderada por el valor de la variable regresora  es cero
+$$
+\sum_{i=1}^n x_i e_i=0
+$$
+
+\item La suma de los residuos ponderada por el valor ajustado  siempre es cero
+$$
+\sum_{i=1}^n \hat{y}_i e_i=0
+$$
+
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{4. Coeficiente de regresión}
+El coeficiente de regresión nos da información sobre el comportamiento de la variable $y$ frente a la variable $x$, de manera que:
+\begin{enumerate}
+\item Si $m_{y / x}=0$, para cualquier valor de $x$ la variable $y$ es constante.
+\item Si $m_{y / x}>0$, esto nos indica que al aumentar el valor de $x$, también aumenta el valor de $y$.
+\item Si $m_{y / x}<0$, esto nos indica que al aumentar el valor de $x$, el valor de $y$ disminuye.
+
+\end{enumerate}
+
+
+En el ajuste de regresión lineal para la temperatura y el tiempo de enfriamiento resultó 
+$$
+\hat{y}=262.556 -3.708 x \,,
+$$
+
+El coeficiente de regresión que se obtuvo fue  $m_{y/x}=-3.708  < 0$ y esto indica que al aumentar $x$ disminuye $y$.
+\end{frame}
+
+
+\begin{frame}{5. Coeficiente de correlación lineal}
+
+El coeficiente de correlación lineal entre $x$ e $y$ viene dado por:
+$$
+r=\frac{S_{xy}}{S_x S_y}
+$$
+y trata de medir la dependencia lineal que existe entre las dos variables. Su cuadrado se denomina coeficiente de determinación $r^2$.
+
+Propiedades del coeficiente de correlación:
+\begin{enumerate}
+\item  No tiene dimensión, y siempre toma valores en [-1,1].
+\item Si las variables son independientes, entonces $r=0$, el inverso no tiene por qué ser cierto.
+\item Si existe una relación lineal exacta entre $x$ e $y$, entonces $r=1$  (relación directa) ó $r=-1$ (relación inversa).
+\item Si $r>0$,  indica una relación directa entre las variables (si aumenta $x$,  aumenta $y$ ).
+\item Si $r<0$, indica una relación directa entre las variables (si aumenta $x$,  disminuye $y$).
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{}
+Para nuestro ejemplo el valor de $r$ es
+$$
+r=\frac{S_{xy}}{S_x S_y} = \frac{-410,3117}{ \sqrt{110,6559} \sqrt{1692.2956}}= -0.9482
+$$
+
+Al ser  negativo, esto indica que existe una relación inversa entre las variables cizallamiento y edad del pegamento. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
+
+El coeficiente de determinación al cuadrado es $r^2=0.8990$.
+
+Relación entre los coeficientes de regresión y de correlación:
+$$
+m_{y/ x}=r \frac{S_y}{S_x}=-3.708, \quad m_{x / y}=r \frac{S_x}{S_y}=-0.242 .
+$$
+
+Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Gráficos}
