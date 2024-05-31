@@ -906,7 +906,7 @@ Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varian
 \hat{\sigma}^2=\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 \,.
 \label{sigma2}
 \end{equation}
-En inglés $\sigma^2=$ Error Sum of Squares=SS$_{\text{Res}}$
+En inglés $\sigma^2=$ Sum of Squares for Error ($\mathrm{SSE}$)
 
 Conocidos los valores estimados de $\beta_0$ y $\beta_1$, es decir: $
 \hat{y}_i=b+m x_i $ y al sustituir en la ecuación anterior se llega al siguiente resultado
@@ -915,22 +915,23 @@ Conocidos los valores estimados de $\beta_0$ y $\beta_1$, es decir: $
 \end{equation}
 Como
 \begin{equation}
-\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \equiv S S_{\mathrm{T}} \,,
+\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \equiv {\mathrm{SST}} \,,
 \end{equation}
+donde $\mathrm{SST}=$ Total Sum of Squares. 
 
 Esto no es más que la suma de cuadrados corregida de las observaciones de respuesta, por lo que
 \begin{equation}
-\hat{\sigma}^2=S S_{\mathrm{Res}}=S S_{\mathrm{T}}-m S_{x y}
+\hat{\sigma}^2= {\mathrm{SSE}}= {\mathrm{SST}}-m S_{x y}
 \label{sigma2b}
 \end{equation}
 
 La suma residual de cuadrados tiene $n-2$ grados de libertad, porque dos grados de libertad están asociados con las estimaciones $b$ y $m$ implicadas en la obtención de $\hat{y}_i$. Se puede mostrar que el valor esperado de $S S_{\text {Res}}$ es $E\left(S S_{\text {Res }}\right)=(n-2) \sigma^2$, por lo que un estimador no sesgado de $\sigma^2$ es
 \begin{equation}
-\hat{\sigma}^2=\frac{S S_{\mathrm{Res}}}{n-2}=M S_{\mathrm{Res}}
+\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2}\,.
 \label{sigma2c}
 \end{equation}
 
-La cantidad $M S_{\text {Res }}$ se denomina cuadrado medio residual. La raíz cuadrada de $\hat{\sigma}^2$ se llama a veces el error estándar de regresión, y tiene las mismas unidades que la variable de respuesta $y$.
+La raíz cuadrada de $\hat{\sigma}^2$ se llama a veces el error estándar de regresión, y tiene las mismas unidades que la variable de respuesta $y$.
 
 Dado que $\hat{\sigma}^2$ depende de la suma residual de cuadrados, cualquier violación de los supuestos sobre los errores del modelo o cualquier especificación errónea de la forma del modelo puede dañar seriamente la utilidad de $\hat{\sigma}^2$ como estimación de $\sigma^2$. Dado que $\hat{\sigma}^2$ se calcula a partir de los residuos del modelo de regresión, decimos que es una estimación dependiente del modelo de $\sigma^2$.
 

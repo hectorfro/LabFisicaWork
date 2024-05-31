@@ -4,8 +4,7 @@
 \usepackage[spanish,es-tabla]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{xcolor}
-\usepackage{lipsum} % Para texto de ejemplo
-
+%\usepackage{enumitem}
 \usetheme{Madrid} 
 \useinnertheme{circles}
 \usecolortheme{default} 
@@ -275,7 +274,7 @@ La cantidad $m$ se denomina coeficiente de regresión de $y$ sobre $x$, lo denota
 \end{frame}
 
 \begin{frame}{}
-En nuestro ejemplo, los estadísticos descriptivos anteriores para las variables temperatura y tiempo del enfriamiento son los siguientes:
+En nuestro ejemplo, los estadísticos descriptivos anteriores para las ($n=21$) variables temperatura y tiempo del enfriamiento son los siguientes:
 \vspace{0.5cm} 
     \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}      
@@ -363,7 +362,7 @@ El coeficiente de correlación lineal entre $x$ e $y$ viene dado por:
 $$
 r=\frac{S_{xy}}{S_x S_y}
 $$
-y trata de medir la dependencia lineal que existe entre las dos variables. Su cuadrado se denomina coeficiente de determinación $r^2$.
+y es una medida estadística que cuantifica la intensidad de la relación lineal entre dos variables. Su cuadrado se denomina coeficiente de determinación $r^2$.
 
 Propiedades del coeficiente de correlación:
 \begin{enumerate}
@@ -383,7 +382,7 @@ $$
 El menos indica que existe una relación inversa entre las variables. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
     \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}      
-        \vspace{0.4cm} 
+        \vspace{0.2cm} 
 El coeficiente de determinación al cuadrado es $r^2=0.9095$.
 
 La relación entre los coeficientes de regresión y de correlación:
@@ -393,13 +392,14 @@ $$
 $$
 m_{x / y}=r \frac{S_x}{S_y}=-0.2443 
 $$
-Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo
+Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo: a medida que $x$ aumenta  $y$ tiende a disminuir.
+
             \vspace{0.5cm} % Espacio vertical
         \end{column}
         \begin{column}{0.5\textwidth}
 %        \vspace{1.0cm} 
             \centering
-            \includegraphics[width=\textwidth]{figuras/fig05} % Imagen de ejemplo
+            \includegraphics[width=0.9\textwidth]{figuras/fig05} % Imagen de ejemplo
             \vspace{0.5cm} % Espacio vertical
         \end{column}
     \end{columns}
@@ -407,19 +407,161 @@ Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mis
 \end{frame}
 
 \begin{frame}{}
+\begin{itemize}
+\item Descomposición de la variabilidad: 
+\begin{enumerate}
+\item Variabilidad Explicada (Sum of Squares for Regression, SSR): Representa la parte de la variabilidad de $y$ que se explica por el modelo de regresión.
+$$
+\mathrm{SSR}=\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2
+$$
+
+\item Variabilidad Residual (Sum of Squares for Error, SSE): Representa la parte de la variabilidad de $y$  que no se puede explicar por el modelo de regresión.
+$$
+\mathrm{SSE}=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 
+$$
+\item Variabilidad Total (Total Sum of Squares, SST): Representa la variabilidad total de la variable dependiente $y$ respecto a su media.
+$$
+\mathrm{SST}=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2
+$$
+\end{enumerate}
+
+\item La variabilidad total se puede descomponer en la variabilidad explicada por el modelo y la variabilidad residual
+$$
+\mathrm{SST}= \mathrm{SSR} + \mathrm{SSE} \,\, \Rightarrow \,\,
+\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 =
+\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 + 
+\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2
+$$
+
+\end{itemize}
 \end{frame}
 
 \begin{frame}{}
+\begin{itemize}
+\item Coeficiente de determinación $r^2$: El coeficiente de determinación  es una medida que cuantifica la proporción de la variabilidad total de $y$ que es explicada por el modelo de regresión. Se calcula como:
+$$
+r^2=\frac{\sum\left(\hat{y}_i-\bar{y}\right)^2}{\sum\left(y_i-\bar{y}\right)^2}=\frac{\mathrm{SSR}}{\mathrm{SST}}
+$$
+\end{itemize}
+
+\begin{itemize}
+\item Para el modelo de temperaturas y resistencias:
+$$
+\mathrm{SSR}= 1787904.8827\,, \,\, \mathrm{SSE}= 177921.2163\,,
+\mathrm{SST}= 1965826.099
+$$
+
+$$
+r^2=\frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{1787904.8827}{1965826.099}= 0.9095 
+$$
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{6. El contraste de regresión}
+
+Pruebas estadísticas  para evaluar la significancia de los coeficientes en un modelo de regresión. Ayudan a determinar si las relaciones observadas entre las variables independientes (predictores) y la variable dependiente (respuesta) son estadísticamente significativas. 
+
+\begin{enumerate}
+\item  Hipótesis en el Contraste de Regresión:
+\begin{itemize}
+\item  Hipótesis Nula $\left(H_0\right)$: Indica que el coeficiente de regresión no tiene un efecto significativo en la variable dependiente. Matemáticamente es $\beta_i=0$, donde $\beta_i$ es el coeficiente de regresión de una variable independiente específica.
+
+\item  Hipótesis Alternativa $\left(H_a\right)$ Sugiere que el coeficiente de regresión tiene un efecto significativo en la variable dependiente. Esto se expresa como $\beta_i  \neq 0$.
+\end{itemize}
+
+\item Estadístico t (t-Estadístico)
+Para cada coeficiente de regresión $\beta_i$, se calcula un t-estadístico para evaluar su significancia.
+Este se define como:
+$$
+t_i=\frac{\hat{\beta}_i}{\mathrm{SE}\left(\hat{\beta}_i\right)}
+$$
+donde $\hat{\beta}_i$ es el estimador del coeficiente de regresión y $\mathrm{SE}\left(\hat{\beta}_i\right)$ es el error estándar del coeficiente de regresión.
+
+\end{enumerate}
 \end{frame}
 
 \begin{frame}{}
+\begin{enumerate}
+\setcounter{enumi}{2} 
+\item Valor $\mathrm{p}$ (p-Value): el valor $\mathrm{p}$ asociado con el t-estadístico se utiliza para tomar decisiones respecto a las hipótesis. Si el valor $p$ es menor que un nivel de significancia predefinido (generalmente 0.05), se rechaza la hipótesis nula, indicando que el coeficiente es significativamente diferente de cero.
+
+\item Contraste Global del Modelo: además de evaluar cada coeficiente individualmente, se puede realizar un contraste global del modelo para verificar si al menos una de las variables independientes tiene un efecto significativo. 
+
+Esto se hace usando el estadístico F (F-statistic)
+
+$$
+\mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= \dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{ n-k}}
+$$
+donde $k$  es el número de coeficientes estimados en el modelo de regresión y $n$  el número de observaciones.
+\end{enumerate}
 \end{frame}
 
 \begin{frame}{}
+Para el ejemplo en estudio podemos calcular los  t-estadístico, primero calculamos  el error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal.
+
+$$
+\mathrm{SE}\left(m\right)^2=\Delta m=\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, \,\, 
+\mathrm{SE}\left(b\right)^2=\Delta b=\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right] 
+$$
+donde 
+$$
+\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2} = 9364.2745 
+$$
+
+$$
+\Delta m = \sqrt{\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}}= 0.2695
+$$
+$$
+\Delta b = \sqrt{\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right]  }   = 39.7582
+$$
+
+$$
+t_m=\frac{m}{\Delta m}= -13.8177\,, \,\, t_b=\frac{b}{\Delta b}= 65.9557
+$$
+
 \end{frame}
 
 \begin{frame}{}
+\begin{itemize}
+\item Estimaciones de los  intervalos de confianza  para los parámetros:
+\end{itemize}
+Los errores estándar pueden utilizarse para calcular intervalos de confianza. El intervalo se define en términos de límites inferior y superior calculados a partir de la muestra de datos. Un intervalo de confianza del 95\% tiene la siguiente propiedad: si tomamos muestras repetidas y construimos el intervalo de confianza para cada muestra, el 95\% de los intervalos contendrán el verdadero valor desconocido del parámetro. 
+   \begin{columns}[T] % Alineación superior de las columnas
+        \begin{column}{0.5\textwidth}      
+El intervalo de confianza del 95 \% para $m$ sería        
+$$
+m \pm 2 \cdot \mathrm{SE}\left(m\right)
+$$
+Tenemos una probabilidad del 95 \% de que el intervalo
+$$
+\left[m-2 \cdot \mathrm{SE}\left(m\right), m+2 \cdot \mathrm{SE}\left(m\right)\right]
+$$
+contendrá el verdadero valor de $m$. Igual para  $b$
+$$
+m \in  [-4.2624 \ ,\ -3.1845]
+$$
+$$
+b \in  [2542.7669 \ , \ 2701.7999]
+$$
+%            \vspace{0.5cm} % Espacio vertical
+        \end{column}
+        \begin{column}{0.5\textwidth}
+%        \vspace{1.0cm} 
+Para el cálculo de estadístico F (F-statistic)
+$$
+\mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= \dfrac{\dfrac{\mathrm{SSR}}{ 2-1}}{\dfrac{\mathrm{SSE}}{ 21-2}}
+$$
+
+Resulta
+$$
+\mathrm{F}=\frac{1787904.8827}{9364.2745}= 190.9283
+$$
+        \end{column}
+    \end{columns}
 \end{frame}
+
 
 
 \begin{frame}
