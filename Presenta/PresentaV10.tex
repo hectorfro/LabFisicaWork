@@ -488,13 +488,14 @@ donde $\hat{\beta}_i$ es el estimador del coeficiente de regresión y $\mathrm{SE
 \item Valor $\mathrm{p}$ (p-Value): el valor $\mathrm{p}$ asociado con el t-estadístico se utiliza para tomar decisiones respecto a las hipótesis. Si el valor $p$ es menor que un nivel de significancia predefinido (generalmente 0.05), se rechaza la hipótesis nula, indicando que el coeficiente es significativamente diferente de cero.
 
 \item Contraste Global del Modelo: además de evaluar cada coeficiente individualmente, se puede realizar un contraste global del modelo para verificar si al menos una de las variables independientes tiene un efecto significativo. 
-
 Esto se hace usando el estadístico F (F-statistic)
 
 $$
-\mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= \dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{ n-k}}
+\mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= 
+\dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{ n-k}} = 
+\dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\hat{\sigma}}
 $$
-donde $k$  es el número de coeficientes estimados en el modelo de regresión y $n$  el número de observaciones.
+donde $k$  es el número de coeficientes estimados en el modelo de regresión y $n$  el número de observaciones. $\mathrm{MSE} = \hat{\sigma}$ =Error Mean Square o Residual Mean Square. 
 \end{enumerate}
 \end{frame}
 
@@ -525,30 +526,62 @@ $$
 
 \begin{frame}{}
 \begin{itemize}
+\item  El nivel de confianza refleja la probabilidad de que el intervalo de confianza contenga el valor verdadero del parámetro de la población. Se construye a través de un  valor crítico $t_{\alpha / 2 , n-2}$ o $t_{\text {critical}}$ que es un punto específico en la distribución ($t$-Student). Un nivel de confianza del $95 \%$ corresponde a $\alpha=0.05$, porque $1-0.95=0.05$. Dado que el nivel de confianza es bilateral, se divide en dos colas de la distribución $t$, lo que significa que cada cola tiene un área de $\alpha / 2$.
+
+\item  Fórmula del intervalo de confianza:
+$$
+\hat{\beta}_j \pm t_{\alpha / 2, n-2} \cdot \operatorname{SE}\left(\hat{\beta}_j\right)
+$$
+Aquí, $\hat{\beta}_j$ es el estimador del parámetro (intersección o pendiente), y $\operatorname{SE}\left(\hat{\beta}_j\right)$ es el error estándar del estimador.
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{itemize}
 \item Estimaciones de los  intervalos de confianza  para los parámetros:
 \end{itemize}
-Los errores estándar pueden utilizarse para calcular intervalos de confianza. El intervalo se define en términos de límites inferior y superior calculados a partir de la muestra de datos. Un intervalo de confianza del 95\% tiene la siguiente propiedad: si tomamos muestras repetidas y construimos el intervalo de confianza para cada muestra, el 95\% de los intervalos contendrán el verdadero valor desconocido del parámetro. 
+En el contexto del ejemplo para tener un nivel de confianza del $95 \% \alpha=0.05$. Como los grados de libertad son 19, el valor crítico $t_{\alpha / 2 \text {,dof }}$ para $\alpha / 2=0.025$ y 19 grados de libertad es de 2.093 .
+ \vspace{0.4cm} 
    \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}      
-El intervalo de confianza del 95 \% para $m$ sería        
+Para $\hat{\beta}_1=m=-3.7234$ y  $\mathrm{SE}\left(m\right)=0.2695$
 $$
-m \pm 2 \cdot \mathrm{SE}\left(m\right)
+\begin{gathered}
+\mathrm{CI}=\hat{\beta}_1 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}\left(\hat{\beta}_1\right) \\
+\mathrm{CI}=-3.7234 \pm 2.093 \cdot 0.2695 \\
+\mathrm{CI}=-3.7234 \pm 0.5640\\
+\mathrm{CI}=[-4.2874,-3.1594]
+\end{gathered}
 $$
-Tenemos una probabilidad del 95 \% de que el intervalo
-$$
-\left[m-2 \cdot \mathrm{SE}\left(m\right), m+2 \cdot \mathrm{SE}\left(m\right)\right]
-$$
-contendrá el verdadero valor de $m$. Igual para  $b$
-$$
-m \in  [-4.2624 \ ,\ -3.1845]
-$$
-$$
-b \in  [2542.7669 \ , \ 2701.7999]
-$$
+
 %            \vspace{0.5cm} % Espacio vertical
         \end{column}
         \begin{column}{0.5\textwidth}
 %        \vspace{1.0cm} 
+Para $\hat{\beta}_0=b=2622.2834$ y  $\mathrm{SE}\left(b\right)=39.7582$
+$$
+\begin{gathered}
+\mathrm{CI}=\hat{\beta}_0 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}\left(\hat{\beta}_0\right) \\
+\mathrm{CI}=2622.2834 \pm 2.093 \cdot 39.7582 \\
+\mathrm{CI}=2622.2834\pm 83.2140 \\
+\mathrm{CI}=[2539.0694, 2705.4975]
+\end{gathered}
+$$
+        \end{column}
+    \end{columns}
+\vspace{0.5cm} 
+Estos intervalos indican que con un $95 \%$ de confianza, el verdadero valor de la pendiente $m$  y el intercepto $b$ se encuentra dentro de este rango.    
+    
+\end{frame}
+
+
+
+\begin{frame}
+\begin{itemize}
+\item La significancia global del modelo de regresión
+\end{itemize}
 Para el cálculo de estadístico F (F-statistic)
 $$
 \mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= \dfrac{\dfrac{\mathrm{SSR}}{ 2-1}}{\dfrac{\mathrm{SSE}}{ 21-2}}
@@ -558,11 +591,13 @@ Resulta
 $$
 \mathrm{F}=\frac{1787904.8827}{9364.2745}= 190.9283
 $$
-        \end{column}
-    \end{columns}
+
+Este valor indica que el modelo es estadísticamente significativo, lo que significa que la relación entre las variables independientes y la variable dependiente es poco probable que se deba al azar.
+
+\begin{itemize}
+\item statsmodels: es un módulo de Python que proporciona clases y funciones para la estimación de  modelos estadísticos diferentes, así como para la realización de pruebas estadísticas, y la exploración de datos estadísticos. Para cada estimador se dispone de una extensa lista de estadísticas de resultados. Los resultados se comprueban con paquetes estadísticos existentes para garantizar que son correctos. La documentación en línea se encuentra en statsmodels.org.
+\end{itemize}
 \end{frame}
-
-
 
 \begin{frame}
     \frametitle{Gráficos}
