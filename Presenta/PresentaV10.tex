@@ -63,10 +63,8 @@
         \item Método de mínimos cuadrados
         \item Coeficiente de regresión
 	\item Coeficiente de correlación lineal
-	\item El contraste de regresión
 	\item Inferencias acerca de los parámetros
-	 \item Inferencias acerca de la predicción
-	 \item Los supuestos del modelo de regresión lineal
+	 \item Condiciones y supuestos para modelo de regresión lineal
 	\item Un ejemplo en donde no se cumplen los supuestos
     \end{enumerate}
 \end{frame}
@@ -92,6 +90,18 @@ $$
 y \approx \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k 
 $$
     \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+Con técnicas de regresión de una variable $y$ (respuesta), sobre una variable $x$ (regresor), se busca una función que sea una buena aproximación de una nube de puntos,  mediante una curva del tipo: 
+$$
+\hat{y}= f(x)
+$$
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figuras/fig03}
+    \end{figure}
+
 \end{frame}
 
 
@@ -122,7 +132,7 @@ relaciona las medias de las distribuciones de $y_i$ para cada $x_i$.
         \end{column}
         \begin{column}{0.5\textwidth}
 \vspace{0.5cm} 
-3. $\varepsilon_i$ introduce variabilidad adicional a $y_i$ con varianza constante $\sigma^2$.
+3. Las cantidades $\varepsilon_i$ introduce variabilidad adicional a $y_i$ con varianza constante $\sigma^2$.
 
 4. El modelo asume varianza constante para $y_i$:
 $$
@@ -132,18 +142,6 @@ $$
 
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}{}
-Con técnicas de regresión de una variable $y$ (respuesta) sobre una variable $x$ (regresor), se busca una función que sea una buena aproximación de una nube de puntos,  mediante una curva del tipo: 
-$$
-\hat{y}= f(x)
-$$
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\textwidth]{figuras/fig03}
-    \end{figure}
-
 \end{frame}
 
 \begin{frame}{}
@@ -174,7 +172,7 @@ $$
 $$
 donde:
 
-- $T$ es la temperatura en grados Kelvin.
+- $T$ es la temperatura.
 
 - $R$ es la resistencia en ohmios.
 
@@ -191,12 +189,12 @@ $$
 es decir, a una linea recta donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ es el coeficiente de temperatura, que indica la tasa de cambio de la resistencia con la temperatura.
 \vspace{0.5cm}
 
-{\bf Experimento:}  Medición de la Resistencia de un Termistor NTC
+{\bf Experimento:}  Medición de la resistencia de un termistor NTC
 
 Descripción del Experimento:
 \begin{itemize}
 \item  Objetivo: Determinar la relación lineal aproximada entre la resistencia y la temperatura de un termistor NTC en un rango limitado de temperaturas.
-\item Variables: $y$, resistencia del material (en ohmios) y $x$ la temperatura  (en grados Kelvin)
+\item Variables: $y$, resistencia del material y $x$ la temperatura.  
 \end{itemize}
         \end{column}
     \end{columns}
@@ -208,9 +206,9 @@ Descripción del Experimento:
         \begin{column}{0.5\textwidth}
 Procedimiento:  
 \begin{itemize}
-\item Calentar el Termistor: Coloca el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente.
-\item  Medir la Resistencia y Temperatura: Retira el termistor del agua caliente y mide su resistencia a intervalos regulares mientras se enfría. Simultáneamente, mide la temperatura del termistor.
-\item Registrar los Datos: Anota las mediciones de resistencia $R$ y temperatura $T$
+\item Calentar el termistor: coloca el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente.
+\item  Medir la resistencia y temperatura: retirar el termistor del agua caliente y medir su resistencia a intervalos regulares mientras se enfría. Simultáneamente, medir la temperatura del termistor.
+\item Registrar los Datos: anotar las mediciones de resistencia $R$ y temperatura $T$
 
  \end{itemize} 
             \vspace{0.5cm} % Espacio vertical
@@ -459,7 +457,7 @@ $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{6. El contraste de regresión}
+\begin{frame}{6. Inferencias acerca de los parámetros}
 
 Pruebas estadísticas  para evaluar la significancia de los coeficientes en un modelo de regresión. Ayudan a determinar si las relaciones observadas entre las variables independientes (predictores) y la variable dependiente (respuesta) son estadísticamente significativas. 
 
@@ -599,13 +597,119 @@ Este valor indica que el modelo es estadísticamente significativo, lo que signif
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Gráficos}
+\begin{frame}{Resumen}
     \begin{figure}
         \centering
         \includegraphics[width=0.8\textwidth]{figuras/fig20a}
         \caption{Descripción de la imagen.}
     \end{figure}
 \end{frame}
+
+\begin{frame}{Condiciones y supuestos para modelo de regresión lineal}
+
+Hemos visto cómo aproximar el modelo de regresión lineal simple
+$$
+y=\beta_0+\beta_1 x +\varepsilon,
+$$
+por la recta
+$$
+\hat{y}=a+b x .
+$$
+
+Para garantizar que una aproximación usando una regresión lineal simple es válida, deben cumplirse varias condiciones y supuestos. Estas condiciones aseguran que el modelo lineal es una buena representación de la relación entre las variables y que las inferencias realizadas a partir del modelo son fiables. 
+
+\begin{enumerate}
+\item {\bf Linealidad:} La relación entre la variable dependiente $y$ y la variable independiente 
+$x$ debe ser lineal. Esto significa que los puntos de datos deben seguir un patrón que se asemeja a una línea recta.
+\item {\bf Independencia:}  Los errores o residuos $e_i$ deben ser independientes entre sí. Esto significa que el error de una observación no debe influir en el error de otra observación.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\begin{enumerate}
+\setcounter{enumi}{2} 
+\item {\bf Homoscedasticidad:} La varianza de los errores $e_i=\left(\hat{y}_i-y_i\right)$ debe ser constante en todos los niveles de la variable independiente $x$. Esto implica que la dispersión de los puntos alrededor de la línea de regresión debe ser aproximadamente la misma para todos los valores de $x$.
+\item {\bf Normalidad de los Errores:}   Los errores $e_i$  deben seguir una distribución normal con media cero y varianza constante. Esto es especialmente importante para la validación de las pruebas de hipótesis y los intervalos de confianza.\end{enumerate}
+
+\begin{itemize}
+\item Verificación de Condiciones
+\end{itemize}
+\begin{description}
+\item[-]  Linealidad: Diagramas de Dispersión  (Scatter Plots).
+\item[-]   Homoscedasticidad: Gráficos de Residuos (Residual Plots).
+\item[-]  Independencia: Prueba de Durbin-Watson.
+\item[-]  Normalidad: Histograma de Residuos o Gráfico Q-Q (Quantile-Quantile Plot).
+\end{description}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item La prueba de Durbin-Watson
+\end{itemize}
+
+Es una prueba estadística utilizada para detectar la presencia de autocorrelación en los residuos (errores) de un modelo de regresión. La autocorrelación ocurre cuando los residuos no son independientes entre sí, lo que puede invalidar muchas de las inferencias que se pueden hacer a partir del modelo.
+
+La ecuación para el estadístico DW es:
+$$
+\mathrm{DW}=\frac{\sum_{i=2}^n\left(e_i-e_{i-1}\right)^2}{\sum_{i=1}^n e_i^2}
+$$
+donde $e_i$ son los residuos del modelo.
+
+Interpretación del Estadístico de Durbin-Watson
+\begin{itemize}
+\item   $\mathrm{DW} \approx 2$ : No hay autocorrelación.
+\item   $\mathrm{DW} <2 $  Autocorrelación positiva.
+\item   $\mathrm{DW}  >2 $: Autocorrelación negativa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Para los datos considerados en el ejemplo: Medición de la resistencia de un termistor
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.34\textwidth]{figuras/fig05a}
+        \includegraphics[width=0.34\textwidth]{figuras/fig06} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig07}
+        \includegraphics[width=0.34\textwidth]{figuras/fig08}      
+        %\caption{Estadístico de Durbin-Watson: 2.027}
+    \end{figure}
+Estadístico de Durbin-Watson: 2.027
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Algunos casos en los que no se cumplen los supuestos
+\end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.34\textwidth]{figuras/fig09}
+        \includegraphics[width=0.34\textwidth]{figuras/fig10} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig11a}
+        \includegraphics[width=0.34\textwidth]{figuras/fig11}      
+        %\caption{Estadístico de Durbin-Watson: 2.027}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+En el ejemplo mostrado pareciera que a simple vista el ajuste lineal es adecuado pero el resto de criterios falla
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.34\textwidth]{figuras/fig12}
+        \includegraphics[width=0.34\textwidth]{figuras/fig13} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig14}
+        \includegraphics[width=0.34\textwidth]{figuras/fig15}      
+        %\caption{Estadístico de Durbin-Watson: 2.027}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Resumen}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figuras/fig16}
+        \caption{Descripción de la imagen.}
+    \end{figure}
+\end{frame}
+
 
 \end{document}
