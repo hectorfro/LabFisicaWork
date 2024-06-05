@@ -123,7 +123,6 @@ Así, el modelo de regresión (\ref{regrelineal}) asume que las distribuciones de 
 
 \item  Se supone que los términos de error no están correlacionados. Dado que los términos de error $\varepsilon_i$ y $\varepsilon_j$ no están correlacionados, tampoco lo están las respuestas $y_i$ y $y_j$.
 
-\item En resumen, el modelo de regresión (\ref{regrelineal}) implica que las respuestas $y_i$ proceden de distribuciones de probabilidad cuyas medias son $E\left\{y_i\right\}=\beta_0+\beta_1 x_i$ y cuyas varianzas son $\sigma^2$, iguales para todos los niveles de $x$. Además, dos respuestas cualesquiera $y_i$ y $y_j$ no están correlacionadas.
 
 \end{enumerate}
 
@@ -269,18 +268,25 @@ m &=&\dfrac{ n\sum\limits_{i=1}^n x_i y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i
 b &=&\dfrac{\sum\limits_{i=1}^n x_i^2 \sum\limits_{i=1}^n y_i-\sum\limits_{i=1}^n x_i \sum\limits_{i=1}^n x_i y_i}{\Delta} =  \bar{y}-m \bar{x} \,,
 \label{b2}
 \end{eqnarray}
-donde $\bar{y} \equiv \frac{1}{n} \sum_{i=1}^n y_i$ y $\bar{x} \equiv \frac{1}{n} \sum_{i=1}^n x_i$ son las medias simples.  Nótese que los términos $\sum x_i^2$ y $\left(\sum x_i\right)^2$ no son lo mismo. Idéntica observación se debe hacer para los términos $\sum x_i y_i $ y $\sum x_i \sum y_i$.
 
-De esta manera obtenemos la recta $\hat{y}=mx+b$ que mejor de aproxima a los puntos. Es muy común utilizar las siguiente notación:
-\begin{eqnarray}
-S_{x x}&=&\sum_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^n x_i\right)^2}{n}=\sum_{i=1}^n\left(x_i-\bar{x}\right)^2  \,,\\
-S_{x y}&=&\sum_{i=1}^n y_i x_i-\frac{\left(\sum_{i=1}^n y_i\right)\left(\sum_{i=1}^n x_i\right)}{n}=\sum_{i=1}^n y_i\left(x_i-\bar{x}\right)
-\end{eqnarray}
-
-Esto permite escribir (\ref{eme2}) como
+Se puede  escribir (\ref{eme2}) como
 \begin{equation}
-m=\frac{S_{x y}}{S_{x x}}
+m=\frac{S_{xy}}{S_x^2} \,.
 \end{equation}
+
+En donde $\bar{x}$ e $\bar{y}$ denotan las medias muestrales de $x$ y $y$ (respectivamente), 
+$$
+\bar{x}=\frac{\sum_{i=1}^n x_i}{n}, \, \quad \bar{y}=\frac{\sum_{i=1}^n y_i}{n}\,,
+$$
+
+$S_x^2$ es la varianza muestral de $x$ y $S_{xy}$ es la covarianza muestral entre $x$ y $y$. Estos parámetros se calculan como:
+$$
+S_x^2=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}, \, S_y^2=\frac{\sum_{i=1}^n\left(y_i-\bar{y}\right)^2}{n}, \, S_{xy}=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{n} .
+$$
+
+La cantidad $m$ se denomina coeficiente de regresión de $y$ sobre $x$, lo denotamos por $m_{y/x}$.
+
+
 
 
 En el trabajo de laboratorio podríamos construir una tabla como la mostrada en \ref{tablamincua}, para así ordenar la información y facilitar los cálculos. Las cuatro sumas en la última línea, son los valores necesarios para calcular $m$ y $b$. Los valores de $m$ y $b$ que se obtengan por el método de los mínimos cuadrados, deberían ser muy próximos a los obtenidos directamente utilizando el método gráfico. 
@@ -325,22 +331,40 @@ Sea SSE (Sum of Squared Errors) la suma de los cuadrados de los residuos.
 $$
 \mathrm{SSE} = \sum\limits_{i=1}^n e_i^2 = \sum\limits_{i=1}^n (y_i-\left(b+m x_i\right) )^2
 $$
+y representa la parte de la variabilidad de $y$  que no se puede explicar por el modelo de regresión.
 
-En el contexto del análisis de regresión por mínimos cuadrados, se define la cantidad $S_y$ como la desviación estándar de los errores, también conocida como el error estándar residual. Esta cantidad representa la raíz cuadrada de la suma de los cuadrados de los errores dividida por $n-2$,  matemáticamente es:
+También se suelen definir las siguientes cantidades: la variabilidad Explicada (Sum of Squares for Regression, SSR) que representa la parte de la variabilidad de $y$ que se explica por el modelo de regresión.
 $$
-S_y = \sqrt{\frac{\mathrm{SSE}}{n - 2}} 
+\mathrm{SSR}=\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 \,.
 $$
-$S_y$ es una medida de la dispersión de los datos alrededor de la recta de regresión ajustada y se utilizada para calcular los errores estándar de la pendiente $\Delta m$
- y el término independiente $\Delta b$ de la regresión lineal.
+
+Y la variabilidad Total (Total Sum of Squares, SST)que  representa la variabilidad total de la variable dependiente $y$ respecto a su media.
+$$
+\mathrm{SST}=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \,.
+$$
+
+La variabilidad total se puede descomponer en la variabilidad explicada por el modelo y la variabilidad residual
+$$
+\mathrm{SST}= \mathrm{SSR} + \mathrm{SSE} \,\, \Rightarrow \,\,
+\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 =
+\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 + 
+\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2
+$$
+
+
+Podemos calcular  el error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal de la siguiente manera:
 \begin{eqnarray}
-\Delta m &=& \sqrt{\dfrac{n}{\Delta}} \cdot S_y 
-\label{Delm}\\ \nonumber  \\
-\Delta b &= &\sqrt{\dfrac{\sum\limits_{i=1}^n x_i^2}{\Delta} } \cdot S_y
+\mathrm{SE}\left(m\right)^2 &=& \Delta m=\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, 
+\label{Delm}  \\
+\mathrm{SE}\left(b\right)^2 &= &\Delta b=\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right]  \,,
 \label{Delb}
 \end{eqnarray}
+donde 
+$$
+\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2} 
+$$
 
 
-Finalmente, para calcular $S_y$ se puede utilizar como ayuda la tabla \ref{tablamincua}.
 
 
 %example
@@ -403,17 +427,16 @@ n& \sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2  \\ \hline\hline
 $$
 Por lo tanto 
 $$
-S_y=\left[\frac{\sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2}{n-2}\right]^{\frac{1}{2}}=
+\hat{\sigma}=\left[\frac{\mathrm{SSE}}{n-2}\right]^{\frac{1}{2}}=
 \left(\frac{1.244}{8}\right)^{\frac{1}{2}}= 0.394 \,.
 $$
 
 
-y los errores 
+y los errores a partir de las ecuaciones (\ref{Delm}) y (\ref{Delb})
 $$
 \begin{aligned}
-\Delta m & =\left[\frac{n}{\Delta}\right]^{\frac{1}{2}} S_y = \left[\frac{10}{9.24}\right]^{\frac{1}{2}} ( 0.394 )=0.401  \,, \\
-\Delta b & =\left[\frac{\sum\limits_{i=1}^n\left(t_i\right)^2}{\Delta}\right]^{\frac{1}{2}} S_y= 
-\left[\frac{3.04}{9.24}\right]^{\frac{1}{2}} ( 0.394 )= 0.226 \,. 
+\Delta m & =0.401  \,, \\
+\Delta b & = 0.226 \,. 
 \end{aligned}
 $$
 
@@ -448,6 +471,12 @@ plt.title(r'Velocidad vs tiempo', fontsize=20)
 plt.xlabel(r'$t$ [s]', fontsize=16)
 plt.ylabel(r'$v$ [m/s]', fontsize=16)
 \end{lstlisting}
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=3.0in,width=3.6in]{figuras/fig12}  
+\label{figdatos2}
+\end{center}
+\end{figure}
 
 Para usar las ecuaciones (\ref{eme2})-(\ref{b2}) se necesita hacer una serie de  cálculos intermedios, como se muestra a continuación:
 \begin{lstlisting}[language=Python] 
@@ -472,9 +501,9 @@ Y finalmente calculamos $b$ y $m$
 
 \begin{lstlisting}[language=Python] 
 # Se escriben las ecuaciones para b y m 
-b=(Sum_xx*Sum_y-Sum_xy*Sum_x)/(n*Sum_xx-Sum_x**2)
-m=(n*Sum_xy-Sum_x*Sum_y)/(n*Sum_xx-Sum_x**2)
-print('m=',m, ',', 'b=',b)
+m_mc = (n * Sum_xy - Sum_x * Sum_y) / Delta
+b_mc = Sum_y /n - m_mc * Sum_x/n
+print('m=',m_mc, ',', 'b=',b_mc)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
@@ -486,11 +515,11 @@ En este bloque de comandos lo que se quiere es hacer una gráfica que contenga la
 
 \begin{lstlisting}[language=Python] 
 # La gráfica con los datos y la recta que mejor se ajusta 
-y_pred=m_mc*xn + b_mc
-#
+y_hat= m_mc*xn + b_mc
+# 
 plt.figure()
 plt.scatter(xn, yn, color='b',marker='+', label='datos medidos')
-plt.plot(xn, y_pred, 'r--',label='recta por mínimos cuadrados')
+plt.plot(xn, y_hat, 'r--',label='recta por mínimos cuadrados')
 plt.grid(linestyle='dotted')
 plt.legend(loc='best')
 plt.title(r'Velocidad vs tiempo', fontsize=18)
@@ -506,24 +535,27 @@ plt.show()
 \end{center}
 \end{figure}
 
-El siguiente paso es calcular $\Delta b$ y $\Delta m$, pero primero $S_y$
+El siguiente paso es calcular $\Delta b$ y $\Delta m$, pero primero $\hat{\sigma}$
 
 \begin{lstlisting}[language=Python] 
-SSE= np.sum((yn -(b_mc + m_mc*xn))**2)
-Sy= np.sqrt(SSE/(n-2))
-print('n=',n,',','SSE=', SSE ,',', 'Sy=',Sy)
+SSE= np.sum((yn - y_hat)**2)
+s_hat= np.sqrt(SSE/(n-2))
+print('n=',n,',','SSE=', SSE ,',', 'sigma=',s_hat)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-n= 10 , SSE= 1.244265584415585 , Sy= 0.3943769745458628
+n= 10 , SSE= 1.244265584415585 ,  $\sigma$= 0.3943769745458628
 }
 \end{tcolorbox}
 
 Los respectivos errores se obtienen de las ecuaciones (\ref{Delm}) y (\ref{Delb}) 
 
 \begin{lstlisting}[language=Python] 
-Delta_m = np.sqrt(n/(n*np.sum(xn ** 2) - np.sum(xn)**2))*Sy
-Delta_b = np.sqrt(np.sum(xn**2)/(n*np.sum(xn**2)-np.sum(xn)**2))*Sy
+# Los promedios de x y y 
+xp= np.sum(xn)/n
+yp= np.sum(yn)/n
+Delta_m = np.sqrt(s_hat**2 / np.sum((xn - xp)**2))
+Delta_b= np.sqrt(s_hat**2 * (1/n + xp**2 / np.sum((xn - xp)**2)))
 print(f'm = {np.round(m_mc, 1)} \u00B1 {np.round(Delta_m, 1)}')
 print(f'b = {np.round(b_mc, 1)} \u00B1 {np.round(Delta_b, 1)}')
 \end{lstlisting}
@@ -668,19 +700,14 @@ $$
 
 
 %example
-\begin{example}
+\begin{example}{Ley de enfriamiento de Steinhart-Hart. }
 \label{ejemcizalla}
-Un pegamento para piezas metálicas se prueba mediante la aplicación de una fuerza de cizallamiento entre las partes que han sido pegadas. La resistencia al cizallamiento de la unión entre los dos tipos de piezas es una característica crucial de calidad del pegamento. Los investigadores observan que con el transcurso del tiempo el pegamento se debilita, lo cual es un problema que los ingenieros deben resolver. 
-
-Los datos muestran que probablemente existe una relación entre el tiempo transcurrido desde que se aplica el pegamento,  medida en semanas, y la resistencia a una fuerza de cizallamiento aplicada. Los datos se han recogido para veinte observaciones sobre la resistencia al cizallamiento y la edad del pegamento, como se muestra en la tabla \ref{datosciza}. 
-
-Un diagrama de dispersión sugiere una fuerte relación estadística entre la resistencia al cizallamiento y la edad del pegamento. La hipótesis inicial de un modelo lineal, $y=\beta_0+\beta_1 x+\varepsilon$, parece razonable. 
-\begin{figure}[h]
+\begin{figure}[!t]
 \begin{tabular}{ccc}
 \hline Observación, $i$ & \begin{tabular}{c} 
-Cizallamiento, $y_i ( \mathrm{psi} )$
+Resistencia, $y_i \ ( \Omega )$
 \end{tabular} & \begin{tabular}{c} 
-Edad del pegamento, $x_i ($ semanas $)$
+Temperatura, $x_i \ ($ºC $)$
 \end{tabular} \\
 \hline 1 & 2158.70 & 15.50 \\
 2 & 1678.15 & 23.75 \\
@@ -702,22 +729,63 @@ Edad del pegamento, $x_i ($ semanas $)$
 18 & 2200.50 & 12.50 \\
 19 & 2654.20 & 2.00 \\
 20 & 1753.70 & 21.50 \\
+21 & 2665.86 & 0.00 \\
 \hline
 \end{tabular}
 \label{datosciza}
 \caption{Datos para el ejemplo \ref{ejemcizalla}.}
 \end{figure}
 
-A continuación haremos los cálculos directamente con Python y la librería ``statsmodels'' ya usada en el ejemplo \ref{ejemvelocidadtiempo}. Primero los datos de la tabla \ref{datosciza}
+Para describir con precisión la relación entre la resistencia $R$  de un termistor y su temperatura $T$ se utiliza la ecuación de Steinhart-Hart:
+$$
+\frac{1}{T}=A+B \ln (R)+C[\ln (R)]^3
+$$
+donde:
+
+- $T$ es la temperatura.
+
+- $R$ es la resistencia en ohmios.
+
+- $A, B, C$ son constantes específicas del termistor.
+
+En un rango pequeño de temperaturas, la relación entre $R$ y $T$ puede aproximarse a:
+$$
+R \approx R_0+\alpha\left(T-T_0\right)
+$$        
+donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ es el coeficiente de temperatura, que indica la tasa de cambio de la resistencia con la temperatura.
+
+{\bf Experimento:}  Medición de la resistencia de un termistor NTC
+
+El objetivo del experimento es determinar la relación lineal aproximada entre la resistencia y la temperatura de un termistor NTC en un rango limitado de temperaturas, donde las variables son: $y$, resistencia del material y $x$ la temperatura.  
+
+
+Procedimiento:  
+\begin{itemize}
+\item Calentar el termistor: coloca el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente.
+\item  Medir la resistencia y temperatura: retirar el termistor del agua caliente y medir su resistencia a intervalos regulares mientras se enfría. Simultáneamente, medir la temperatura del termistor.
+\item Registrar los Datos: anotar las mediciones de resistencia $R$ y temperatura $T$
+\end{itemize}
+
+
+Un diagrama de dispersión con los datos recolectados sugiere una fuerte relación estadística entre la resistencia  y la temperatura. La hipótesis inicial de un modelo lineal, $y=\beta_0+\beta_1 x+\varepsilon$, parece razonable. 
+
+A continuación haremos los cálculos directamente con Python y la librería ``statsmodels'' ya usada en el ejemplo \ref{ejemvelocidadtiempo}. 
 \begin{lstlisting}[language=Python] 
- # Datos de cizallamiento y edad de la pega
-xn = np.array([15.50, 23.75, 8.00, 17.00, 5.50, 19.00, 24.00, 2.50,
-                      7.50, 11.00, 13.00, 3.75, 25.00, 9.75, 22.00, 18.00,
-                      6.00, 12.50, 2.00, 21.50])
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+\end{lstlisting}
+
+Ahora es necesario introducir los datos de la tabla \ref{datosciza}
+\begin{lstlisting}[language=Python] 
+# Datos de resistencias y de temperaturas
 yn = np.array([2158.70, 1678.15, 2316.00, 2061.30, 2207.50,
-                          1708.30, 1784.70, 2575.00, 2357.90, 2256.70,
-                          2165.20, 2399.55, 1779.80, 2336.75, 1765.30,
-                          2053.50, 2414.40, 2200.50, 2654.20, 1753.70])
+               1708.30, 1784.70, 2575.00, 2357.90, 2256.70,
+               2165.20, 2399.55, 1779.80, 2336.75, 1765.30,
+               2053.50, 2414.40, 2200.50, 2654.20, 1753.70,2665.86])
+xn = np.array([150.50, 230.75, 80.00, 170.00, 50.50, 190.00, 240.00, 20.50,
+               70.50, 110.00, 130.00, 30.75, 250.00, 90.75, 220.00, 180.00,
+               60.00, 120.50, 20.00, 210.50,0.00])
 \end{lstlisting}
 
 Luego hacemos el cálculo de los parámetros $m$ y $b$
@@ -734,9 +802,9 @@ print(f'b = {b:.4f} \u00B1 {Delta_b:.4f}')
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-$m = -37.1536 \pm 2.8891$
+$m = -3.7234 \pm 0.2695$
 
-$b = 2627.8224 \pm 44.1839$
+$b = 2622.2834 \pm 39.7582$
 }
 \end{tcolorbox}
 
@@ -745,12 +813,13 @@ Y la gráfica con los datos y la recta obtenida
 # Generamos valores de y usando los coeficientes obtenidos
 y_pred = m * xn + b
 # Graficamos los datos originales y la línea ajustada
-plt.scatter(xn, yn, color='blue', label='Datos')
+plt.scatter(xn, yn, color='blue', label='Datos experimentales')
 plt.plot(xn, y_pred, color='red', label='Línea ajustada')
 plt.grid(linestyle='dotted')
 plt.legend(loc='best')
-plt.xlabel('Edad del pegamento (semanas)')
-plt.ylabel('Fuerza de cizallamiento (psi)')
+plt.title('Linealidad')
+plt.xlabel('Temperatura (°C)')
+plt.ylabel('Resistencia ($Omega$)')
 plt.legend()
 plt.show()
 \end{lstlisting}
@@ -763,9 +832,9 @@ plt.show()
 
 La recta tiene por ecuación
 $$
-\hat{y}=2627.82-37.15 x \,.
+\hat{y}=2622.2834 - 3.7234 x \,.
 $$
-Recordemos que la pendiente $-37.15$ se interpreta como la disminución media semanal de la resistencia al cizallamiento debida a la edad de la pega. Dado que el límite inferior de las $x$ está cerca del origen, el intercepto $ 2627.82$ representa la resistencia al corte en un lote de muestra inmediatamente después de la aplicación de la pega. 
+Recordemos que la pendiente $-3.7234$ se interpreta como la disminución de la resistencia  debida a al cambio de temperatura. Dado que el límite inferior de las $x$ está cerca del origen, el intercepto $2622.2834$ representa la resistencia para la temperatura inicial. 
 
 Veamos los valores ajustados $\hat{y}$ obtenidos
 \begin{lstlisting}[language=Python] 
@@ -774,11 +843,12 @@ y_pred
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-array([2051.94169936, 1745.42457406, 2330.59363144, 1996.21131294,
-       2423.4776088 , 1921.90413105, 1736.13617632, 2534.93838164,
-       2349.17042691, 2219.13285861, 2144.82567672, 2488.49639296,
-       1698.98258538, 2265.57484729, 1810.44335821, 1959.05772199,
-       2404.90081333, 2163.40247219, 2553.51517711, 1829.02015369])
+array([2061.90678577, 1763.10128967, 2324.40881038, 1989.29984279,
+       2434.25008309, 1914.83118333, 1728.65953467, 2545.95307228,
+       2359.78142362, 2212.70582118, 2138.23716172, 2507.78788431,
+       1691.42520494, 2284.38190591, 1803.12819413, 1952.06551306,
+       2398.87746984, 2173.60977496, 2547.81478877, 1838.50080738,
+       2622.28344823])
 }
 \end{tcolorbox}
 y también los residuos
@@ -788,11 +858,12 @@ e_i
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-array([ 106.75830064,  -67.27457406,  -14.59363144,   65.08868706,
-       -215.9776088 , -213.60413105,   48.56382368,   40.06161836,
-          8.72957309,   37.56714139,   20.37432328,  -88.94639296,
-         80.81741462,   71.17515271,  -45.14335821,   94.44227801,
-          9.49918667,   37.09752781,  100.68482289,  -75.32015369])
+array([  96.79321423,  -84.95128967,   -8.40881038,   72.00015721,
+       -226.75008309, -206.53118333,   56.04046533,   29.04692772,
+         -1.88142362,   43.99417882,   26.96283828, -108.23788431,
+         88.37479506,   52.36809409,  -37.82819413,  101.43448694,
+         15.52253016,   26.89022504,  106.38521123,  -84.80080738,
+         43.57655177])
 }
 \end{tcolorbox}
 
@@ -810,7 +881,7 @@ Sum_y
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-42627.149999999994
+45293.009999999995
 }
 \end{tcolorbox}
 Y el lado derecho:
@@ -820,7 +891,7 @@ Sum_yp
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-42627.149999999965
+45293.00999999999
 }
 \end{tcolorbox}
 
@@ -834,7 +905,7 @@ np.sum(e_i)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-3.069544618483633e-11
+1.1823431123048067e-11
 }
 \end{tcolorbox}
 Es decir, $\sum e_i=0.00$. 
@@ -845,14 +916,14 @@ $$
 $$
 \begin{lstlisting}[language=Python] 
 # Los promedios de x y y 
-xp =np.sum(xn)/len(xn) 
-yp=np.sum(yn)/len(xn)
-# Se imprimen los promedios y la recta evaluada en xp
+n=len(xn)
+xp= np.sum(xn)/n
+yp= np.sum(yn)/n
 print(xp,',', yp,',', m * xp + b)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-13.3625 , 2131.3574999999996 , 2131.3574999999983
+125.01190476190476 , 2156.81 , 2156.8099999999995
 }
 \end{tcolorbox}
 
@@ -865,7 +936,7 @@ np.sum(xn*e_i)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-4.2746250983327627e-10
+1.2842065189033747e-09
 }
 \end{tcolorbox}
 
@@ -878,7 +949,7 @@ np.sum(y_pred*e_i)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-6.478512659668922e-08
+2.6237103156745434e-08
 }
 \end{tcolorbox}
 

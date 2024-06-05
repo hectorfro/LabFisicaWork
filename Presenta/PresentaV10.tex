@@ -58,7 +58,7 @@
 \begin{frame}
     \frametitle{Regresión Lineal}
     \begin{enumerate}
-        \item El problema de la regresión lineal
+        \item El problema de la regresión
         \item La regresión lineal simple
         \item Método de mínimos cuadrados
         \item Coeficiente de regresión
@@ -71,7 +71,7 @@
 
 
 \begin{frame}
-    \frametitle{1. El problema de la regresión lineal}
+    \frametitle{1. El problema de la regresión}
     \begin{itemize}
      \item La regresión es una técnica estadística para investigar y modelar relaciones entre variables.
 \item Las relaciones estadísticas difieren de las funcionales porque no son perfectas; las observaciones no caen directamente sobre una curva.
@@ -119,26 +119,22 @@ donde $y_i$ es la respuesta, $x_i$ es el regresor, $\beta_0$ es la intersección,
  
 \begin{itemize}
 \item Características del Modelo:
-
+ \end{itemize}
 1. $y_i$ es una variable aleatoria compuesta por $\beta_0+\beta_1 x_i$
 
-2. La función de regresión:
-$$
-E\left(y_i \mid x_i\right)=\beta_0+\beta_1 x_i
-$$
-relaciona las medias de las distribuciones de $y_i$ para cada $x_i$.
+2. La intersección $\beta_0$ y la pendiente $\beta_1$ son constantes desconocidas y $\varepsilon$ es un componente de error aleatorio. 
 
- \end{itemize}
+ 3. Se supone que los errores tienen media cero y varianza desconocida $\sigma^2$.
         \end{column}
         \begin{column}{0.5\textwidth}
-\vspace{0.5cm} 
-3. Las cantidades $\varepsilon_i$ introduce variabilidad adicional a $y_i$ con varianza constante $\sigma^2$.
+\vspace{0.6cm} 
+4. Normalmente se asume que los errores no están correlacionados. 
 
-4. El modelo asume varianza constante para $y_i$:
+5. El modelo asume varianza constante para $y_i$:
 $$
 \sigma^2\left\{y_i\right\}=\sigma^2
 $$
-5. Los términos de error $\varepsilon_i$ no están correlacionados entre sí, lo que implica que las respuestas $y_i$ tampoco lo están.
+6. Los términos de error $\varepsilon_i$ no están correlacionados entre sí, lo que implica que las respuestas $y_i$ tampoco lo están.
 
         \end{column}
     \end{columns}
@@ -163,7 +159,7 @@ Por lo tanto, $x$ e $y$ son variables aleatorias, por lo que no se puede estable
     \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}
 \begin{itemize}
-\item Ejemplo:  Ley de enfriamiento de Steinhart-Hart. 
+\item {\bf Ejemplo}:  Ley de enfriamiento de Steinhart-Hart. 
  \vspace{0.5cm}
  
 Para describir con precisión la relación entre la resistencia $R$  de un termistor y su temperatura $T$ se utiliza la ecuación de Steinhart-Hart:
@@ -178,16 +174,16 @@ donde:
 
 - $A, B, C$ son constantes específicas del termistor.
 
-En un rango pequeño de temperaturas, la relación entre $R$ y $T$ puede aproximarse a:
-$$
-R \approx R_0+\alpha\left(T-T_0\right)
-$$
  \end{itemize} 
             \vspace{0.5cm} % Espacio vertical
         \end{column}
         \begin{column}{0.5\textwidth}
-es decir, a una linea recta donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ es el coeficiente de temperatura, que indica la tasa de cambio de la resistencia con la temperatura.
-\vspace{0.5cm}
+En un rango pequeño de temperaturas, la relación entre $R$ y $T$ puede aproximarse a:
+$$
+R \approx R_0+\alpha\left(T-T_0\right)
+$$        
+donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ es el coeficiente de temperatura, que indica la tasa de cambio de la resistencia con la temperatura.
+\vspace{0.2cm}
 
 {\bf Experimento:}  Medición de la resistencia de un termistor NTC
 
@@ -221,11 +217,6 @@ Procedimiento:
     \end{columns}
 \end{frame}
 
-
-
-
-
-
 \begin{frame}{3. Método de mínimos cuadrados}
 
 El método de los mínimos cuadrados permite  estimar $\beta_0$ y $\beta_1$ de forma que la suma de los cuadrados de las diferencias entre las observaciones $y_i$ y la recta sea un mínimo. 
@@ -254,12 +245,12 @@ Minimizar suma de los cuadrados de los errores se logra calculando las derivadas
 
 Con este método, las expresiones que se obtiene para $b$ y $m$ son las siguientes:
 $$
-m=\frac{S_{xy}}{S_x^2} \quad b=\bar{y}-m \bar{x} \,,
+m=\frac{S_{xy}}{S_x^2} \,,  \quad b=\bar{y}-m \bar{x} \,,
 $$
 
 En donde $\bar{x}$ e $\bar{y}$ denotan las medias muestrales de $x$ y $y$ (respectivamente), 
 $$
-\bar{x}=\frac{\sum_{i=1}^n x_i}{n}, \, \bar{y}=\frac{\sum_{i=1}^n y_i}{n}\,,
+\bar{x}=\frac{\sum_{i=1}^n x_i}{n}, \, \quad \bar{y}=\frac{\sum_{i=1}^n y_i}{n}\,,
 $$
 
 $S_x^2$ es la varianza muestral de $x$ y $S_{xy}$ es la covarianza muestral entre $x$ y $y$. Estos parámetros se calculan como:
@@ -459,7 +450,7 @@ $$
 
 \begin{frame}{6. Inferencias acerca de los parámetros}
 
-Pruebas estadísticas  para evaluar la significancia de los coeficientes en un modelo de regresión. Ayudan a determinar si las relaciones observadas entre las variables independientes (predictores) y la variable dependiente (respuesta) son estadísticamente significativas. 
+Existen pruebas estadísticas  para evaluar la significancia de los coeficientes en un modelo de regresión. Ayudan a determinar si las relaciones observadas entre las variables independientes (predictores) y la variable dependiente (respuesta) son estadísticamente significativas. 
 
 \begin{enumerate}
 \item  Hipótesis en el Contraste de Regresión:
@@ -540,7 +531,7 @@ Aquí, $\hat{\beta}_j$ es el estimador del parámetro (intersección o pendiente), 
 \begin{itemize}
 \item Estimaciones de los  intervalos de confianza  para los parámetros:
 \end{itemize}
-En el contexto del ejemplo para tener un nivel de confianza del $95 \% \alpha=0.05$. Como los grados de libertad son 19, el valor crítico $t_{\alpha / 2 \text {,dof }}$ para $\alpha / 2=0.025$ y 19 grados de libertad es de 2.093 .
+En el contexto del ejemplo para tener un nivel de confianza del $95 \%, \alpha=0.05$. Como los grados de libertad son 19, el valor crítico $t_{\alpha / 2 \text {,dof }}$ para $\alpha / 2=0.025$ y 19 grados de libertad es de 2.093. (prueba t de Student)
  \vspace{0.4cm} 
    \begin{columns}[T] % Alineación superior de las columnas
         \begin{column}{0.5\textwidth}      
