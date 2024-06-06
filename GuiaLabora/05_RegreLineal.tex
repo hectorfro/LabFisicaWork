@@ -286,9 +286,6 @@ $$
 
 La cantidad $m$ se denomina coeficiente de regresión de $y$ sobre $x$, lo denotamos por $m_{y/x}$.
 
-
-
-
 En el trabajo de laboratorio podríamos construir una tabla como la mostrada en \ref{tablamincua}, para así ordenar la información y facilitar los cálculos. Las cuatro sumas en la última línea, son los valores necesarios para calcular $m$ y $b$. Los valores de $m$ y $b$ que se obtengan por el método de los mínimos cuadrados, deberían ser muy próximos a los obtenidos directamente utilizando el método gráfico. 
 \begin{table}[h]
 \begin{center}
@@ -327,47 +324,50 @@ $$
 
 Los residuos desempeñan un papel importante en la investigación de la adecuación del modelo y en la detección de desviaciones de los supuestos subyacentes. 
 
-Sea SSE (Sum of Squared Errors) la suma de los cuadrados de los residuos.
-$$
-\mathrm{SSE} = \sum\limits_{i=1}^n e_i^2 = \sum\limits_{i=1}^n (y_i-\left(b+m x_i\right) )^2
-$$
-y representa la parte de la variabilidad de $y$  que no se puede explicar por el modelo de regresión.
+Sea SSE (Sum of Squared Errors) la suma de los cuadrados de los residuos:
+\begin{equation}
+\mathrm{SSE} = \sum\limits_{i=1}^n e_i^2 = \sum\limits_{i=1}^n (y_i-\left(b+m x_i\right) )^2\,,
+\label{sse}
+\end{equation}
+esta cantidad representa la parte de la variabilidad de $y$  que no se puede explicar por el modelo de regresión.
 
-También se suelen definir las siguientes cantidades: la variabilidad Explicada (Sum of Squares for Regression, SSR) que representa la parte de la variabilidad de $y$ que se explica por el modelo de regresión.
-$$
+También se suelen definir las siguientes cantidades: la variabilidad explicada (Sum of Squares for Regression, SSR) que representa la parte de la variabilidad de $y$ que se explica por el modelo de regresión.
+\begin{equation}
 \mathrm{SSR}=\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 \,.
-$$
+\label{ssr}
+\end{equation}
 
-Y la variabilidad Total (Total Sum of Squares, SST)que  representa la variabilidad total de la variable dependiente $y$ respecto a su media.
-$$
+Y la variabilidad total (Total Sum of Squares, SST) que representa la variabilidad total de la variable dependiente $y$ respecto a su media.
+\begin{equation}
 \mathrm{SST}=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \,.
-$$
+\label{sst}
+\end{equation}
 
 La variabilidad total se puede descomponer en la variabilidad explicada por el modelo y la variabilidad residual
-$$
+\begin{equation}
 \mathrm{SST}= \mathrm{SSR} + \mathrm{SSE} \,\, \Rightarrow \,\,
 \sum_{i=1}^n\left(y_i-\bar{y}\right)^2 =
 \sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 + 
 \sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2
-$$
+\label{sst2}
+\end{equation}
 
 
 Podemos calcular  el error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal de la siguiente manera:
 \begin{eqnarray}
-\mathrm{SE}\left(m\right)^2 &=& \Delta m=\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, 
+\mathrm{SE}\left(m\right)^2 = \Delta m &=&\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, 
 \label{Delm}  \\
-\mathrm{SE}\left(b\right)^2 &= &\Delta b=\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right]  \,,
+\mathrm{SE}\left(b\right)^2 = \Delta b &=& \hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right]  \,,
 \label{Delb}
 \end{eqnarray}
 donde 
-$$
-\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2} 
-$$
+\begin{equation}
+\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2}  \,.
+\label{sigma2}
+\end{equation}
 
 
-
-
-%example
+%example%%%%%%%%
 \begin{example}
 \label{ejemvelocidadtiempo}
 En un experimento sobre cinemática un grupo de estudiantes mide los tiempos con los que se desplaza  un móvil en un riel de aire. Los tiempos son medidos en segundos usando un cronómetro de sensibilidad $\Delta t=0,01$ s. Otro  instrumento  mide las velocidades con las que se desplaza el móvil, este instrumento tiene una sensibilidad de $\Delta v= 0,01$ m/s.  La tabla de datos y la respectiva gráfica se muestran la figura \ref{datosvt}.
@@ -572,11 +572,11 @@ $$
 v= 5.9 t + 0.7 \,\, \mathrm{m/s} \,.
 $$
 
-Numpy tiene una función específica para calcular los parámetros $m$ y $b$, que se llama ''linalg.lstsq". Para mayor información se puede consultar: 
+Numpy tiene una función específica para calcular los parámetros $m$ y $b$, que se llama ``linalg.lstsq''. Para mayor información se puede consultar: 
 
  \url{https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html}
 
-La librería ''linalg.lstsq" resuelve para  el vector x la ecuación matricial $a.x = b$  utilizando el método de los mínimos cuadrados. Esta función se utiliza comúnmente en una variedad de aplicaciones, como el análisis de regresión, el ajuste de curvas y otras tareas de aprendizaje automático.
+La librería ``linalg.lstsq'' resuelve para  el vector $x$ la ecuación matricial $a.x = b$  utilizando el método de los mínimos cuadrados. Esta función se utiliza comúnmente en una variedad de aplicaciones, como el análisis de regresión, el ajuste de curvas y otras tareas de aprendizaje automático.
 
 Veamos como funciona:
 
@@ -599,9 +599,7 @@ $b = 0.7 $
 
 Actualmente, la función ``np.linalg.lstsq'' de Numpy no proporciona directamente los errores estándar de los coeficientes. Sin embargo, hay otras bibliotecas en Python que pueden hacer regresión lineal y proporcionar estos errores de manera más directa. 
 
-Una de las bibliotecas más utilizadas para este propósito es ``statsmodels''. Para más información ver: 
-
-\url{https://www.statsmodels.org/stable/index.html}
+Una de las bibliotecas más utilizadas para este propósito es ``statsmodels''. Para más información ver:  \url{https://www.statsmodels.org/stable/index.html}
 
 Para estudiar como funciona en el ejemplo que estamos considerando lo primero que hay que hacer es  cargar la librería 
 
@@ -661,54 +659,54 @@ Se puede pedir que se genere en consola un resumen del modelo
 
 \begin{lstlisting}[language=Python] 
 results = model
-print(results.summary
+print(results.summary)
 \end{lstlisting}
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[height=3.0in,width=4.6in]{figuras/fig20a}  
-\label{figdatos2}
+\caption{Salida en consola de la función ``.summary'' para el ejemplo \ref{ejemvelocidadtiempo}.}
+\label{resuejem1}
 \end{center}
 \end{figure}
 
-Se pueden identificar fácilmente los valores de los parámetros y sus errores estándar que relatan la precisión de las estimaciones obtenidas. De ``R-squared: 0.963'' hablaremos más adelante, pero este valor indica qué tan bien los datos se ajustan al modelo de regresión (0 a 1, donde valores más cercanos a 1 indican un mejor ajuste).
+En la figura \ref{resuejem1} se pueden identificar fácilmente los valores de los parámetros y sus errores estándar que relatan la precisión de las estimaciones obtenidas. De ``R-squared: 0.963'' , y otros parámetros hablaremos más adelante, pero este valor indica qué tan bien los datos se ajustan al modelo de regresión (toma valores entre 0 y 1, donde valores más cercanos a 1 indican un mejor ajuste).
 \end{example}
 \exampleline
 
 \subsection{Propiedades del método de mínimos cuadrados}
 
-Podemos notar de la ecuación (\ref{eme2})
+Podemos notar de la ecuación (\ref{eme2}) que 
 $$
-m  = \dfrac{\sum\limits_{i=1}^n y_i \left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2} =\sum_{i=1}^n c_i y_i \,,\quad \text{donde} \quad c_i = \frac{\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2}
+m  = \dfrac{\sum\limits_{i=1}^n y_i \left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2} =\sum_{i=1}^n c_i y_i \,,\quad \text{donde} \quad c_i = \frac{\left(x_i-\bar{x}\right)}{\sum\limits_{i=1}^n \left(x_i-\bar{x}\right)^2} \,.
 \label{eme3}
 $$
 
 Se dice que los estimadores $m$ y $b$ por mínimos cuadrados son estimadores no ambiguos porque
 $$
 \begin{aligned}
-E\left(m\right)  =E\left(\sum_{i=1}^n c_i y_i\right)=\sum_{i=1}^n c_i E\left(y_i\right)  =\sum_{i=1}^n c_i\left(\beta_0+\beta_1 x_i\right)=\beta_0 \sum_{i=1}^n c_i+\beta_1 \sum_{i=1}^n c_i x_i
+E\left(m\right)  =E\left(\sum_{i=1}^n c_i y_i\right)=\sum_{i=1}^n c_i E\left(y_i\right)  =\sum_{i=1}^n c_i\left(\beta_0+\beta_1 x_i\right)=\beta_0 \sum_{i=1}^n c_i+\beta_1 \sum_{i=1}^n c_i x_i \,,
 \end{aligned}
 $$
 ya que por suposición $E\left(\varepsilon_i\right)=0$. Se puede demostrar que $\sum_{i=1}^n c_i=0$ y $\sum_{i=1}^n c_i x_i=1$, por lo que
 $$
-E\left(m \right)=\beta_1
+E\left(m \right)=\beta_1 \,,
 $$
-
-Es decir, si suponemos que el modelo es correcto $\left[E\left(y_i\right)=\beta_0+\beta_1 x_i\right]$, entonces $m$ es un estimador no sesgado de $\beta_1$. Del mismo modo podemos demostrar que $b$ es un estimador no sesgado de $\beta_0$, o bien
+es decir, si suponemos que el modelo es correcto $\left[E\left(y_i\right)=\beta_0+\beta_1 x_i\right]$, entonces $m$ es un estimador no sesgado de $\beta_1$. Del mismo modo podemos demostrar que $b$ es un estimador no sesgado de $\beta_0$, o bien
 $$
 E\left(b\right)=\beta_0 \,.
 $$
 
-
-%example
+%example%%%%%%%
 \begin{example}{Ley de enfriamiento de Steinhart-Hart. }
 \label{ejemcizalla}
-\begin{figure}[!t]
+
+
+\begin{table}[!t]
+  \centering
+  \caption{Datos para el ejemplo \ref{ejemcizalla}.}  
+  \vspace{0.3cm}
 \begin{tabular}{ccc}
-\hline Observación, $i$ & \begin{tabular}{c} 
-Resistencia, $y_i \ ( \Omega )$
-\end{tabular} & \begin{tabular}{c} 
-Temperatura, $x_i \ ($ºC $)$
-\end{tabular} \\
+\hline Observación, $i$ & Resistencia, $y_i(\Omega)$ & Temperatura, $x_i\left({ }^{\circ} \mathrm{C}\right)$ \\
 \hline 1 & 2158.70 & 15.50 \\
 2 & 1678.15 & 23.75 \\
 3 & 2316.00 & 8.00 \\
@@ -732,21 +730,20 @@ Temperatura, $x_i \ ($ºC $)$
 21 & 2665.86 & 0.00 \\
 \hline
 \end{tabular}
-\label{datosciza}
-\caption{Datos para el ejemplo \ref{ejemcizalla}.}
-\end{figure}
+  \label{datosciza}
+\end{table}
+
 
 Para describir con precisión la relación entre la resistencia $R$  de un termistor y su temperatura $T$ se utiliza la ecuación de Steinhart-Hart:
 $$
 \frac{1}{T}=A+B \ln (R)+C[\ln (R)]^3
 $$
 donde:
-
-- $T$ es la temperatura.
-
-- $R$ es la resistencia en ohmios.
-
-- $A, B, C$ son constantes específicas del termistor.
+\begin{itemize}
+\item  $T$ es la temperatura.
+\item  $R$ es la resistencia en ohmios.
+\item  $A, B, C$ son constantes específicas del termistor.
+\end{itemize}
 
 En un rango pequeño de temperaturas, la relación entre $R$ y $T$ puede aproximarse a:
 $$
@@ -756,16 +753,7 @@ donde: $R_0$ es la resistencia a una temperatura de referencia $T_0$ y $\alpha$ 
 
 {\bf Experimento:}  Medición de la resistencia de un termistor NTC
 
-El objetivo del experimento es determinar la relación lineal aproximada entre la resistencia y la temperatura de un termistor NTC en un rango limitado de temperaturas, donde las variables son: $y$, resistencia del material y $x$ la temperatura.  
-
-
-Procedimiento:  
-\begin{itemize}
-\item Calentar el termistor: coloca el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente.
-\item  Medir la resistencia y temperatura: retirar el termistor del agua caliente y medir su resistencia a intervalos regulares mientras se enfría. Simultáneamente, medir la temperatura del termistor.
-\item Registrar los Datos: anotar las mediciones de resistencia $R$ y temperatura $T$
-\end{itemize}
-
+El objetivo del experimento es determinar la relación lineal aproximada entre la resistencia y la temperatura de un termistor NTC en un rango limitado de temperaturas, donde las variables son: $y$, resistencia del material y $x$ la temperatura.  La forma de llevar el experimento consiste colocar el termistor en un baño de agua caliente para llevarlo a una temperatura significativamente más alta que la ambiente. Luego se retira el termistor del agua caliente y se miden su resistencia y temperatura a intervalos regulares mientras se enfría. 
 
 Un diagrama de dispersión con los datos recolectados sugiere una fuerte relación estadística entre la resistencia  y la temperatura. La hipótesis inicial de un modelo lineal, $y=\beta_0+\beta_1 x+\varepsilon$, parece razonable. 
 
@@ -788,7 +776,7 @@ xn = np.array([150.50, 230.75, 80.00, 170.00, 50.50, 190.00, 240.00, 20.50,
                60.00, 120.50, 20.00, 210.50,0.00])
 \end{lstlisting}
 
-Luego hacemos el cálculo de los parámetros $m$ y $b$
+Luego hacemos el cálculo de los parámetros $m$ y $b$ y los correspondientes  errores estándar.
 \begin{lstlisting}[language=Python] 
 X = sm.add_constant(xn)
 # Ajustamos el modelo
@@ -808,7 +796,7 @@ $b = 2622.2834 \pm 39.7582$
 }
 \end{tcolorbox}
 
-Y la gráfica con los datos y la recta obtenida
+Ahora la gráfica con los datos y la recta obtenida
 \begin{lstlisting}[language=Python] 
 # Generamos valores de y usando los coeficientes obtenidos
 y_pred = m * xn + b
@@ -830,11 +818,11 @@ plt.show()
 \end{center}
 \end{figure}
 
-La recta tiene por ecuación
+Por lo tanto, la recta tiene por ecuación
 $$
 \hat{y}=2622.2834 - 3.7234 x \,.
 $$
-Recordemos que la pendiente $-3.7234$ se interpreta como la disminución de la resistencia  debida a al cambio de temperatura. Dado que el límite inferior de las $x$ está cerca del origen, el intercepto $2622.2834$ representa la resistencia para la temperatura inicial. 
+Recordemos que la pendiente $-3.7234$ se interpreta como la disminución de la resistencia  debida a al cambio de temperatura. Dado que el límite inferior de las $x$ está cerca del origen, el intercepto $2622.2834$ representa la resistencia para la temperatura de cero grados. 
 
 Veamos los valores ajustados $\hat{y}$ obtenidos
 \begin{lstlisting}[language=Python] 
@@ -866,9 +854,7 @@ array([  96.79321423,  -84.95128967,   -8.40881038,   72.00015721,
          43.57655177])
 }
 \end{tcolorbox}
-
-Hay varias propiedades de los mínimos cuadrados que podemos probar:
-
+Hay varias propiedades de los mínimos cuadrados que podemos probar con este ejemplo:
 
 1)  La suma de los valores observados $y_i$ es igual a la suma de los valores ajustados $\hat{y}_i$, o bien
 $$
@@ -961,8 +947,8 @@ print(results.summary())
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[height=3.0in,width=4.6in]{figuras/fig22}  
-\caption{Resumen de las estimaciones estadísticas por consola.}
-\label{figejemciza}
+\caption{Resumen de las estimaciones estadísticas por consola para el ejemplo \ref{ejemcizalla}.}
+\label{resumejem2}
 \end{center}
 \end{figure}
 
@@ -970,82 +956,115 @@ print(results.summary())
 \exampleline
 
 
-\subsubsection{La estimación de $\sigma^2$}
+\subsection{Estadísticas de diagnóstico del modelo de regresión}
 
-Además de estimar $\beta_0$ y $\beta_1$, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico, como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión. Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la suma de cuadrados de los  errores:
-\begin{equation}
-\hat{\sigma}^2=\sum_{i=1}^n e_i^2=\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 \,.
-\label{sigma2}
-\end{equation}
-En inglés $\sigma^2=$ Sum of Squares for Error ($\mathrm{SSE}$)
 
-Conocidos los valores estimados de $\beta_0$ y $\beta_1$, es decir: $
-\hat{y}_i=b+m x_i $ y al sustituir en la ecuación anterior se llega al siguiente resultado
-\begin{equation}
-\hat{\sigma}^2=\sum_{i=1}^n y_i^2-n \bar{y}^2-m \sum_{i=1}^n y_i\left(x_i-\bar{x}\right) \,.
-\end{equation}
-Como
-\begin{equation}
-\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \equiv {\mathrm{SST}} \,,
-\end{equation}
-donde $\mathrm{SST}=$ Total Sum of Squares. 
+Además de estimar $\beta_0$ y $\beta_1$, como ya vimos, se necesita una estimación de la varianza del error $\sigma^2$, que  proporciona información crucial sobre la variabilidad de los errores (residuos) y tiene varias aplicaciones en el análisis estadístico, como  probar hipótesis y construir estimaciones de intervalo pertinentes para el modelo de regresión.  Lo ideal sería que esta estimación no dependiera de la adecuación del modelo ajustado. Esto sólo es posible cuando hay varias observaciones de $y$ para al menos un valor de $x$  o cuando se dispone de información previa sobre $\sigma^2$. 
+Cuando no se puede utilizar este enfoque, la estimación de $\sigma^2$ se obtiene a partir de la ecuación (\ref{sigma2}).
 
-Esto no es más que la suma de cuadrados corregida de las observaciones de respuesta, por lo que
-\begin{equation}
-\hat{\sigma}^2= {\mathrm{SSE}}= {\mathrm{SST}}-m S_{x y}
-\label{sigma2b}
-\end{equation}
-
-La suma residual de cuadrados tiene $n-2$ grados de libertad, porque dos grados de libertad están asociados con las estimaciones $b$ y $m$ implicadas en la obtención de $\hat{y}_i$. Se puede mostrar que el valor esperado de $S S_{\text {Res}}$ es $E\left(S S_{\text {Res }}\right)=(n-2) \sigma^2$, por lo que un estimador no sesgado de $\sigma^2$ es
-\begin{equation}
-\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2}\,.
-\label{sigma2c}
-\end{equation}
-
-La raíz cuadrada de $\hat{\sigma}^2$ se llama a veces el error estándar de regresión, y tiene las mismas unidades que la variable de respuesta $y$.
 
 Dado que $\hat{\sigma}^2$ depende de la suma residual de cuadrados, cualquier violación de los supuestos sobre los errores del modelo o cualquier especificación errónea de la forma del modelo puede dañar seriamente la utilidad de $\hat{\sigma}^2$ como estimación de $\sigma^2$. Dado que $\hat{\sigma}^2$ se calcula a partir de los residuos del modelo de regresión, decimos que es una estimación dependiente del modelo de $\sigma^2$.
 
-A partir de  $\hat{\sigma}^2$ los errores estándar de $m$ y $b$ se pueden obtener a partir de las siguientes ecuaciones
+Como ya vimos, a partir de  $\hat{\sigma}^2$ los errores estándar de $m$ y $b$ se pueden obtener a partir de las siguientes ecuaciones
 \begin{equation}
 \mathrm{SE}\left(b\right)^2=\sigma^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right], \quad 
 \mathrm{SE}\left(m\right)^2=\frac{\sigma^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2},
 \label{SEmyb}
 \end{equation}
 
-
-Si volvemos al ejemplo \ref{ejemcizalla} se pueden hacer los siguientes cálculos
+En nuestro ejemplo \ref{ejemcizalla} , los estadísticos descriptivos  para las ($n=21$) variables temperatura y tiempo del enfriamiento son los siguientes:
 
 $$
 \begin{aligned}
-S S_{\mathrm{T}} & =\sum_{i=1}^n y_i^2-n \bar{y}^2=\sum_{i=1}^n y_i^2-\frac{\left(\sum_{i=1}^n y_i\right)^2}{n} \\
-& =92547433.45-\frac{(42,627.15)^2}{20}=1693737.60
+& \bar{x}=125.0119 , \quad \bar{y}=2156.81\\
+& S_x^2=12896.0685, \quad S_y^2=196582.6099 \\
+& S_{xy}=-48017.6465 \\
+& m= -3.7234, \quad   b=  2622.2834
 \end{aligned}
 $$
 
-De la ecuación  (\ref{sigma2b}) la suma residual de cuadrados es
+Estos valores de $m$ y $b$ se pueden apreciar en la  la figura \ref{resumejem2} donde aparece la columna {\rm \bf{coef}}.
+
+La recta de regresión ajustada es la siguiente:
 $$
-\begin{aligned}
-S S_{\text {Res }} & =S S_{\mathrm{T}}-\hat{\beta}_1 S_{x y} \\
-& =1693737.60-(-37.15)(-41112.65)=166402.65
-\end{aligned}
+\hat{y}=2622.2834 -3.7234 x \,,
+$$
+donde $\hat{y}$ es la resistencia y $x$ la temperatura. 
+
+\subsubsection{Coeficiente de correlación lineal}
+
+El coeficiente de correlación lineal entre $x$ e $y$ viene dado por:
+$$
+r=\frac{S_{xy}}{S_x S_y}
+$$
+y es una medida estadística que cuantifica la intensidad de la relación lineal entre dos variables. Su cuadrado se denomina coeficiente de determinación $r^2$.
+
+Propiedades del coeficiente de correlación:
+\begin{enumerate}
+\item  No tiene dimensión, y siempre toma valores en [-1,1].
+\item Si las variables son independientes, entonces $r=0$, el inverso no tiene por qué ser cierto.
+\item Si existe una relación lineal exacta entre $x$ e $y$, entonces $r=1$  (relación directa) ó $r=-1$ (relación inversa).
+\item Si $r>0$,  indica una relación directa entre las variables (si aumenta $x$,  aumenta $y$ ).
+\item Si $r<0$, indica una relación directa entre las variables (si aumenta $x$,  disminuye $y$).
+\end{enumerate}
+
+Para nuestro ejemplo el valor de $r$ es
+$$
+r=\frac{S_{xy}}{S_x S_y} = \frac{-48017.6465}{ \sqrt{12896.0685} \sqrt{196582.6099}}= -0.9537
+$$
+El menos indica que existe una relación inversa entre las variables. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
+
+La relación entre los coeficientes de regresión y de correlación:
+$$
+m_{y/ x}=r \frac{S_y}{S_x}=-3.7234\,,
+$$
+$$
+m_{x / y}=r \frac{S_x}{S_y}=-0.2443 \,.
+$$
+Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo: a medida que $x$ aumenta  $y$ tiende a disminuir.
+
+El coeficiente de determinación $r^2$ es una medida que cuantifica la proporción de la variabilidad total de $y$ que es explicada por el modelo de regresión. Se calcula como:
+$$
+r^2=\frac{\sum\left(\hat{y}_i-\bar{y}\right)^2}{\sum\left(y_i-\bar{y}\right)^2}=\frac{\mathrm{SSR}}{\mathrm{SST}}
 $$
 
-El valor estimado de $\sigma^2$ se obtiene a partir de la ecuación (\ref{sigma2c}) 
+Para el modelo de temperaturas y resistencias tenemos que 
 $$
-\hat{\sigma}^2=\frac{S S_{\mathrm{Res}}}{n-2}=\frac{166402.65}{18}=9244.59
+\mathrm{SSR}= 1787904.8827\,, \,\, \mathrm{SSE}= 177921.2163\,,
+\mathrm{SST}= 1965826.099 \,,
+$$
+por lo tanto:
+$$
+r^2=\frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{1787904.8827}{1965826.099}= 0.9095 \,.
+$$
+Este valor se puede apreciar en la figura \ref{resumejem2} como {\rm \bf{R-squared}}.
+
+
+El error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal son
+
+$$
+\mathrm{SE}\left(m\right)^2=\Delta m=\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, \,\, 
+\mathrm{SE}\left(b\right)^2=\Delta b=\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right] 
+$$
+donde 
+$$
+\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2} = 9364.2745 
 $$
 
-Para los errores usamos las ecuaciones (\ref{SEmyb})
+Por lo tanto
 $$
-\Delta b=\sqrt{(9244.59)\left[\frac{1}{20}+\frac{178.56}{1106.56}\right]}=44.184 \,,\quad 
-\Delta m=\sqrt{\frac{9244.59}{1106.56}}=2.889 \,,
+\Delta m = \sqrt{\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}}= 0.2695 \,, \quad \Delta b = \sqrt{\hat{\sigma}^2\left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right]  }   = 39.7582 \,.
 $$
+
+Ver la figura \ref{resumejem2} donde aparece la columna {\rm \bf{std err}}.
+
+
 
 \subsubsection{Prueba de hipótesis sobe $m$ y $b$}
 
+El test de hipótesis o prueba de significación es una herramienta estadística utilizada para determinar si hay suficiente evidencia en una muestra de datos para inferir que una hipótesis sobre una población es verdadera. En el contexto de la regresión lineal, esta prueba se utiliza para evaluar la significancia de los coeficientes del modelo. Como veremos, los errores estándar también pueden utilizarse para realizar pruebas de hipótesis sobre los coeficientes. 
 
-Los errores estándar también pueden utilizarse para realizar pruebas de hipótesis sobre los coeficientes. La prueba de hipótesis más común consiste en probar la hipótesis nula:
+La prueba de hipótesis más común consiste en probar la hipótesis nula:
 $$
 H_0 \text {: No hay relación entre } x \text{ y } y
 $$
@@ -1058,19 +1077,121 @@ Matemáticamente, esto corresponde a probar
 $$
 H_0: \beta_1=0 \text { frente a } H_a: \beta_1 \neq 0 \,,
 $$
-ya que si $\beta_1=0$ entonces el modelo (\ref{regrelineal}) se reduce a $y=\beta_0+\varepsilon$, y por lo tanto, $x$ no está relacionado con $y$. Para probar la hipótesis nula, tenemos que determinar si $m$, nuestra estimación de $\beta_1$, está lo suficientemente lejos de cero para que podemos estar seguros de que $\beta_1$ es distinto de cero ¿Qué distancia es suficiente? Esto, por supuesto, depende de la exactitud de $m$, es decir, depende de $\operatorname{SE}\left(m\right)$. Si $\operatorname{SE}\left(m\right)$ es pequeño, entonces incluso valores relativamente pequeños de $m$ pueden proporcionar una fuerte evidencia de que $\beta_1 \neq 0$, y por lo tanto que existe una relación entre $x$ y $y$. Por el contrario, si $\mathrm{SE}\left(m\right)$ es grande, entonces $m$ debe ser grande en valor absoluto para que podamos rechazar la hipótesis nula. En la práctica, se suele calcular un ``estadístico'' $t$ o valor $t$, dado por
+ya que si $\beta_1=0$ entonces el modelo (\ref{regrelineal}) se reduce a $y=\beta_0+\varepsilon$, y por lo tanto, $x$ no está relacionado con $y$. 
+
+Para probar la hipótesis nula, tenemos que determinar si $m$ (o $b$), nuestra estimación de $\beta_1$ (o $\beta_0$), está lo suficientemente lejos de cero para que podemos estar seguros de que $\beta_1$ es distinto de cero. 
+
+Ahora bien ¿Qué distancia es suficiente? Esto, por supuesto, depende de la exactitud de $m$, es decir, depende de $\operatorname{SE}\left(m\right)$ (o de $\operatorname{SE}\left(b\right)$). Si $\operatorname{SE}\left(m\right)$ es pequeño, entonces incluso valores relativamente pequeños de $m$ pueden proporcionar una fuerte evidencia de que $\beta_1 \neq 0$, y por lo tanto que existe una relación entre $x$ y $y$. Por el contrario, si $\mathrm{SE}\left(m\right)$ es grande, entonces $m$ debe ser grande en valor absoluto para que podamos rechazar la hipótesis nula. 
+
+\paragraph{Cálculo del estadístico de prueba $t$-valor:} En la práctica, se suele calcular un ``estadístico'' $t$ o valor $t$, este  estadístico de prueba  es el valor $t$, que se calcula como el cociente entre el coeficiente estimado $(\hat{\beta})$ y su error estándar $\operatorname{SE}(\hat{\beta})$:
 \begin{equation}
-t=\frac{m-0}{\mathrm{SE}\left(m\right)} \,,
+t_i=\frac{\hat{\beta_i}}{\operatorname{SE}(\hat{\beta_i})} \,.
 \label{valort}
 \end{equation}
-que mide el número de desviaciones típicas que $\beta_1$ se aleja de 0. Si realmente no hay relación entre $x$ y $y$, entonces esperamos que (\ref{valort}) tenga una distribución $t$ con $n - 2$ grados de libertad. La distribución $t$ tiene forma de campana y para valores de $n$ superiores a 30 aproximadamente es bastante similar a la distribución normal estándar. En consecuencia, resulta sencillo calcular la probabilidad de observar cualquier número igual a $|t|$ o mayor en valor absoluto, suponiendo que $\beta_1=0$. 
 
-Llamamos a esta probabilidad el valor $p$. A grandes rasgos, interpretamos el valor $p$ de la siguiente manera: un valor $p$ pequeño indica que es poco probable observar una asociación tan sustancial entre el predictor y la respuesta debido al azar, en ausencia de cualquier asociación real entre el predictor y la respuesta. Por lo tanto, si vemos un valor $p$ pequeño, podemos inferir que existe una asociación entre el predictor y la respuesta. Rechazamos la hipótesis nula, es decir, declaramos que existe una relación entre $x$ y $y$, si el valor $p$ es lo suficientemente pequeño. Los límites típicos del valor $p$ para rechazar la hipótesis nula son el 5\% o el 1\%. Cuando $n = 30$, estos valores corresponden a estadísticos $t$ (\ref{valort}) de alrededor de 2 y 2.75, respectivamente.
+Este valor $t$ sigue una distribución $t$ de Student con $n-k-1$ grados de libertad, donde $n$ es el número de observaciones y $k$ es el número de predictores en el modelo, en nuestro caso $k=2$. Mide el número de desviaciones típicas que $\beta_1$ se aleja de 0. Si realmente no hay relación entre $x$ y $y$, entonces esperamos que (\ref{valort}) tenga una distribución $t$ con $n - 2$ grados de libertad. La distribución $t$ tiene forma de campana y para valores de $n$ superiores a 30 aproximadamente es bastante similar a la distribución normal estándar. 
+
+Para el ejemplo que estamos considerando, ejemplo \ref{ejemcizalla}, los $t$-valores son:
+$$
+t_m=\frac{m}{\Delta m}= -13.8177\,, \,\, t_b=\frac{b}{\Delta b}= 65.9557 \,.
+$$
+Compare estos valores con los de la figura \ref{resumejem2} donde aparece la columna {\rm \bf{t}}.
+
+Un $t$-valor grande (en valor absoluto) indica que el coeficiente estimado está lejos de cero, lo que sugiere que es menos probable que el coeficiente estimado  sea igual a cero, mientras que un $t$-valor pequeño (en valor absoluto) sugiere que el coeficiente estimado está cerca de cero, lo que sugiere que es más probable que el coeficiente no sea significativamente diferente de cero.
+
+\paragraph{Determinación del $p$-valor:} El $p$-valor es la probabilidad de observar un valor $t$ tan extremo o más extremo que el valor observado, bajo la suposición de que la hipótesis nula es verdadera.
+
+Un $p$-valor pequeño (típicamente menor que un nivel de significancia $\alpha$ 
+ de 0.05 o 0.01) indica que hay suficiente evidencia para rechazar la hipótesis nula. Visto de otra manera, rechazamos la hipótesis nula, es decir, declaramos que existe una relación entre $x$ y $y$, si el valor $p$ es lo suficientemente pequeño. Los límites típicos del valor $p$ para rechazar la hipótesis nula son el 5\% o el 1\%. Cuando $n = 30$, estos valores corresponden a estadísticos $t$ (\ref{valort}) de alrededor de 2 y 2,75, respectivamente.
+ 
+ El p-valor se calcula a partir del $t$-valor en una distribución $t$ de Student:
+\begin{equation}
+p \text {-valor }=2 \times\left(1-\operatorname{CDF}_t(|t|, \text { dof })\right) \,,
+\label{pvalor}
+\end{equation}
+donde: $\mathrm{CDF}_t$ es la función de distribución acumulativa de la distribución t de Student,  $|t|$ es el valor absoluto del $t$-valor y dof son los grados de libertad del modelo. Cuando $|t|$ es muy grande, $\operatorname{CDF}(|t|$, dof $)$ se acerca mucho a 1 , haciendo que $1-$ $\operatorname{CDF}(|t|$, dof ) sea muy pequeño $\mathrm{y}$, por ende, el $\mathrm{p}$-valor sea extremadamente pequeño.
+ 
+Resumiendo, si el $p$-valor es menor que el nivel de significancia $\alpha$ (generalmente $< 0.05$), se rechaza la hipótesis nula y se concluye que el coeficiente es significativamente diferente de cero. Si el p-valor es mayor que $\alpha$ (generalmente $> 0.05$), no se rechaza la hipótesis nula y se concluye que no hay suficiente evidencia para decir que el coeficiente es diferente de cero. El $t$-valor indica cuántos errores estándar se aleja el coeficiente estimado de cero mientras que el $p$-valor proporciona una medida probabilística de si este $t$-valor es suficientemente extremo como para considerar que el coeficiente es significativamente diferente de cero.
+ 
+Volviendo a nuestro ejemplo  \ref{ejemcizalla} resulta:
+\begin{itemize}
+\item Coeficiente de la Constante ( $\hat{\beta}_0=b$ )
+
+- t-valor: 65.9557
+
+- p-valor: 0.000
+
+\item Coeficiente del Predictor ( $\hat{\beta}_1=m$ ) 
+
+- t-valor: -13.8177
+
+- p-valor: 0.000
+\end{itemize}
+
+Estos valores se pueden ver en la figura \ref{resumejem2}, columna $\mathrm{\mathbf{P>|t|}}$.
 
 
+\paragraph{El nivel de confianza:}  Es la probabilidad de que un intervalo de confianza contenga el valor verdadero del parámetro que se está estimando,  es una medida de la fiabilidad de una estimación y se expresa como un porcentaje (por ejemplo, 95\%, 99\%). Un nivel de confianza del 95\% significa que si se repitiera el proceso de estimación muchas veces, aproximadamente el 95\% de los intervalos de confianza calculados de esa manera contendrían el verdadero valor del parámetro y no debe pensarse que hay un 95\% de probabilidad de que el parámetro verdadero esté dentro del intervalo calculado a partir de una sola muestra.
+
+En nuestro caso de un modelo de regresión simple $y=\beta_0+\beta_1 x+\epsilon$, podemos calcular los intervalos de confianza para los coeficientes de la regresión ($\beta_0$ y $\beta_1$) ya que conocemos los coeficientes de la regresión  $\hat{\beta}_0$ y $\hat{\beta}_1$  y los errores estándar $\operatorname{SE}(\hat{\beta}_0)$ y $\mathrm{SE} (\hat{\beta}_1)$.
+
+El nivel de confianza se construye a través de un  valor crítico $t_{\alpha / 2 , n-2}$ o $t_{\text {critical}}$ que es un punto específico en la distribución ($t$-Student). Un nivel de confianza del $95 \%$ corresponde a $\alpha=0.05$, porque $1-0.95=0.05$. Dado que el nivel de confianza es bilateral, se divide en dos colas de la distribución $t$, lo que significa que cada cola tiene un área de $\alpha / 2$. 
+
+El intervalo de confianza se puede determinar por
+$$
+\hat{\beta}_j \pm t_{\alpha / 2, n-2} \cdot \operatorname{SE}(\hat{\beta}_j) \,.
+$$
+Aquí, $\hat{\beta}_j$ es el estimador del parámetro (intersección o pendiente) y $\operatorname{SE}(\hat{\beta}_j)$ es el error estándar del estimador.
+
+En el contexto del ejemplo que estamos considerando  los grados de libertad son $n-2= 19$, y para tener un nivel de confianza del $95 \%$ entonces $\alpha=0.05$. El valor crítico $t_{\alpha / 2 \text {,dof }}$ con $\alpha/2=0.025$ y 19 grados de libertad puede considerarse  con un valor de 2.093 (prueba t de Student).
+   
+Los intervalos de confianza (IC)  se calculan como se muestra a continuación:
+\begin{itemize}
+\item  Para $\hat{\beta}_1=m=-3.7234$ y  $\mathrm{SE}(m)=0.2695$
+
+$$
+\begin{aligned}
+& \mathrm{IC}= \hat{\beta}_1 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}(\hat{\beta}_1) \\
+& \mathrm{IC}= -3.7234 \pm 2.093 \cdot 0.2695 \\
+& \mathrm{IC}= -3.7234 \pm 0.5640\\
+& \mathrm{IC}= [-4.2874 \,\, , \,\, -3.1594]
+\end{aligned}
+$$
 
 
+\item Para $\hat{\beta}_0=b=2622.2834$ y  $\mathrm{SE}\left(b\right)=39.7582$
+
+$$
+\begin{aligned}
+& \mathrm{IC}=\hat{\beta}_0 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}(\hat{\beta}_0) \\
+& \mathrm{IC}= 2622.2834 \pm 2.093 \cdot 39.7582 \\
+& \mathrm{IC}= 2622.2834\pm 83.2140 \\
+& \mathrm{IC}= [2539.0694 \,\, , \,\, 2705.4975]
+\end{aligned}
+$$
+
+\end{itemize}
+
+Estos intervalos son los que aparecen en la figura \ref{resumejem2}, columna $\mathbf{[0.025 \quad  0.975]}$.
 
 
+\paragraph{La significancia global del modelo de regresión:} 
+
+Se utiliza para determinar si el modelo de regresión en su conjunto explica significativamente la variabilidad de la variable dependiente $y$.  Si la prueba F indica que el modelo es significativo, se puede concluir que hay una relación lineal entre las variables y que el modelo explica una proporción significativa de la variabilidad de $y$
+
+Un valor estadístico de F alto junto con un valor $p$ bajo (menor que el nivel de significancia, usualmente 0.05) indica que el modelo es robusto y que la variable independiente contribuyen significativamente a la predicción de $y$.
+
+Para el cálculo de estadístico F (F-statistic) usamos la siguiente ecuación
+$$
+\mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= 
+\dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{n-k}} =  \dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\hat{\sigma}}
+$$
+
+Para el caso particular del ejemplo que estamos considerando es
+$$
+\mathrm{F}=\dfrac{\dfrac{\mathrm{SSR}}{ 2-1}}{\dfrac{\mathrm{SSE}}{ 21-2}}=\frac{1787904.8827}{9364.2745}= 190.9283
+$$
+
+Este valor indica que el modelo es estadísticamente significativo, lo que significa que la relación entre las variables independientes y la variable dependiente es poco probable que se deba al azar.
 
 

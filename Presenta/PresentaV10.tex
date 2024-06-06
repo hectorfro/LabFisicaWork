@@ -481,7 +481,7 @@ Esto se hace usando el estadístico F (F-statistic)
 
 $$
 \mathrm{F}=\frac{\mathrm{MSR}}{\mathrm{MSE}}= 
-\dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{ n-k}} = 
+\dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\dfrac{\mathrm{SSE}}{n-k}} = 
 \dfrac{\dfrac{\mathrm{SSR}}{ k-1}}{\hat{\sigma}}
 $$
 donde $k$  es el número de coeficientes estimados en el modelo de regresión y $n$  el número de observaciones. $\mathrm{MSE} = \hat{\sigma}$ =Error Mean Square o Residual Mean Square. 
@@ -537,12 +537,12 @@ En el contexto del ejemplo para tener un nivel de confianza del $95 \%, \alpha=0
         \begin{column}{0.5\textwidth}      
 Para $\hat{\beta}_1=m=-3.7234$ y  $\mathrm{SE}\left(m\right)=0.2695$
 $$
-\begin{gathered}
-\mathrm{CI}=\hat{\beta}_1 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}\left(\hat{\beta}_1\right) \\
-\mathrm{CI}=-3.7234 \pm 2.093 \cdot 0.2695 \\
-\mathrm{CI}=-3.7234 \pm 0.5640\\
-\mathrm{CI}=[-4.2874,-3.1594]
-\end{gathered}
+\begin{aligned}
+& \mathrm{IC}= \hat{\beta}_1 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}(\hat{\beta}_1) \\
+& \mathrm{IC}= -3.7234 \pm 2.093 \cdot 0.2695 \\
+& \mathrm{IC}= -3.7234 \pm 0.5640\\
+& \mathrm{IC}= [-4.2874 \,\, , \,\, -3.1594]
+\end{aligned}
 $$
 
 %            \vspace{0.5cm} % Espacio vertical
@@ -551,12 +551,12 @@ $$
 %        \vspace{1.0cm} 
 Para $\hat{\beta}_0=b=2622.2834$ y  $\mathrm{SE}\left(b\right)=39.7582$
 $$
-\begin{gathered}
-\mathrm{CI}=\hat{\beta}_0 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}\left(\hat{\beta}_0\right) \\
-\mathrm{CI}=2622.2834 \pm 2.093 \cdot 39.7582 \\
-\mathrm{CI}=2622.2834\pm 83.2140 \\
-\mathrm{CI}=[2539.0694, 2705.4975]
-\end{gathered}
+\begin{aligned}
+& \mathrm{IC}=\hat{\beta}_0 \pm t_{\alpha / 2, n-2} \cdot \mathrm{SE}(\hat{\beta}_0) \\
+& \mathrm{IC}= 2622.2834 \pm 2.093 \cdot 39.7582 \\
+& \mathrm{IC}= 2622.2834\pm 83.2140 \\
+& \mathrm{IC}= [2539.0694 \,\, , \,\,  2705.4975]
+\end{aligned}
 $$
         \end{column}
     \end{columns}
