@@ -25,7 +25,7 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - Instalación y configuración de entornos de trabajo.
    - Rudimentos sobre Linux
 
-### Semana 3-4: Herramientas de Python para Computación Científica
+### Semana 3-4: Herramientas para Computación Científica
 1. **El ecosistema Python: numpy, sympy, matplotlib, scipy**
    - Uso de numpy para cálculos numéricos.
    - sympy para cálculos simbólicos.
