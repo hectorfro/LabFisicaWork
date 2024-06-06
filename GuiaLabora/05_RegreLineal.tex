@@ -307,37 +307,34 @@ Pero en la actualidad es casi de rutina utilizar alguna herramienta computaciona
 
 Una vez obtenido los valores de $m$ y ${b}$, es necesario calcular sus errores correspondientes $\Delta m$ y $\Delta b$. Esto lo podemos hacer calculando las desviaciones estándar  de la pendiente y la ordenada al origen, calculadas a partir de la distribución de diferencias $\Delta y_i$, ecuación (\ref{deltay}),  respecto de la mejor línea de ajuste.
 
-Sea $\hat{y}_i=b+m x_i$ la predicción de $y$ basada en el valor $i$ de $x$. Entonces $e_i=y_i-\hat{y}_i$ representa el $i$ residuo - la diferencia entre el $i$ valor de respuesta observado y el $i$ valor de respuesta predicho por nuestro modelo lineal. Definimos la suma residual de cuadrados (RSS) como
+Sea $\hat{y}_i=b+m x_i$ la predicción de $y$ basada en el valor $i$ de $x$. Entonces $e_i=y_i-\hat{y}_i$ representa el $i$ residuo - la diferencia entre el $i$ valor de respuesta observado y el $i$ valor de respuesta predicho por nuestro modelo lineal. Definimos la suma residual de cuadrados (SSR - Sum of Squared Residuals ) como
 $$
-\mathrm{RSS}=e_1^2+e_2^2+\cdots+e_n^2
+\mathrm{SSR}=e_1^2+e_2^2+\cdots+e_n^2 \,,
 $$
 o equivalentemente como
 $$
-\mathrm{RSS}=\left(y_1-b-m x_1\right)^2+\left(y_2-b-m x_2\right)^2+\cdots+\left(y_n-b-m x_n\right)^2 .
+\mathrm{SSR}=\left(y_1-b-m x_1\right)^2+\left(y_2-b-m x_2\right)^2+\cdots+\left(y_n-b-m x_n\right)^2 \,.
 $$
-
 
 La diferencia entre el valor observado $y_i$ y el correspondiente valor ajustado $\hat{y}_i$ es un residuo. Matemáticamente, el residuo $i$ es
 $$
 e_i=y_i-\hat{y}_i=y_i-\left(b+m x_i\right), \quad i=1,2, \ldots, n
 $$
 
-Los residuos desempeñan un papel importante en la investigación de la adecuación del modelo y en la detección de desviaciones de los supuestos subyacentes. 
-
-Sea SSE (Sum of Squared Errors) la suma de los cuadrados de los residuos:
+Los residuos desempeñan un papel importante en la investigación de la adecuación del modelo y en la detección de desviaciones de los supuestos subyacentes. Podemos escribir entonces 
 \begin{equation}
-\mathrm{SSE} = \sum\limits_{i=1}^n e_i^2 = \sum\limits_{i=1}^n (y_i-\left(b+m x_i\right) )^2\,,
-\label{sse}
-\end{equation}
-esta cantidad representa la parte de la variabilidad de $y$  que no se puede explicar por el modelo de regresión.
-
-También se suelen definir las siguientes cantidades: la variabilidad explicada (Sum of Squares for Regression, SSR) que representa la parte de la variabilidad de $y$ que se explica por el modelo de regresión.
-\begin{equation}
-\mathrm{SSR}=\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 \,.
+\mathrm{SSR}=\sum_{i=1}^n\left({y}_i-\hat{y}_i\right)^2 \,.
 \label{ssr}
 \end{equation}
 
-Y la variabilidad total (Total Sum of Squares, SST) que representa la variabilidad total de la variable dependiente $y$ respecto a su media.
+Tenemos otra cantidad relevante, la suma SSE (SSE- Explained Sum of Squares) que se define como: 
+\begin{equation}
+\mathrm{SSE}   = \sum\limits_{i=1}^n (\hat{y}_i-\bar{y} )^2\,,
+\label{sse}
+\end{equation}
+representa la suma de las diferencias al cuadrado entre los valores predichos y la media de los valores observados.
+
+Y la variabilidad total (SST - Total Sum of Squares) que representa la variabilidad total de la variable dependiente $y$ respecto a su media.
 \begin{equation}
 \mathrm{SST}=\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 \,.
 \label{sst}
@@ -346,9 +343,8 @@ Y la variabilidad total (Total Sum of Squares, SST) que representa la variabilid
 La variabilidad total se puede descomponer en la variabilidad explicada por el modelo y la variabilidad residual
 \begin{equation}
 \mathrm{SST}= \mathrm{SSR} + \mathrm{SSE} \,\, \Rightarrow \,\,
-\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 =
-\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 + 
-\sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2
+\sum_{i=1}^n\left(y_i-\bar{y}\right)^2 = \sum_{i=1}^n\left(y_i-\hat{y}_i\right)^2 +
+\sum_{i=1}^n\left(\hat{y}_i-\bar{y}\right)^2 \,.
 \label{sst2}
 \end{equation}
 
@@ -362,7 +358,7 @@ Podemos calcular  el error estándar residual y  los errores estándar de la pendi
 \end{eqnarray}
 donde 
 \begin{equation}
-\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2}  \,.
+\hat{\sigma}^2=\frac{{\mathrm{SSR}}}{n-2}  \,.
 \label{sigma2}
 \end{equation}
 
@@ -427,7 +423,7 @@ n& \sum\limits_{i=1}^n \left(v_i-b-m t_i\right)^2  \\ \hline\hline
 $$
 Por lo tanto 
 $$
-\hat{\sigma}=\left[\frac{\mathrm{SSE}}{n-2}\right]^{\frac{1}{2}}=
+\hat{\sigma}=\left[\frac{\mathrm{SSR}}{n-2}\right]^{\frac{1}{2}}=
 \left(\frac{1.244}{8}\right)^{\frac{1}{2}}= 0.394 \,.
 $$
 
@@ -538,13 +534,13 @@ plt.show()
 El siguiente paso es calcular $\Delta b$ y $\Delta m$, pero primero $\hat{\sigma}$
 
 \begin{lstlisting}[language=Python] 
-SSE= np.sum((yn - y_hat)**2)
-s_hat= np.sqrt(SSE/(n-2))
-print('n=',n,',','SSE=', SSE ,',', 'sigma=',s_hat)
+SSR= np.sum((yn - y_hat)**2)
+s_hat= np.sqrt(SSR/(n-2))
+print('n=',n,',','SSR=', SSR ,',', 'sigma=',s_hat)
 \end{lstlisting}
 \begin{tcolorbox}[width=\textwidth,colback={ghostwhite}]   
 {\small 
-n= 10 , SSE= 1.244265584415585 ,  $\sigma$= 0.3943769745458628
+n= 10 , SSR= 1.244265584415585 ,  $\sigma$= 0.3943769745458628
 }
 \end{tcolorbox}
 
@@ -995,22 +991,22 @@ donde $\hat{y}$ es la resistencia y $x$ la temperatura.
 
 El coeficiente de correlación lineal entre $x$ e $y$ viene dado por:
 $$
-r=\frac{S_{xy}}{S_x S_y}
+R=\frac{S_{xy}}{S_x S_y}
 $$
-y es una medida estadística que cuantifica la intensidad de la relación lineal entre dos variables. Su cuadrado se denomina coeficiente de determinación $r^2$.
+y es una medida estadística que cuantifica la intensidad de la relación lineal entre dos variables. Su cuadrado se denomina coeficiente de determinación $R^2$.
 
 Propiedades del coeficiente de correlación:
 \begin{enumerate}
 \item  No tiene dimensión, y siempre toma valores en [-1,1].
-\item Si las variables son independientes, entonces $r=0$, el inverso no tiene por qué ser cierto.
-\item Si existe una relación lineal exacta entre $x$ e $y$, entonces $r=1$  (relación directa) ó $r=-1$ (relación inversa).
-\item Si $r>0$,  indica una relación directa entre las variables (si aumenta $x$,  aumenta $y$ ).
-\item Si $r<0$, indica una relación directa entre las variables (si aumenta $x$,  disminuye $y$).
+\item Si las variables son independientes, entonces $R=0$, el inverso no tiene por qué ser cierto.
+\item Si existe una relación lineal exacta entre $x$ e $y$, entonces $R=1$  (relación directa) ó $R=-1$ (relación inversa).
+\item Si $R>0$,  indica una relación directa entre las variables (si aumenta $x$,  aumenta $y$ ).
+\item Si $R<0$, indica una relación directa entre las variables (si aumenta $x$,  disminuye $y$).
 \end{enumerate}
 
-Para nuestro ejemplo el valor de $r$ es
+Para nuestro ejemplo el valor de $R$ es
 $$
-r=\frac{S_{xy}}{S_x S_y} = \frac{-48017.6465}{ \sqrt{12896.0685} \sqrt{196582.6099}}= -0.9537
+R=\frac{S_{xy}}{S_x S_y} = \frac{-48017.6465}{ \sqrt{12896.0685} \sqrt{196582.6099}}= -0.9537
 $$
 El menos indica que existe una relación inversa entre las variables. Además su valor es próximo a $1$ indicando una dependencia lineal muy fuerte.
 
@@ -1023,24 +1019,36 @@ m_{x / y}=r \frac{S_x}{S_y}=-0.2443 \,.
 $$
 Los dos coeficientes de regresión y el coeficiente de correlación tienen  el mismo signo: a medida que $x$ aumenta  $y$ tiende a disminuir.
 
-El coeficiente de determinación $r^2$ es una medida que cuantifica la proporción de la variabilidad total de $y$ que es explicada por el modelo de regresión. Se calcula como:
-$$
-r^2=\frac{\sum\left(\hat{y}_i-\bar{y}\right)^2}{\sum\left(y_i-\bar{y}\right)^2}=\frac{\mathrm{SSR}}{\mathrm{SST}}
-$$
+El coeficiente de determinación $R^2$ es una medida que cuantifica la proporción de la variabilidad total de $y$ que es explicada por el modelo de regresión. Se calcula como:
+\begin{equation}
+R^2=\frac{\sum\left(\hat{y}_i-\bar{y}\right)^2}{\sum\left(y_i-\bar{y}\right)^2}=\frac{\mathrm{SSE}}{\mathrm{SST}} = 1-\frac{\mathrm{SSR}}{\mathrm{SST}} \,.
+\label{rcuadrado}
+\end{equation}
+
 
 Para el modelo de temperaturas y resistencias tenemos que 
 $$
-\mathrm{SSR}= 1787904.8827\,, \,\, \mathrm{SSE}= 177921.2163\,,
+\mathrm{SSR}= 177921.2163 \,, \,\, \mathrm{SSE}= 1787904.8827\,,
 \mathrm{SST}= 1965826.099 \,,
 $$
 por lo tanto:
 $$
-r^2=\frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{1787904.8827}{1965826.099}= 0.9095 \,.
+R^2=\frac{\mathrm{SSE}}{\mathrm{SST}} = \frac{1787904.8827}{1965826.099}= 0.9095 \,.
 $$
-Este valor se puede apreciar en la figura \ref{resumejem2} como {\rm \bf{R-squared}}.
+Este valor se puede apreciar en la figura \ref{resumejem2} como {\rm \bf{R-squared}}. Como se puede ver también en la misma figura, existe un parámetro llamado {\rm \bf{Adj. R-squared}}, esta cantidad  es una versión modificada del $R^2$ que ha sido ajustada para el número de predictores en el modelo. A diferencia del $R^2$, el $R^2$ ajustado puede disminuir si los predictores añadidos no mejoran el modelo de manera significativa. Es especialmente útil cuando se comparan modelos que tienen diferentes números de predictores y se calcula como:
+\begin{equation}
+R_{\text {ajustado }}^2=1-\frac{\left(1-R^2\right)(n-1)}{n-\ell-1} \,.
+\label{rcuadradoajus}
+\end{equation}
+donde $\ell$ es el número de  variables independientes, en el caso de un  modelo de regresión lineal simple $\ell=1$. 
+
+Para el modelo de temperaturas y resistencias resulta
+$$
+R_{\text {ajustado }}^2=1-\frac{\left(1-(0.9095)^2\right)(21-1)}{21-1-1} = 0.9047 \,.
+$$
 
 
-El error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal son
+Por otro lado, el error estándar residual y  los errores estándar de la pendiente $\Delta m$ y el término independiente $\Delta b$ de la regresión lineal son
 
 $$
 \mathrm{SE}\left(m\right)^2=\Delta m=\frac{\hat{\sigma}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \,, \,\, 
@@ -1048,7 +1056,7 @@ $$
 $$
 donde 
 $$
-\hat{\sigma}^2=\frac{{\mathrm{SSE}}}{n-2} = 9364.2745 
+\hat{\sigma}^2=\frac{{\mathrm{SSR}}}{n-2} = 9364.2745 
 $$
 
 Por lo tanto
@@ -1130,12 +1138,19 @@ Volviendo a nuestro ejemplo  \ref{ejemcizalla} resulta:
 
 Estos valores se pueden ver en la figura \ref{resumejem2}, columna $\mathrm{\mathbf{P>|t|}}$.
 
+\begin{figure}[!t]
+\begin{center}
+\includegraphics[height=3.0in,width=3.6in]{figuras/fig23}  
+\caption{Gráfica que muestra la distribución $t$ con las regiones de rechazo sombreadas en rojo, facilitando la interpretación de los resultados de una prueba. La lineas punteadas represenran el $t_{\text{crítico}}\approx  \pm 2.093$ y las zonas sombreadas representan las regiones de rechazo para una prueba de hipótesis con un nivel de significancia de $\alpha=0.05$.}
+\label{sis_t_rechazo}
+\end{center}
+\end{figure}
 
 \paragraph{El nivel de confianza:}  Es la probabilidad de que un intervalo de confianza contenga el valor verdadero del parámetro que se está estimando,  es una medida de la fiabilidad de una estimación y se expresa como un porcentaje (por ejemplo, 95\%, 99\%). Un nivel de confianza del 95\% significa que si se repitiera el proceso de estimación muchas veces, aproximadamente el 95\% de los intervalos de confianza calculados de esa manera contendrían el verdadero valor del parámetro y no debe pensarse que hay un 95\% de probabilidad de que el parámetro verdadero esté dentro del intervalo calculado a partir de una sola muestra.
 
 En nuestro caso de un modelo de regresión simple $y=\beta_0+\beta_1 x+\epsilon$, podemos calcular los intervalos de confianza para los coeficientes de la regresión ($\beta_0$ y $\beta_1$) ya que conocemos los coeficientes de la regresión  $\hat{\beta}_0$ y $\hat{\beta}_1$  y los errores estándar $\operatorname{SE}(\hat{\beta}_0)$ y $\mathrm{SE} (\hat{\beta}_1)$.
 
-El nivel de confianza se construye a través de un  valor crítico $t_{\alpha / 2 , n-2}$ o $t_{\text {critical}}$ que es un punto específico en la distribución ($t$-Student). Un nivel de confianza del $95 \%$ corresponde a $\alpha=0.05$, porque $1-0.95=0.05$. Dado que el nivel de confianza es bilateral, se divide en dos colas de la distribución $t$, lo que significa que cada cola tiene un área de $\alpha / 2$. 
+El nivel de confianza se construye a través de un  valor crítico $t_{\alpha / 2 , n-2}$ o $t_{\text {critical}}$ que es un punto específico en la distribución ($t$-Student). Un nivel de confianza del $95 \%$ corresponde a $\alpha=0.05$, porque $1-0.95=0.05$. Dado que el nivel de confianza es bilateral, se divide en dos colas de la distribución $t$, lo que significa que cada cola tiene un área de $\alpha / 2$, figura \ref{sis_t_rechazo}.
 
 El intervalo de confianza se puede determinar por
 $$
@@ -1143,7 +1158,7 @@ $$
 $$
 Aquí, $\hat{\beta}_j$ es el estimador del parámetro (intersección o pendiente) y $\operatorname{SE}(\hat{\beta}_j)$ es el error estándar del estimador.
 
-En el contexto del ejemplo que estamos considerando  los grados de libertad son $n-2= 19$, y para tener un nivel de confianza del $95 \%$ entonces $\alpha=0.05$. El valor crítico $t_{\alpha / 2 \text {,dof }}$ con $\alpha/2=0.025$ y 19 grados de libertad puede considerarse  con un valor de 2.093 (prueba t de Student).
+En el contexto del ejemplo que estamos considerando  los grados de libertad son $n-2= 19$, y para tener un nivel de confianza del $95 \%$ entonces $\alpha=0.05$. El valor crítico $t_{\alpha / 2 \text {,dof }}$ con $\alpha/2=0.025$ y 19 grados de libertad puede considerarse  con un valor de 2.093 (prueba t de Student, ver figura \ref{sis_t_rechazo}).
    
 Los intervalos de confianza (IC)  se calculan como se muestra a continuación:
 \begin{itemize}
@@ -1174,7 +1189,6 @@ $$
 
 Estos intervalos son los que aparecen en la figura \ref{resumejem2}, columna $\mathbf{[0.025 \quad  0.975]}$.
 
-
 \paragraph{La significancia global del modelo de regresión:} 
 
 Se utiliza para determinar si el modelo de regresión en su conjunto explica significativamente la variabilidad de la variable dependiente $y$.  Si la prueba F indica que el modelo es significativo, se puede concluir que hay una relación lineal entre las variables y que el modelo explica una proporción significativa de la variabilidad de $y$
@@ -1192,6 +1206,108 @@ $$
 \mathrm{F}=\dfrac{\dfrac{\mathrm{SSR}}{ 2-1}}{\dfrac{\mathrm{SSE}}{ 21-2}}=\frac{1787904.8827}{9364.2745}= 190.9283
 $$
 
-Este valor indica que el modelo es estadísticamente significativo, lo que significa que la relación entre las variables independientes y la variable dependiente es poco probable que se deba al azar.
+Este valor indica que el modelo es estadísticamente significativo, lo que significa que la relación entre las variables independientes y la variable dependiente es poco probable que se deba al azar. Como se puede observar en la figura \ref{resumejem2} aparece un valor para  $\mathbf{F-statistic:        190.9}$.
+
+\subsection{Condiciones y supuestos para modelo de regresión lineal}
+Hemos visto cómo aproximar el modelo de regresión lineal simple
+$$
+y=\beta_0+\beta_1 x +\varepsilon,
+$$
+por la recta
+$$
+\hat{y}=b+m x .
+$$
+
+Para garantizar que una aproximación usando una regresión lineal simple es válida, deben cumplirse varias condiciones y supuestos. Estas condiciones aseguran que el modelo lineal es una buena representación de la relación entre las variables y que las inferencias realizadas a partir del modelo son fiables. 
+\begin{enumerate}
+\item {\bf Linealidad:} La relación entre la variable dependiente $y$ y la variable independiente 
+$x$ debe ser lineal. Esto significa que los puntos de datos deben seguir un patrón que se asemeja a una línea recta.
+\item {\bf Independencia:}  Los errores o residuos $e_i$ deben ser independientes entre sí. Esto significa que el error de una observación no debe influir en el error de otra observación.
+\item {\bf Homoscedasticidad:} La varianza de los errores $e_i=\left(\hat{y}_i-y_i\right)$ debe ser constante en todos los niveles de la variable independiente $x$. Esto implica que la dispersión de los puntos alrededor de la línea de regresión debe ser aproximadamente la misma para todos los valores de $x$.
+\item {\bf Normalidad de los Errores:}   Los errores $e_i$  deben seguir una distribución normal con media cero y varianza constante. Esto es especialmente importante para la validación de las pruebas de hipótesis y los intervalos de confianza.
+\end{enumerate}
 
 
+Para la  verificación de condiciones suele usarse las siguientes heramientas
+\begin{description}
+\item[-]  Linealidad: Diagramas de Dispersión  (Scatter Plots).
+\item[-]   Homoscedasticidad: Gráficos de Residuos (Residual Plots).
+\item[-]  Independencia: Prueba de Durbin-Watson.
+\item[-]  Normalidad: Histograma de Residuos o Gráfico Q-Q (Quantile-Quantile Plot).
+\end{description}
+
+
+
+\paragraph{La prueba de Durbin-Watson}
+Es una prueba estadística utilizada para detectar la presencia de autocorrelación en los residuos (errores) de un modelo de regresión. La autocorrelación ocurre cuando los residuos no son independientes entre sí, lo que puede invalidar muchas de las inferencias que se pueden hacer a partir del modelo.
+
+La ecuación para el estadístico DW es:
+$$
+\mathrm{DW}=\frac{\sum_{i=2}^n\left(e_i-e_{i-1}\right)^2}{\sum_{i=1}^n e_i^2}
+$$
+donde $e_i$ son los residuos del modelo.
+
+Interpretación del Estadístico de Durbin-Watson
+\begin{itemize}
+\item   $\mathrm{DW} \approx 2$ : No hay autocorrelación.
+\item   $\mathrm{DW} <2 $  Autocorrelación positiva.
+\item   $\mathrm{DW}  >2 $: Autocorrelación negativa.
+\end{itemize}
+
+Para los datos considerados en el ejemplo de la medición de la resistencia de un termistor en función de la temperatura la verificación de condiciones se puede ver en la figura \ref{vericond}
+\begin{figure}[!t]
+\begin{center}
+        \includegraphics[width=0.34\textwidth]{figuras/fig24}
+        \includegraphics[width=0.34\textwidth]{figuras/fig25} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig26}
+        \includegraphics[width=0.34\textwidth]{figuras/fig27}      
+        \caption{Verificación de condiciones para el ejemplo \ref{ejemcizalla} y que arroja un  estadístico de Durbin-Watson de  $2.027$.}
+\label{vericond}        
+\end{center}     
+\end{figure}
+
+El valor para el estadístico Durbin-Watson $=2.027$ se aprecia también en la figura \ref{resumejem2}, esto es, un valor cercano a 2 que indica que no hay autocorrelación en los residuos. 
+
+
+\subsection{Algunos casos en los que no se cumplen los supuestos}
+
+\begin{figure}[!t]
+\begin{center}
+        \includegraphics[width=0.34\textwidth]{figuras/fig28}
+        \includegraphics[width=0.34\textwidth]{figuras/fig29} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig30a}
+        \includegraphics[width=0.34\textwidth]{figuras/fig30}      
+        \caption{Algunos ejemplos para el caso en que las condiciones para una regresión lineal no se cumplen}
+\label{novericond}        
+\end{center}     
+\end{figure}
+
+Cuando los supuestos de la regresión lineal no se cumplen, las estimaciones y las inferencias derivadas del modelo pueden no ser válidas. Veamos los casos:
+
+\begin{enumerate}
+\item  Linealidad: Si la relación entre las variables no es lineal, las estimaciones de los coeficientes serán sesgadas. Para superar esta situación, se puede considerar transformar las variables (por ejemplo, utilizando logaritmos o raíces cuadradas) o utilizar métodos no lineales como la regresión polinómica o modelos de regresión no paramétrica.
+
+\item Independencia: La autocorrelación en los errores puede llevar a subestimar los errores estándar, lo que aumenta el riesgo de cometer errores tipo I (rechazar una hipótesis nula verdadera). Se puede corregir  utilizando modelos que consideren la autocorrelación, como los modelos autorregresivos (AR), o utiliza la regresión de mínimos cuadrados generalizados (GLS).
+
+\item Homoscedasticidad:  La heteroscedasticidad puede llevar a estimaciones ineficientes y errores estándar incorrectos. En este caso se puede considerar  la regresión robusta, que ajusta los errores estándar, o utiliza modelos de mínimos cuadrados ponderados (WLS).
+
+\item Normalidad de los errores: La no normalidad puede afectar las pruebas de hipótesis y los intervalos de confianza.  Si la muestra es grande, se puede confiar en el teorema central del límite. Si no, considera transformaciones de las variables o utiliza métodos no paramétricos.
+
+\item Multicolinealidad: La multicolinealidad puede inflar los errores estándar de los coeficientes, haciendo difícil determinar el efecto individual de las variables independientes. Se podría corregir al eliminar o combinar variables correlacionadas, o utiliza técnicas como la regresión ridge o la regresión de componentes principales (PCA).
+
+\end{enumerate}
+
+La figura \ref{novericond} es el equivalente a la figura \ref{vericond} pero en situaciones donde no se cumplen las condiciones.
+
+Para finalizar mostramos un caso donde  pareciera que a simple vista el ajuste lineal es adecuado pero el resto de criterios falla. Está situación se puede ver en la figura \ref{cuasivericond}.
+
+\begin{figure}[!h]
+\begin{center}
+        \includegraphics[width=0.34\textwidth]{figuras/fig31}
+        \includegraphics[width=0.34\textwidth]{figuras/fig32} \\ 
+         \includegraphics[width=0.32\textwidth]{figuras/fig33}
+        \includegraphics[width=0.34\textwidth]{figuras/fig34}      
+        \caption{Algunos ejemplos para el caso en que algunas condiciones para una regresión lineal no se cumplen a pesar que que los puntos de que la linealidad parece una buena aproximación.}
+\label{cuasivericond}        
+\end{center}     
+\end{figure}
