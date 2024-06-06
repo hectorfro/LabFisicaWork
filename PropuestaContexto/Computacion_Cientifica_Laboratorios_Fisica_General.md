@@ -35,6 +35,8 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - Introducción a LaTeX.
    - Redacción de informes científicos.
    - Incorporación de ecuaciones, figuras y tablas.
+3. **Herramientas de Inteligencia Artificial**
+   - ChatGPT, Gemini, Copilot.    
 
 ### Semana 5-6: Fundamentos de Mediciones y Errores
 1. **Mediciones en el laboratorio**
@@ -58,6 +60,7 @@ Al finalizar el curso, los estudiantes serán capaces de:
 3. **Herramientas de visualización**
    - Herramientas avanzadas de visualización.
    - Creación de gráficos interactivos.
+   - Pandas
 
 ### Semana 9-10: Ajuste de Curvas y Análisis Espectral
 1. **Ajustes lineales y cuadráticos**
@@ -71,7 +74,7 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - Aplicaciones en la física de ondas y señales.
 
 ### Semana 11-12: Métodos Avanzados de Análisis
-1. **Monte Carlo: Aleatoriedad, paseos y decaimiento**
+1. **Monte Carlo: Aleatoriedad, paseos y decaimientos**
    - Simulaciones de Monte Carlo.
    - Aplicaciones en decaimiento radiactivo y caminatas aleatorias.
 2. **Cálculos con Matrices**
@@ -89,10 +92,9 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - Buenas prácticas en la redacción de informes.
 
 ## Evaluación
-- **Tareas semanales**: 40%
+- **Talleres semanales**: 40%
 - **Proyecto final**: 30%
-- **Exámenes (intermedio y final)**: 20%
-- **Participación y asistencia**: 10%
+- **Exámenes (intermedio y final)**: 30%
 
 ## Materiales y Recursos
 - **Software**: Python, Jupyter Notebooks, LaTeX.
