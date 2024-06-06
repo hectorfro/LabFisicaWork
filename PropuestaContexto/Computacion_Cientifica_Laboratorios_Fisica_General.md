@@ -1,4 +1,3 @@
-
 # Computación Científica para los Laboratorios de Física General
 
 ## Objetivo del Curso
@@ -17,16 +16,17 @@ Al finalizar el curso, los estudiantes serán capaces de:
 ## Distribución por Semanas
 
 ### Semana 1-2: Introducción y Fundamentos
-1. **Computational Science Basics**
+1. **Ciencia computacional básica**
    - Introducción a la computación científica.
    - Importancia en los laboratorios de física.
    - Conceptos fundamentales y aplicaciones.
-2. **Computing Software Basics**
+2. **Software computacional básico**
    - Introducción a herramientas y software: Python, Jupyter Notebooks.
    - Instalación y configuración de entornos de trabajo.
+   - Rudimentos sobre Linux
 
 ### Semana 3-4: Herramientas de Python para Computación Científica
-1. **The Python Ecosystem: numpy, sympy, matplotlib, scipy**
+1. **El ecosistema Python: numpy, sympy, matplotlib, scipy**
    - Uso de numpy para cálculos numéricos.
    - sympy para cálculos simbólicos.
    - matplotlib para visualización de datos.
@@ -52,37 +52,39 @@ Al finalizar el curso, los estudiantes serán capaces de:
 1. **Representación de los datos y el análisis gráfico**
    - Técnicas de visualización de datos.
    - Gráficos de dispersión, histogramas, y gráficos de barras.
-2. **Data Analytics: Least-Squares Fitting**
+2. **Análisis de datos: mínimos cuadrados**
    - Métodos de mínimos cuadrados para ajustes lineales.
    - Evaluación de la calidad del ajuste.
-3. **Visualization Tools**
+3. **Herramientas de visualización**
    - Herramientas avanzadas de visualización.
    - Creación de gráficos interactivos.
 
 ### Semana 9-10: Ajuste de Curvas y Análisis Espectral
-1. **Linear and Quadratic Fit**
+1. **Ajustes lineales y cuadráticos**
    - Ajuste de curvas lineales y cuadráticas.
    - Análisis de resultados y aplicaciones.
-2. **Nonlinear Fit**
+2. **Ajustes no lineales**
    - Métodos de ajuste no lineal.
    - Aplicaciones en experimentos de física.
-3. **Fourier Analysis**
+3. **Análisis de Fourier**
    - Introducción al análisis de Fourier.
    - Aplicaciones en la física de ondas y señales.
 
 ### Semana 11-12: Métodos Avanzados de Análisis
-1. **Monte Carlo: Randomness, Walks, and Decays**
+1. **Monte Carlo: Aleatoriedad, paseos y decaimiento**
    - Simulaciones de Monte Carlo.
    - Aplicaciones en decaimiento radiactivo y caminatas aleatorias.
-2. **Matrix Computing**
+2. **Cálculos con Matrices**
    - Operaciones matriciales y sus aplicaciones.
    - Uso de matrices en problemas físicos.
 
-### Semana 13-14: Ecuaciones Diferenciales y Redacción de Informes
-1. **Solving Differential Equations: Nonlinear Oscillations**
+### Semana 13: Ecuaciones Diferenciales
+1. **Resolviendo ecuaciones diferenciales: Oscilaciones no lineales**
    - Solución numérica de ecuaciones diferenciales.
    - Aplicaciones en oscilaciones no lineales.
-2. **Cómo escribir un informe de laboratorio**
+
+### Semana 14: Redacción de Informes
+1. **Cómo escribir un informe de laboratorio**
    - Estructura de un informe científico.
    - Buenas prácticas en la redacción de informes.
 
