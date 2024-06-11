@@ -36,13 +36,17 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - scipy para análisis científicos avanzados.
    - pandas para manipulación y análisis de datos.
 2. **LaTeX**
-   - Introducción a LaTeX y Overleaf
+   - Introducción a LaTeX y el Overleaf
    - Redacción de informes científicos.
    - Incorporación de ecuaciones, figuras y tablas.
-3. **Git y GitHub**
+3. **Redacción de Informes**
+   - Cómo escribir un informe de laboratorio
+   - Estructura de un informe científico.
+   - Buenas prácticas en la redacción de informes.
+4. **Git y GitHub**
    - Para control de versiones y colaboración en proyectos de programación y documentación.
-3. **Herramientas de Inteligencia Artificial**
-   - ChatGPT, Gemini, Copilot.    
+5. **Herramientas de Inteligencia Artificial**
+   - ChatGPT, Gemini, Copilot.
 
 ### Semana 5-6: Fundamentos de Mediciones y Errores
 1. **Mediciones en el laboratorio**
@@ -92,10 +96,6 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - Solución numérica de ecuaciones diferenciales.
    - Aplicaciones en oscilaciones no lineales.
 
-### Semana 14: Redacción de Informes
-1. **Cómo escribir un informe de laboratorio**
-   - Estructura de un informe científico.
-   - Buenas prácticas en la redacción de informes.
 
 ## Evaluación
 - **Talleres semanales**: 40%
