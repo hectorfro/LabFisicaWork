@@ -1,4 +1,4 @@
-# Computación Científica para los Laboratorios de Física General
+# Computación Científica: Fundamentos y Aplicaciones en Ciencias Experimentales
 
 ## Objetivo del Curso
 Desarrollar en los estudiantes habilidades de pensamiento computacional y manejo de herramientas computacionales para el análisis de datos experimentales, con aplicaciones específicas en laboratorios de física.
@@ -18,12 +18,15 @@ Al finalizar el curso, los estudiantes serán capaces de:
 ### Semana 1-2: Introducción y Fundamentos
 1. **Ciencia computacional básica**
    - Introducción a la computación científica.
-   - Importancia en los laboratorios de física.
+   - El trabajo en los laboratorios.
    - Conceptos fundamentales y aplicaciones.
 2. **Software computacional básico**
-   - Introducción a herramientas y software: Python, Jupyter Notebooks.
+   - Introducción a herramientas y software
    - Instalación y configuración de entornos de trabajo.
+   - Plataformas de Computación en la Nube: Google Colab, Jupyter Notebooks
+   - Entornos de Desarrollo Integrados (IDEs)
    - Rudimentos sobre Linux
+   - Software de Análisis de Datos y simulación
 
 ### Semana 3-4: Herramientas para Computación Científica
 1. **El ecosistema Python: numpy, sympy, matplotlib, scipy**
@@ -31,10 +34,13 @@ Al finalizar el curso, los estudiantes serán capaces de:
    - sympy para cálculos simbólicos.
    - matplotlib para visualización de datos.
    - scipy para análisis científicos avanzados.
+   - pandas para manipulación y análisis de datos.
 2. **LaTeX**
-   - Introducción a LaTeX.
+   - Introducción a LaTeX y Overleaf
    - Redacción de informes científicos.
    - Incorporación de ecuaciones, figuras y tablas.
+3. **Git y GitHub**
+   - Para control de versiones y colaboración en proyectos de programación y documentación.
 3. **Herramientas de Inteligencia Artificial**
    - ChatGPT, Gemini, Copilot.    
 
