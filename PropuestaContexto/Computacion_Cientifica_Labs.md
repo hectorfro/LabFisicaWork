@@ -2,27 +2,26 @@
 
 ## Objetivos Generales:
 
-	1. Desarrollar competencias en el uso de herramientas computacionales para el análisis de datos experimentales.
-	2. Enseñar el diseño y análisis de experimentos utilizando metodologías estadísticas y computacionales.
-	3. Proveer conocimientos fundamentales sobre mediciones, tratamiento de datos y errores en contextos experimentales.
+1. Desarrollar competencias en el uso de herramientas computacionales para el análisis de datos experimentales.
+2. Enseñar el diseño y análisis de experimentos utilizando metodologías estadísticas y computacionales.
+3. Proveer conocimientos fundamentales sobre mediciones, tratamiento de datos y errores en contextos experimentales.
 
 ## Objetivos Específicos:
 
-	1. Introducir a los estudiantes en la computación científica y su relevancia en las ciencias experimentales.
-	2. Capacitar a los estudiantes en el uso de software y herramientas computacionales esenciales.
-	3. Desarrollar habilidades en diseño experimental y análisis de datos utilizando métodos estadísticos.
-	4. Instruir en la redacción de informes científicos y la utilización de LaTeX.
-	5. Proveer conocimientos avanzados en visualización de datos y análisis de regresión.
+1. Introducir a los estudiantes en la computación científica y su relevancia en las ciencias experimentales.
+2. Capacitar a los estudiantes en el uso de software y herramientas computacionales esenciales.
+3. Desarrollar habilidades en diseño experimental y análisis de datos utilizando métodos estadísticos.
+4. Instruir en la redacción de informes científicos y la utilización de LaTeX.
+5. Proveer conocimientos avanzados en visualización de datos y análisis de regresión.
 
 ## Competencias:
 
-	1. Uso eficiente de herramientas computacionales para la resolución de problemas científicos.
-	2. Capacidad para diseñar y analizar experimentos de manera efectiva.
-	3. Habilidad para manejar datos experimentales, analizarlos y presentar resultados de manera clara y precisa.
-	4. Competencia en la redacción y presentación de informes científicos.
-	5. Aplicación de métodos estadísticos avanzados para el análisis de datos experimentales.
- 	6. Habilidad para relacionar conceptos teóricos con aplicaciones prácticas.
-
+1. Uso eficiente de herramientas computacionales para la resolución de problemas científicos.
+2. Capacidad para diseñar y analizar experimentos de manera efectiva.
+3. Habilidad para manejar datos experimentales, analizarlos y presentar resultados de manera clara y precisa.
+4. Competencia en la redacción y presentación de informes científicos.
+5. Aplicación de métodos estadísticos avanzados para el análisis de datos experimentales.
+6.  Habilidad para relacionar conceptos teóricos con aplicaciones prácticas.
 
 
 ## Parte 1: Computación Científica (4 semanas)
