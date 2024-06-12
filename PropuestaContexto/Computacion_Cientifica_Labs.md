@@ -89,7 +89,7 @@
 - Elección del tamaño de la muestra
 - Aplicaciones con software estadístico
 
-## Parte 3: Fundamentos de Mediciones, Tratamiento de Datos y Errores (6 semanas)
+## Parte 3: Mediciones, Tratamiento de Datos y Errores (6 semanas)
 
 ### Mediciones en el Laboratorio
 - Tipos de mediciones y técnicas
