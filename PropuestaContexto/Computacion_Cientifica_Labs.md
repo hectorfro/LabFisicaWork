@@ -27,12 +27,12 @@
 
 ## Parte 1: Computación Científica (4 semanas)
 
-### Ciencia Computacional Básica
+### Ciencia Computacional básica
 - Introducción a la computación científica
 - El trabajo en los laboratorios
 - Conceptos fundamentales y aplicaciones
 
-### Software Computacional Básico
+### Software Computacional básico
 - Introducción a herramientas y software
 - Instalación y configuración de entornos de trabajo
 - Plataformas de Computación en la Nube: Google Colab, Jupyter Notebooks
@@ -52,7 +52,7 @@
 - Redacción de informes científicos
 - Incorporación de ecuaciones, figuras y tablas
 
-### Redacción de Informes
+### Redacción de informes
 - Cómo escribir un informe de laboratorio
 - Estructura de un informe científico
 - Buenas prácticas en la redacción de informes
@@ -61,18 +61,18 @@
 - Para control de versiones y colaboración en proyectos de programación y documentación
 
 ### Herramientas de Inteligencia Artificial
-- ChatGPT, Gemini, Copilot
+- ChatGPT, Gemini, Copilot, las API
 
-## Parte 2: Diseño de Experimentos (6 semanas)
+## Parte 2: Diseño de experimentos (6 semanas)
 
-### Introducción al Diseño de Experimentos
+### Introducción al diseño de experimentos
 - Definiciones básicas en el diseño de experimentos
 - Etapas en el diseño de experimentos
 - Consideraciones prácticas sobre el uso de métodos estadísticos
 - Principios básicos
 - Clasificación y selección de los diseños experimentales
 
-### Elementos de Inferencia Estadística: 
+### Elementos de inferencia estadística: 
 - Población y muestra, parámetros y estadísticos
 - Distribuciones de probabilidad e inferencia
 - Estimación puntual y por intervalo
@@ -82,7 +82,7 @@
 - Prueba para la varianza
 - Aplicaciones con software estadístico
 
-### Experimentos con un Solo Factor (Análisis de Varianza)
+### Experimentos con un solo factor (Análisis de Varianza)
 - Diseño completamente al azar y ANOVA
 - Comparaciones o pruebas de rango múltiples
 - Verificación de los supuestos del modelo
@@ -101,7 +101,7 @@
 - Introducción a la teoría de incertidumbres
 - Aplicaciones con software estadístico
 
-### Análisis de Datos y Representación Gráfica
+### Análisis de datos y representación gráfica
 - Representación de los datos y el análisis gráfico
 - Técnicas de visualización de datos
 - Gráficos de dispersión, histogramas, y gráficos de barras
@@ -110,7 +110,7 @@
 - Aplicaciones con software estadístico
 
 
-### Análisis de Regresión
+### Análisis de regresión
 - Regresión lineal simple
 - Pruebas de hipótesis en la regresión lineal simple
 - Calidad del ajuste en regresión lineal simple
@@ -120,7 +120,7 @@
 - Intervalos de confianza y predicción en regresión múltiple
 - Aplicaciones con software estadístico
 
-### Ajuste de Curvas y Análisis Espectral
+### Ajuste de curvas y análisis espectral
 - Ajuste de curvas lineales y cuadráticas
 - Análisis de resultados y aplicaciones
 - Ajustes no lineales
@@ -131,7 +131,7 @@
 - Aplicaciones en el estudio de ondas y señales
 - Aplicaciones con software estadístico
 
-### Métodos Avanzados de Análisis
+### Métodos avanzados de análisis
 - Aleatoriedad, paseos y decaimientos
 - Simulaciones de Monte Carlo
 - Aplicaciones en decaimiento radiactivo y caminatas aleatorias
