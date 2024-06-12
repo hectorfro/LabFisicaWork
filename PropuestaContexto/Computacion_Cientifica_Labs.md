@@ -1,5 +1,6 @@
-# Computación Científica: 
-## Fundamentos y Aplicaciones en Ciencias Experimentales
+# **Computación Científica:**
+## **Fundamentos y Aplicaciones en Ciencias Experimentales**
+
 
 ## Objetivos Generales:
 
