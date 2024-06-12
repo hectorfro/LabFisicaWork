@@ -2,7 +2,7 @@
 
 ## Objetivos Generales:
 
-	1. Desarrollar competencias en el uso de herramientas computacionales para el análisis y visualización de datos experimentales.
+	1. Desarrollar competencias en el uso de herramientas computacionales para el análisis de datos experimentales.
 	2. Enseñar el diseño y análisis de experimentos utilizando metodologías estadísticas y computacionales.
 	3. Proveer conocimientos fundamentales sobre mediciones, tratamiento de datos y errores en contextos experimentales.
 
