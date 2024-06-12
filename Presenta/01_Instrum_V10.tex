@@ -1,0 +1,146 @@
+\documentclass[aspectratio=1610]{beamer}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage{xcolor}
+%\usepackage{enumitem}
+\usetheme{Madrid} 
+\useinnertheme{circles}
+\usecolortheme{default} 
+
+\setbeamercolor{structure}{fg=green!60!black} % Color principal a un tono de verde
+\setbeamercolor{title}{fg=green!60!black} % Establece el color del título al verde
+\setbeamercolor{subtitle}{fg=green!50!black} % Establece el color del subtítulo al verde
+
+\usefonttheme[onlymath]{serif} % Cambiar a fuente serif para matemáticas
+%\usefonttheme{serif}
+
+\title{\bf Regresión Lineal}
+\subtitle{Consideraciones para el análisis de datos en los cursos de laboratorio de Física}
+\author{Héctor F. Hernández G.}
+\date{\today}
+
+% Definir el color verde personalizado
+\definecolor{customgreen}{RGB}{0,128,0}
+
+% Configurar los colores de Beamer para el tema Warsaw
+\setbeamercolor{title in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{author in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{date in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{section in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{subsection in head/foot}{bg=customgreen, fg=white}
+\setbeamercolor{frametitle}{bg=customgreen, fg=white}
+\setbeamercolor{block title}{bg=customgreen, fg=white}
+\setbeamercolor{block body}{bg=customgreen!10, fg=black}
+\setbeamercolor{item}{fg=customgreen}
+
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Objetivos del Capítulo}
+\begin{itemize}
+    \item Obtener Mediciones Precisas
+    \item Elaboración y Análisis de Gráficos
+    \item Redacción de Informes de Laboratorio
+    \item Exploración de Nuevos Tópicos de la Física
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sistema Internacional de Unidades (SI)}
+\begin{table}[]
+    \centering
+    \begin{tabular}{ccc}
+        \hline
+        \textbf{Símbolo} & \textbf{Nombre} & \textbf{Magnitud} \\ \hline
+        s & segundo & tiempo \\
+        m & metro & longitud \\
+        kg & kilogramo & masa \\
+        A & amperio & corriente eléctrica \\
+        K & kelvin & temperatura termodinámica \\
+        mol & mol & cantidad de sustancia \\
+        cd & candela & intensidad luminosa \\ \hline
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Instrumentos de Medición}
+\begin{itemize}
+    \item Masa: Balanzas
+    \item Longitud: Cinta métrica, Vernier, Tornillo Micrométrico
+    \item Tiempo: Cronómetro
+    \item Temperatura: Termómetro
+    \item Corriente Eléctrica: Amperímetro
+    \item Cantidad de Sustancia: Mol
+    \item Intensidad Luminosa: Luxómetro
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Masa}
+\begin{itemize}
+    \item Unidad: Kilogramo (kg)
+    \item Instrumentos: Balanza de dos platillos, balanza de un solo platillo, balanza analítica
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Longitud}
+\begin{itemize}
+    \item Unidad: Metro (m)
+    \item Instrumentos: Cinta métrica, Vernier, Tornillo Micrométrico
+\end{itemize}
+\includegraphics[width=0.8\textwidth]{figuras/fig02a}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición del Tiempo}
+\begin{itemize}
+    \item Unidad: Segundo (s)
+    \item Instrumento: Cronómetro (digital y analógico)
+\end{itemize}
+\includegraphics[width=0.4\textwidth]{figuras/fig02f1}
+\includegraphics[width=0.4\textwidth]{figuras/fig02f2}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Temperatura}
+\begin{itemize}
+    \item Unidades: Celsius (°C), Fahrenheit (°F), Kelvin (K)
+    \item Instrumentos: Termómetros (analógicos y digitales)
+\end{itemize}
+\includegraphics[width=0.4\textwidth]{figuras/fig02g2}
+\includegraphics[width=0.4\textwidth]{figuras/fig02g1}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Corriente Eléctrica}
+\begin{itemize}
+    \item Unidad: Amperio (A)
+    \item Instrumento: Amperímetro
+\end{itemize}
+\includegraphics[width=0.8\textwidth]{figuras/fig02h}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Cantidad de Sustancia}
+\begin{itemize}
+    \item Unidad: Mol (mol)
+    \item Definición: Relación entre el número de entidades elementales y la constante de Avogadro
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Medición de la Intensidad Luminosa}
+\begin{itemize}
+    \item Unidad: Candela (cd)
+    \item Instrumento: Luxómetro
+\end{itemize}
+\includegraphics[width=0.8\textwidth]{figuras/fig02i}
+\end{frame}
+
+\end{document}
